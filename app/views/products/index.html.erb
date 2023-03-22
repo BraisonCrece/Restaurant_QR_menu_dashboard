@@ -1,0 +1,14 @@
+<div class='w-full h-full'>
+  <h1 class="font-bold text-4xl">A nosa carta</h1>
+  <% @products.each do |product| %>
+    <div class='flex justify-between'>
+      <div class="title price flex flex-col">
+        <p> <%= product.title %></p>
+        <p><%= product.description %></p>
+      </div>
+      <div class="p-4">
+        <%= product.prize%>
+      </div>
+    </div>
+  <% end %>
+</div>
