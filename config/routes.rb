@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
-  resources :products, only: [:index, :new]
   root 'products#index'
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+  resources :allergens
+  resources :products
 end

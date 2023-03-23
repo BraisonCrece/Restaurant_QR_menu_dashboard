@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+ @font-face {
+  font-family: 'PlayFair';
+  src: url('../fonts/PlayfairDisplay-Regular.ttf') format('ttf'),
+       url('../fonts/PlayfairDisplay-Bold.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.ttf') format('ttf'),
+       url('../fonts/Roboto-Thin.ttf') format('ttf'),
+       url('../fonts/Roboto-Bold.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+

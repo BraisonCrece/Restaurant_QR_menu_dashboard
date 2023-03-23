@@ -11,7 +11,12 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        play: ['PlayFair', ...defaultTheme.fontFamily.sans],
+        roboto: ['Roboto', ...defaultTheme.fontFamily.sans],
       },
+      fontSize: {
+        xxs: '0.4rem'
+      }
     },
   },
   plugins: [
