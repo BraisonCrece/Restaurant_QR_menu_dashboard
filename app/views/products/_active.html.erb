@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "product_active_#{product.id}" do %>
+  <%= link_to '🔴', toggle_active_path(product_id: product.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if !product.active%>
+  <%= link_to '🟢', toggle_active_path(product_id: product.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if product.active%>
+<% end %>

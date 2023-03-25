@@ -1,29 +1,25 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div>
+  <h2 class='text-center my-4 text-4xl'>Sign up</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'flex flex-col rounded shadow-xl p-8'}) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="mb-2">
+      <%= f.label :email, class: "font-semibold text-sm text-gray-600 pb-1 block" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" %>
+    </div>
+    <div class="mb-2">
+      <%= f.label :password, class: "font-semibold text-sm text-gray-600 pb-1 block" %>
+      <% if @minimum_password_length %>
+        <em class='text-xs'>(<%= @minimum_password_length %> caracteres mínimo)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" %>
+    </div>
+    <div class="mb-2">
+      <%= f.label :password_confirmation, class: "font-semibold text-sm text-gray-600 pb-1 block" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Rexístrate", class: "p-2 w-full bg-sky-800 rounded text-white font-bold" %>
+    </div>
+  <% end %>
+  <%= render "devise/shared/links" %>
+</div>

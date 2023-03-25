@@ -1,0 +1,4 @@
+<%= link_to 'Panel de control', control_panel_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to 'Engadir Producto', new_product_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to 'Engadir Alérxeno', new_allergen_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to 'Fechar sesión', destroy_user_session_path, data: { turbo_method: :delete } , class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:mr-6 sm:hover:text-red-600" if current_user %>

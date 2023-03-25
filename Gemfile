@@ -7,7 +7,7 @@ ruby "3.1.2"
 gem 'devise'
 
 # Allows us to process images using the Active Storage framework in Rails.
-gem "image_processing", ">= 1.2"
+# gem "image_processing", ">= 1.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.1"
@@ -79,3 +79,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "pg", "~> 1.4"
