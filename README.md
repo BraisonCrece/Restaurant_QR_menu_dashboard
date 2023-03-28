@@ -1,14 +1,14 @@
-# Carta QR para Restaurantes 
-(En desarrollo 🔨)
+# QR Menu Card for Restaurants 
+(Under development 🔨)
 
-Esta aplicación permite a los restaurantes crear y gestionar su carta de comidas y bebidas en formato QR. Los clientes pueden escanear el código QR con sus teléfonos móviles para acceder a la carta del restaurante de forma rápida y sencilla.
+This application allows restaurants to create and manage their menu of food and drinks in QR format. Customers can scan the QR code with their mobile phones to quickly and easily access the restaurant's menu.
 
-Los principales objetivos son:
-- Brindar la máxima **facilidad** en la gestión de la carta
+The main objectives are:
+- To provide maximum **ease** in menu management
 - **Mobile & desktop** design
-- **Inmediated** en la actualización de la carta
+- **Immediate** menu updates
 
-## Tecnologías utilizadas
+## Technologies used
 
 - Ruby on Rails 7
 - Tailwind CSS
@@ -16,35 +16,34 @@ Los principales objetivos son:
 - MySQL
 - StimulusJS
 
-## Funcionalidades principales
+## Main features
 
-- Creación y edición de la carta: los restaurantes pueden crear y editar su carta de comidas y bebidas en la aplicación.
-    - Alérgenos (Asociables a los productos)
-    - Vinos
-    - Entrantes
-    - Platos
-    - Postres
-- Escaneo de código QR: los clientes pueden escanear el código QR con sus teléfonos móviles para acceder a la carta del restaurante.
-- Autenticación de usuarios: la aplicación utiliza Devise para gestionar la autenticación y autorización de usuarios, permitiendo a los restaurantes acceder a su cuenta y a los clientes acceder a la carta del restaurante.
+- Menu creation and editing: restaurants can create and edit their menu of food and drinks in the application.
+    - Allergens (associable to products)
+    - Wines
+    - Starters
+    - Main courses
+    - Desserts
+- QR code scanning: customers can scan the QR code with their mobile phones to access the restaurant's menu.
+- User authentication: the application uses Devise to manage user authentication and authorization, allowing restaurants to access their account and customers to access the restaurant's menu.
 
+## Installation and configuration
 
-## Instalación y configuración
+1. Clone the GitHub repository: `git clone https://github.com/BraisonCrece/Restaurant_QR_menu_dashboard`
+2. Install dependencies: `bundle install`
+3. Configure the database: `rails db:create && rails db:migrate`
+4. Start the web server: `bin/dev`
 
-1. Clona el repositorio de GitHub: `git clone https://github.com/BraisonCrece/Restaurant_QR_menu_dashboard`
-2. Instala las dependencias: `bundle install`
-3. Configura la base de datos: `rails db:create && rails db:migrate`
-4. Inicia el servidor web: `bin/dev`
+## Contributions
 
-## Contribuciones
+If you want to contribute to the application, please follow these steps:
 
-Si deseas contribuir a la aplicación, por favor sigue estos pasos:
+1. Fork the repository.
+2. Create a new branch: `git checkout -b my-new-feature`
+3. Make your changes and commit: `git commit -am 'Add some feature'`
+4. Push your changes to the branch: `git push origin my-new-feature`
+5. Create a pull request.
 
-1. Haz un fork del repositorio.
-2. Crea una nueva rama: `git checkout -b my-new-feature`
-3. Realiza tus cambios y haz commit: `git commit -am 'Add some feature'`
-4. Sube tus cambios a la rama: `git push origin my-new-feature`
-5. Crea un pull request.
+## License
 
-## Licencia
-
-Esta aplicación está bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
+This application is under the MIT license. See the LICENSE file for more details.
