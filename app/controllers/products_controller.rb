@@ -1,11 +1,20 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+
   def index
-    @products = Product.where(active: true)
+    @categories = Category.all
+
+    if params[:category_id]
+      category = Category.find(params[:category_id])
+      @products = category.products.where(active: true)
+    else
+      @products = Product.where(active: true)
+    end
   end
 
   def new
     @product = Product.new
+    @categories = Category.all
   end
 
   def create
@@ -26,6 +35,7 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    @categories = Category.all
   end
 
   def update
@@ -55,6 +65,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:title, :description, :prize, :picture, allergen_ids: [])
+    params.require(:product).permit(:title, :description, :prize, :category_id, :picture, allergen_ids: [])
   end
 end

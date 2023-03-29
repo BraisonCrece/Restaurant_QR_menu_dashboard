@@ -24,17 +24,29 @@
       <%= f.number_field :prize, class: "form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
     <div class="form-group mb-4">
+      <%= f.label :category_id, "Categoría", class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.collection_select :category_id, @categories, :id, :name, {prompt: "Selecciona una categoría"}, {class: "form-select mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"} %>
+    </div>
+    <div class="form-group mb-4" data-controller="file-input">
       <%= f.label :picture, "Foto", class: "block text-gray-700 font-bold mb-2" %>
-      <%= f.file_field :picture, class: "form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+      <div class="relative">
+        <div class="flex items-center justify-between bg-white border border-gray-300 rounded-md px-4 py-2 w-full">
+          <span data-file-input-target="fileName" class="text-gray-400">Seleccione un archivo</span>
+          <button type="button" class="text-blue-500">Examinar</button>
+        </div>
+        <%= f.file_field :picture, class: "absolute inset-0 opacity-0 cursor-pointer w-full h-full", data: { action: "change->file-input#updateFileName", file_input_target: "fileInput" } %>
+      </div>
     </div>
     <div class="form-group mb-4">
       <%= f.label :allergen_ids, "Alergenos", class: "block text-gray-700 font-bold mb-2" %>
-      <%= f.collection_check_boxes :allergen_ids, Allergen.all, :id, :name do |cb| %>
-        <div class="flex items-center mb-2">
-          <%= cb.check_box(class: "form-checkbox h-4 w-4 text-indigo-600") %>
-          <%= cb.label(class: "ml-3 text-gray-700") %>
-        </div>
-      <% end %>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+        <%= f.collection_check_boxes :allergen_ids, Allergen.all, :id, :name do |cb| %>
+          <div class="flex items-center mb-2 border border-slate-200 rounded p-2">
+            <%= cb.check_box(class: "form-checkbox h-4 w-4 text-indigo-600 rounded") %>
+            <%= cb.label(class: "ml-1 text-gray-700") %>
+          </div>
+        <% end %>
+      </div>
     </div>
     <div class="flex items-center justify-between">
       <%= f.submit "Gardar", class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800" %>
