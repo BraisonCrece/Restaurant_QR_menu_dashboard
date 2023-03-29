@@ -13,7 +13,7 @@
     <%= render 'shared/flash' %>
     <div data-controller='menu'>
       <% if current_user %>
-        <button class="absolute right-5" data-action="click->menu#toggle"><%= image_tag 'menu.svg', width: 40, heigth: 40, class: 'select-none' %></button>
+        <button class="absolute right-5 top-4" data-action="click->menu#toggle"><%= image_tag 'menu.svg', width: 40, heigth: 40, class: 'select-none' %></button>
         <div class="fixed bg-white top-0 right-0 shadow z-10 h-full flex flex-col min-w-[45%] md:min-w-[25%]  ease-in-out duration-300 p-5 translate-x-full " data-menu-target="items">
           <button class="mr-8 mb-3  select-none" data-action="click->menu#toggle"><%= image_tag 'close.svg', width: 40, heigth: 40, class: 'select-none' %></button>
           <%= render '/shared/items' %>
@@ -23,7 +23,7 @@
         <%= image_tag 'Navega.png', width: "175px", class: 'm-auto p-2 mt-5' %>
       <% end %>
     </div>
-    <main class="w-full mt-6 px-5 flex justify-center">
+    <main class="w-full my-6 px-5 flex justify-center">
       <%= yield %>
     </main>
   </body>

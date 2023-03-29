@@ -22,7 +22,20 @@ class AllergensController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    @allergen = Allergen.find(params[:id])
+  end
+
+  def edit
+    @allergen = Allergen.find(params[:id])
+  end
+
+  def update
+    @allergen = Allergen.find(params[:id])
+    if @allergen.update(allergen_params)
+      redirect_to allergens_path
+    else
+      render :edit
+    end
   end
 
   private

@@ -4,9 +4,9 @@
     <%= link_to product do %>
       <div class='flex justify-between p-4 border-t'>
         <div class="title price flex flex-col max-w-[75%]">
-          <p class='text-xl font-play'> <%= product.title %></p>
-          <p><%= truncate(product.description, length: 50, separator: ' ', omission: '...') %></p>
-          <small class='text-[8px] underline decoration-indigo-500'>ver detalles</small>
+          <p class='text-lg font-play'> <%= product.title %></p>
+          <p class='font-thin'><%= truncate(product.description, length: 75, separator: ' ', omission: '...') %></p>
+          <small class='text-[8px] text-cyan-700 underline decoration-indigo-500'>ver detalles</small>
         </div>
         <div class="text-xl self-center">
           <%= number_to_currency(product.prize, unit: '', separator: ',')%><small class='text-gray-600 text-lg font-light'>€</small>
