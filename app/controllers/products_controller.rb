@@ -5,10 +5,15 @@ class ProductsController < ApplicationController
     @categories = Category.all
 
     if params[:category_id]
-      category = Category.find(params[:category_id])
-      @products = category.products.where(active: true)
-    else
-      @products = Product.where(active: true)
+      category_id = params[:category_id].to_i
+      session[:selected_category_id] = category_id if category_id > 0
+    end
+
+    @selected_category_id = session[:selected_category_id]
+    @products = Product.where(active: true)
+
+    if @selected_category_id.present?
+      @products = @products.where(category_id: @selected_category_id)
     end
   end
 
@@ -22,7 +27,7 @@ class ProductsController < ApplicationController
     @product.active = false
     if @product.save
       flash[:notice] = "Producto engadido!"
-      render :new, status: :ok
+      redirect_to new_product_path, status: :ok
       flash.clear
     else
       render :new, status: :unprocessable_entity

@@ -9,15 +9,12 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= favicon_link_tag 'Navega_sinfondo.png' %>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   </head>
-  <body class='flex flex-col w-full justify-center'>
+  <body class='flex flex-col w-full justify-center mt-0'>
     <%= render 'shared/flash' %>
     <div data-controller='menu'>
       <% if current_user %>
@@ -27,11 +24,13 @@
           <%= render '/shared/items' %>
         </div>
       <% end %>
-      <%= link_to root_path do %>
-        <%= image_tag 'Navega_sinfondo.png', width: "125px", class: 'm-auto p-2 mt-5' %>
-      <% end %>
+      <div class='flex justify-center p-4 gap-8 mt-5'>
+        <%= link_to root_path do %>
+          <%= image_tag 'Navega_sinfondo.png', width: "115px", class: '' %>
+        <% end %>
+      </div>
     </div>
-    <main class="w-full my-6 px-5 flex justify-center">
+    <main class="w-full my-4 px-5 flex justify-center">
       <%= yield %>
     </main>
   </body>

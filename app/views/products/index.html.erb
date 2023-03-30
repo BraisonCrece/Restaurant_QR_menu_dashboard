@@ -1,8 +1,7 @@
 <div class='w-full h-full max-w-lg mx-auto mb-20'>
-  <h1 class="text-4xl mb-12 font-thin text-center">A nosa carta</h1>
   <div class="relative inline-block text-left" data-controller="dropdown">
     <%= button_tag class: "inline-flex justify-center items-center px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none", "data-action": "click->dropdown#toggle" do %>
-      <%= content_tag :span, params[:category_id].present? ? Category.find(params[:category_id]).name : "Categorías" %>
+      <%= content_tag :span, session[:selected_category_id].present? ? Category.find(session[:selected_category_id]).name : "Categorías" %>
       <%= content_tag :svg, class: "-mr-1 ml-2 h-5 w-5", xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", "aria-hidden": true do %>
         <%= content_tag :path, "", fill_rule: "evenodd", d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z", clip_rule: "evenodd" %>
       <% end %>
@@ -17,7 +16,7 @@
   </div>
   <% @products.each do |product| %>
     <%= link_to product do %>
-      <div class='flex justify-between p-4 border-t animate__animated animate__fadeIn animate__slow'>
+      <div class='flex justify-between p-4 border-t animate__animated animate__fadeIn animate__fast'>
         <div class="title price flex flex-col max-w-[75%]">
           <p class='text-xl playfare font-medium'> <%= product.title %></p>
           <p class='font-light lato'><%= truncate(product.description, length: 75, separator: ' ', omission: '...') %></p>
