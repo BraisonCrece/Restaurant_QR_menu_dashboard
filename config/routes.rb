@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :allergens
   resources :products
   resources :categories
+  post 'translate', to: 'translate#translate'
 end

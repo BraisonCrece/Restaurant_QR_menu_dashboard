@@ -6,8 +6,18 @@ ruby "3.1.2"
 # Handle User Authentication easily
 gem 'devise'
 
+# HTTParty is a simple Ruby library for making HTTP requests, handling various protocols, and processing JSON, XML, and other formats in a user-friendly manner
+gem 'httparty'
+
+# Dotenv-rails is a Ruby gem that loads environment variables from a .env file into your Rails application, allowing you to keep sensitive information secure and separate from your codebase.
+gem 'dotenv-rails'
+
+# Rack middleware for handling Cross-Origin Resource Sharing (CORS), which allows sharing of resources between different domains.
+gem 'rack-cors'
+
 # Allows us to process images using the Active Storage framework in Rails.
 # gem "image_processing", ">= 1.2"
+gem 'animate-rails'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.1"
