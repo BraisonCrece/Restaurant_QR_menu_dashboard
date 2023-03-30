@@ -25,7 +25,7 @@
     </div>
     <div class="form-group mb-4">
       <%= f.label :category_id, "Categoría", class: "block text-gray-700 font-bold mb-2" %>
-      <%= f.collection_select :category_id, @categories, :id, :name, {prompt: "Selecciona una categoría"}, {class: "form-select mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"} %>
+      <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "Selecciona una categoría"}, {class: "form-select mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"} %>
     </div>
     <div class="form-group mb-4" data-controller="file-input">
       <%= f.label :picture, "Foto", class: "block text-gray-700 font-bold mb-2" %>

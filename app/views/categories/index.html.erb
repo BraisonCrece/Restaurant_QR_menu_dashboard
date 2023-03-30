@@ -1,0 +1,14 @@
+<div class='w-full max-w-3xl mx-auto'>
+  <h1 class="text-3xl font-thin mb-6 text-center">Categorías</h1>
+  <div class="py-6 grid auto-cols-max grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 relative">
+    <% @categories.each do |category| %>
+      <div class="bg-gray-100 rounded-lg p-4 hover:bg-gray-200 flex justify-center items-center relative">
+        <%= link_to category.name, categories_path(category), class: 'text-xl mb-2 text-center' %>
+        <div class='absolute bottom-0 flex gap-2 left-2'>
+          <%= button_to 'Editar', edit_category_path(category), data: { turbo: false }, class: 'text-xs font-thin text-blue-800 p-0', method: :get%>
+          <%= button_to 'Eliminar', categories_path(category), data: { turbo_confirm: 'Seguro que queres eliminar o categorieso?'}, class: 'text-xs font-thin text-red-800 p-0', method: :delete %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

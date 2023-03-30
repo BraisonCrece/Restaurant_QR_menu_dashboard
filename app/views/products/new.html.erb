@@ -1,6 +1,6 @@
 <div>
   <h1 class="font-thin text-4xl text-center">Engadir producto</h1>
-  <%= form_with(model: Product.new, data: { turbo: false }, class: "bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4") do |f| %>
+  <%= form_with(model: @product, data: { turbo: false }, class: "bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4") do |f| %>
     <% if @product.errors.any? %>
       <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
         <h2 class='font-bold mb-2'><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -12,20 +12,20 @@
       </div>
     <% end %>
     <div class="form-group mb-4">
-      <%= f.label :title, class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.label :title,"Nome", class: "block text-gray-700 font-bold mb-2" %>
       <%= f.text_field :title, class: "form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
     <div class="form-group mb-4">
-      <%= f.label :description, class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.label :description, "Descripción", class: "block text-gray-700 font-bold mb-2" %>
       <%= f.text_area :description, class: "form-textarea mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
     <div class="form-group mb-4">
-      <%= f.label :prize, class: "block text-gray-700 font-bold mb-2" %>
-      <%= f.number_field :prize, class: "form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+      <%= f.label :prize, "Prezo", class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.number_field :prize, step: :any, class: "form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
     <div class="form-group mb-4">
       <%= f.label :category_id, "Categoría", class: "block text-gray-700 font-bold mb-2" %>
-      <%= f.collection_select :category_id, @categories, :id, :name, {prompt: "Selecciona una categoría"}, {class: "form-select mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"} %>
+      <%= f.collection_select :category_id, Category.all,:id, :name, {prompt: "Selecciona unha categoría"}, {class: "form-select mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"} %>
     </div>
     <div class="form-group mb-4" data-controller="file-input">
       <%= f.label :picture, "Foto", class: "block text-gray-700 font-bold mb-2" %>
@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="form-group mb-4">
-      <%= f.label :allergen_ids, "Alergenos", class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.label :allergen_ids, "Alérxenos", class: "block text-gray-700 font-bold mb-2" %>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         <%= f.collection_check_boxes :allergen_ids, Allergen.all, :id, :name do |cb| %>
           <div class="flex items-center mb-2 border border-slate-200 rounded p-2">

@@ -9,6 +9,13 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= favicon_link_tag 'Navega_sinfondo.png' %>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   </head>
   <body class='flex flex-col w-full justify-center'>
     <%= render 'shared/flash' %>
@@ -21,7 +28,7 @@
         </div>
       <% end %>
       <%= link_to root_path do %>
-        <%= image_tag 'Navega.png', width: "175px", class: 'm-auto p-2 mt-5' %>
+        <%= image_tag 'Navega_sinfondo.png', width: "125px", class: 'm-auto p-2 mt-5' %>
       <% end %>
     </div>
     <main class="w-full my-6 px-5 flex justify-center">
