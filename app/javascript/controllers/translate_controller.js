@@ -16,21 +16,7 @@ export default class extends Controller {
 
   async translateText(text, targetLang) {
     const url = '/translate';
-    const headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded'
-    });
-
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const data = new URLSearchParams();
-    data.append('text', text);
-    data.append('target_lang', targetLang);
-    data.append('authenticity_token', csrfToken);
-
-    const requestOptions = {
-      method: 'POST',
-      headers: headers,
-      body: data
-    };
+    const requestOptions = this.buildRequestOptions(text, targetLang);
 
     try {
       const response = await fetch(url, requestOptions);
@@ -46,6 +32,26 @@ export default class extends Controller {
     }
   }
 
-}
+  buildRequestOptions(text, targetLang) {
+    const headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
 
+    const csrfToken = this.getCSRFToken();
+    const data = new URLSearchParams();
+    data.append('text', text);
+    data.append('target_lang', targetLang);
+    data.append('authenticity_token', csrfToken);
+
+    return {
+      method: 'POST',
+      headers: headers,
+      body: data
+    };
+  }
+
+  getCSRFToken() {
+    return document.querySelector('meta[name="csrf-token"]').content;
+  }
+}
 
