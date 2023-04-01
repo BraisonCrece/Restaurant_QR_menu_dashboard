@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :products
   resources :categories
   post 'translate', to: 'translate#translate'
+  post 'describe_dish', to: 'description#describe_dish'
 end

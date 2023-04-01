@@ -4,7 +4,7 @@ class TranslateController < ApplicationController
   def translate
     text = params[:text]
     target_lang = 'EN'
-    auth_key = 'b1374b82-122a-e489-9d9c-f289835c5dc8:fx'
+    auth_key = ENV['AUTH_KEY']
 
     url = 'https://api-free.deepl.com/v2/translate'
     headers = {
