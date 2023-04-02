@@ -1,4 +1,4 @@
-# fly.toml file generated for cartanavegacion on 2023-04-01T20:44:09+02:00
+# fly.toml file generated for cartanavegacion on 2023-04-02T17:36:23+02:00
 
 app = "cartanavegacion"
 kill_signal = "SIGINT"
@@ -40,7 +40,3 @@ processes = []
 [[statics]]
   guest_path = "/rails/public"
   url_prefix = "/"
-
-[mounts]
-  source="navega"
-  destination="/mnt/navega"

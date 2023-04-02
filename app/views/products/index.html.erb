@@ -1,4 +1,4 @@
-<div class='w-full h-full max-w-lg mx-auto mb-20' data-controller="scroll-position" data-scroll-position="<%= session[:scroll_position] %>">
+<div class='w-full h-full max-w-lg mx-auto mb-20'>
   <div class="sticky top-0 z-10 w-full bg-white" data-controller="category-menu" data-category-menu-target="menu">
     <div class="flex justify-center gap-8 py-4">
       <% @categories.each do |category| %>
@@ -6,14 +6,13 @@
       <% end %>
     </div>
   </div>
-  <div class="space-y-4 p-3" data-scroll-position-target="scrollArea">
+  <div class="space-y-4 p-3">
     <% @categories.each do |category| %>
       <% products = category.products.where(active: true) %>
       <% next if products.empty? %>
-      <turbo-frame id="category-<%= category.id %>">
-        <h2 class="text-2xl font-medium text-gray-900 mb-2 px-4"><%= category.name %></h2>
+        <h2 class="text-2xl font-medium text-gray-900 mb-2 px-4" id="category-<%= category.id %>"><%= category.name %></h2>
         <% products.each do |product| %>
-          <%= link_to product, data: { turbo_frame: "_top" } do %>
+          <%= link_to product, data: { turbo_frame: "modal" } do %>
             <div class='flex justify-between p-4 border-t animate__animated animate__fadeIn animate__fast'>
               <div class="title price flex flex-col max-w-[75%]">
                 <p class='text-xl playfare font-medium'> <%= product.title %></p>
@@ -26,7 +25,25 @@
             </div>
           <% end %>
         <% end %>
-      </turbo-frame>
     <% end %>
+    <%= turbo_frame_tag :modal %>
   </div>
+
 </div>
+
+<script>
+  document.addEventListener("DOMcontentLoad", function() {
+    var links = document.querySelectorAll('a[href^="#category-"]');
+    links.forEach(function(link) {
+      link.addEventListener("click", function(event) {
+        event.preventDefault();
+        var target = document.querySelector(this.getAttribute("href"));
+        var offset = target.offsetTop - 50; //ajuste el valor para que coincida con la altura de la barra de navegación
+        window.scrollTo({
+          top: offset,
+          behavior: "smooth"
+        });
+      });
+    });
+  });
+</script>

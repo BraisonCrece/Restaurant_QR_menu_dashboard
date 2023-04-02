@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     @product.active = false
     if @product.save
       flash[:notice] = "Producto engadido!"
-      redirect_to new_product_path, status: :ok
+      render :new, status: :ok
       flash.clear
     else
       render :new, status: :unprocessable_entity
