@@ -1,7 +1,7 @@
 require 'httparty'
 class DescriptionController < ApplicationController
   def describe_dish
-    api_key = ENV["OPEN_AI_AUTH"]
+    api_key = Rails.application.credentials.openai
     plato = params[:plato]
 
     prompt = "Dado un prato de comida, describe brevemente o prato para unha carta dixital dun restaurante nun ton formal e adecuado e como se o escribise o cociñeiro do restaurante. Máximo 300 caracteres.\nExemplo: Prato: Polvo á feira\nDescrición: O Polvo á feira é, sen dúbida, unha das xoias da cociña galega. Este prato ten todo o sabor e autenticidade que define á nosa cultura gastronómica. O polbo, cociñado a perfección e cortado en rodas suculentas, acompáñase con patacas tenras e unha salsa tradicional que dá o toque máxico de sabor e aroma. O aceite de oliva, o pemento doce e a sal gorda unen as súas forzas para crear unha explosión de sabor en cada bocado.\nPrato: #{plato}\nDescrición:"

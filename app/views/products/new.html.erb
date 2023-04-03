@@ -1,6 +1,6 @@
 <div data-controller="description">
   <h1 class="font-thin text-4xl text-center">Engadir producto</h1>
-  <%= form_with(model: @product, data: { turbo: false }, class: "bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4") do |f| %>
+  <%= form_with(model: Product.new, data: { turbo: false }, class: "bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4") do |f| %>
     <% if @product.errors.any? %>
       <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
         <h2 class='font-bold mb-2'><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>

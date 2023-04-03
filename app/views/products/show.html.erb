@@ -1,11 +1,11 @@
 <%= turbo_frame_tag :modal do %>
   <div data-controller='modal' id='product-modal' >
     <div id='modal-container' data-action="click->modal#close" class="fixed z-30 w-full h-full top-0 left-0 bg-black bg-opacity-20"></div>
-    <div class="fixed inset-0 z-40 overflow-hidden">
+    <div class="fixed inset-0 z-40 overflow-hidden p-3">
       <%= image_tag 'close2.png', width: '35px', data: { action: 'click->modal#close' }, class: "animate__fadeIn animate__animated mx-auto mt-10 mb-2"%>
-      <div class=" bg-white rounded-lg overflow-hidden shadow-xl mb-10 animate__fadeIn animate__animated mx-3 ">
-        <div class="min-w-full">
-          <%= image_tag @product.picture , class: "w-full rounded-t-lg object-cover" %>
+      <div class="max-w-lg mx-auto bg-white rounded-lg overflow-hidden shadow-xl mb-10 animate__fadeIn animate__animated">
+        <div class="w-full">
+          <%= image_tag @product.picture , class: "rounded-t-lg object-cover object-center max-h-64 w-full" %>
         </div>
         <div class="px-6 py-4">
           <div class="font-bold text-2xl mb-2 playfare"><%= @product.title %></div>
