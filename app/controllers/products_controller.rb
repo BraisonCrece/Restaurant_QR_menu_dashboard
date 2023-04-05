@@ -3,18 +3,6 @@ class ProductsController < ApplicationController
 
   def index
     @categories = Category.all
-
-    if params[:category_id]
-      category_id = params[:category_id].to_i
-      session[:selected_category_id] = category_id if category_id > 0
-    end
-
-    @selected_category_id = session[:selected_category_id]
-    @products = Product.where(active: true)
-
-    if @selected_category_id.present?
-      @products = @products.where(category_id: @selected_category_id)
-    end
   end
 
   def new
@@ -27,7 +15,7 @@ class ProductsController < ApplicationController
     @product.active = false
     if @product.save
       flash[:notice] = "Producto engadido!"
-      redirect_to new_product_path, status: :ok
+      render :new, status: :ok
       flash.clear
     else
       render :new, status: :unprocessable_entity
@@ -36,6 +24,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    session[:scroll_position] = params[:scroll_position]
   end
 
   def edit

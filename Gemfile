@@ -91,3 +91,5 @@ group :test do
 end
 
 gem "pg", "~> 1.4"
+
+gem "dockerfile-rails", ">= 1.2", :group => :development

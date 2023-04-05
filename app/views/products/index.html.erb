@@ -1,31 +1,49 @@
 <div class='w-full h-full max-w-lg mx-auto mb-20'>
-  <div class="relative inline-block text-left" data-controller="dropdown">
-    <%= button_tag class: "inline-flex justify-center items-center px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none", "data-action": "click->dropdown#toggle" do %>
-      <%= content_tag :span, session[:selected_category_id].present? ? Category.find(session[:selected_category_id]).name : "Categorías" %>
-      <%= content_tag :svg, class: "-mr-1 ml-2 h-5 w-5", xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", "aria-hidden": true do %>
-        <%= content_tag :path, "", fill_rule: "evenodd", d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z", clip_rule: "evenodd" %>
+  <div class="sticky top-0 z-10 w-full bg-white" data-controller="category-menu" data-category-menu-target="menu">
+    <div class="flex justify-center gap-8 py-4">
+      <% @categories.each do |category| %>
+        <%= link_to category.name, "#category-#{category.id}", class: "text-sm font-medium text-gray-700 hover:text-gray-900#{' text-indigo-500 font-bold' if params[:category_id].to_i == category.id}", data: { turbo_frame: "_top" } %>
       <% end %>
-    <% end %>
-    <div class="origin-top-right absolute left-0 mt-2 w-36 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-10" data-dropdown-target="menu">
-      <div class="py-1">
-        <% @categories.each do |category| %>
-          <%= link_to category.name, products_path(category_id: category.id), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 text-center#{' font-bold text-indigo-500' if params[:category_id].to_i == category.id}" %>
-        <% end %>
-      </div>
     </div>
   </div>
-  <% @products.each do |product| %>
-    <%= link_to product do %>
-      <div class='flex justify-between p-4 border-t animate__animated animate__fadeIn animate__fast'>
-        <div class="title price flex flex-col max-w-[75%]">
-          <p class='text-xl playfare font-medium'> <%= product.title %></p>
-          <p class='font-light lato'><%= truncate(product.description, length: 75, separator: ' ', omission: '...') %></p>
-          <small class='text-[8px] text-cyan-700 '>ver detalles</small>
-        </div>
-        <div class="text-xl self-center">
-          <%= number_with_precision(product.prize, precision: 2, separator: ',') %><small class='text-black text-base font-extralight'>€</small>
-        </div>
-      </div>
+  <div class="space-y-4 p-3">
+    <% @categories.each do |category| %>
+      <% products = category.products.where(active: true) %>
+      <% next if products.empty? %>
+        <h2 class="text-2xl font-medium text-gray-900 mb-2 px-4" id="category-<%= category.id %>"><%= category.name %></h2>
+        <% products.each do |product| %>
+          <%= link_to product, data: { turbo_frame: "modal" } do %>
+            <div class='flex justify-between p-4 border-t animate__animated animate__fadeIn animate__fast'>
+              <div class="title price flex flex-col max-w-[75%]">
+                <p class='text-xl playfare font-medium'> <%= product.title %></p>
+                <p class='font-light lato'><%= truncate(product.description, length: 75, separator: ' ', omission: '...') %></p>
+                <small class='text-[8px] text-cyan-700 '>ver detalles</small>
+              </div>
+              <div class="text-xl self-center">
+                <%= number_with_precision(product.prize, precision: 2, separator: ',') %><small class='text-black text-base font-extralight'>€</small>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
     <% end %>
-  <% end %>
+    <%= turbo_frame_tag :modal %>
+  </div>
+
 </div>
+
+<script>
+  document.addEventListener("DOMcontentLoad", function() {
+    var links = document.querySelectorAll('a[href^="#category-"]');
+    links.forEach(function(link) {
+      link.addEventListener("click", function(event) {
+        event.preventDefault();
+        var target = document.querySelector(this.getAttribute("href"));
+        var offset = target.offsetTop - 50; //ajuste el valor para que coincida con la altura de la barra de navegación
+        window.scrollTo({
+          top: offset,
+          behavior: "smooth"
+        });
+      });
+    });
+  });
+</script>

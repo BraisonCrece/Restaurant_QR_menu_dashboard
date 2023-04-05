@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :set_category, only: [:edit, :update, :destroy]
   def index
     @categories = Category.all
   end
@@ -21,15 +22,29 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
+    if @category.update(category_params)
+      flash[:notice] = "Categoría actualizada con éxito"
+      redirect_to categories_path
+    else
+      flash[:alert] = "Datos inválidos"
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
+  def destroy
+    @category.destroy
+    flash[:notice] = "Categoría eliminada con éxito"
+    redirect_to categories_path
   end
 
   private
   def category_params
     params.require(:category).permit(:name)
+  end
+  def set_category
+    @category = Category.find(params[:id])
   end
 end
