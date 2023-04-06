@@ -1,19 +1,29 @@
-<div class="w-full max-w-lg p-3">
-  <% @products.each do |product| %>
-    <div class='flex justify-between w-full h-[75px] border-t align-middle relative'>
-      <p class='max-w-[75%] self-center flex flex-col gap-2'>
-        <%= product.title %>
-      </p>
-      <p class='self-center'>
-        <%= turbo_frame_tag "product_active_#{product.id}" do %>
-          <%= link_to '🔴', toggle_active_path(product_id: product.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if !product.active%>
-          <%= link_to '🟢', toggle_active_path(product_id: product.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if product.active%>
-        <% end %>
-      </p>
-      <div class='absolute flex gap-2'>
-        <%= button_to 'Editar', edit_product_path(product), data: { turbo: false }, class: 'text-xs font-thin text-blue-800 p-0', method: :get%>
-        <%= button_to 'Eliminar', product_path(product), data: { turbo_confirm: 'Seguro que queres eliminar o producto?'}, class: 'text-xs font-thin text-red-800 p-0', method: :delete %>
+<div class="w-full max-w-lg p-3" data-controller="product-search">
+  <div class="flex justify-center">
+    <%= link_to "Engadir producto", new_product_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-2 rounded focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800' %>
+  </div>
+  <div class="flex justify-center mb-2">
+    <input type="search" id="productSearch" placeholder="Buscar producto" data-product-search-target="search" data-action="input->product-search#search" class="bg-white focus:ring-blue-500 focus:border-blue-500 border border-gray-300 rounded-md py-2 px-4 block w-full mb-2" />
+  </div>
+  <div id="productList">
+    <% @products.each do |product| %>
+      <div class='flex justify-between w-full h-[75px] border-t align-middle relative product-item' data-product-title='<%= product.title.downcase %>' data-product-search-target="item">
+        <p class='max-w-[75%] self-center flex flex-col gap-2'>
+          <%= product.title %>
+        </p>
+        <p class='self-center'>
+          <%= turbo_frame_tag "product_active_#{product.id}" do %>
+            <%= link_to '🔴', toggle_active_path(product_id: product.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if !product.active%>
+            <%= link_to '🟢', toggle_active_path(product_id: product.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if product.active%>
+          <% end %>
+        </p>
+        <div class='absolute flex gap-2'>
+          <%= button_to 'Editar', edit_product_path(product), data: { turbo: false }, class: 'text-xs font-thin text-blue-800 p-0', method: :get%>
+          <%= button_to 'Eliminar', product_path(product), data: { turbo_confirm: 'Seguro que queres eliminar o producto?'}, class: 'text-xs font-thin text-red-800 p-0', method: :delete %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
+
+

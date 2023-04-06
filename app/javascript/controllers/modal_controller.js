@@ -9,6 +9,6 @@ export default class extends Controller {
   close() {
     const modal = document.querySelector('#product-modal')
 
-      modal.remove()
+    modal.remove()
   }
 }

@@ -1,0 +1,17 @@
+<div class='w-full max-w-3xl mx-auto p-3'>
+  <h1 class="text-3xl font-thin mb-6 text-center">Denominacións de Orixe</h1>
+  <div class="flex justify-center">
+    <%= link_to "Engadir denominación", new_denomination_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800' %>
+  </div>
+  <div class="py-6 grid auto-cols-max grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 relative">
+    <% @denominations.each do |denomination| %>
+      <div class="bg-gray-100 rounded-lg p-4 hover:bg-gray-200 flex justify-between items-center relative">
+        <%= link_to denomination.name, denomination_path(denomination), class: 'text-xl mb-2 text-center' %>
+        <div class='absolute bottom-0 flex gap-2 left-2'>
+          <%= button_to 'Editar', edit_denomination_path(denomination), data: { turbo: false }, class: 'text-xs font-thin text-blue-800 p-0', method: :get%>
+          <%= button_to 'Eliminar', denomination_path(denomination), data: { turbo_confirm: 'Seguro que queres eliminar o denominationo?'}, class: 'text-xs font-thin text-red-800 p-0', method: :delete %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

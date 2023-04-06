@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @categories = Category.all
+    @denominations = WineOriginDenomination.all
   end
 
   def new
@@ -12,7 +13,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.active = false
+    @product.active = true
     if @product.save
       flash[:notice] = "Producto engadido!"
       render :new, status: :ok
@@ -35,16 +36,16 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      redirect_to @product
+      redirect_to control_panel_path, notice: 'Producto editado con éxito'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to products_path, status: 303, notice: 'El producto fue eliminado correctamente.'
+    redirect_to control_panel_path, status: 303, notice: 'Producto eliminado!'
   end
 
   def control_panel

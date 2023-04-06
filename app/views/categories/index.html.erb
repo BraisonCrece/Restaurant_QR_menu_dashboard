@@ -1,4 +1,7 @@
-<div class='w-full max-w-3xl mx-auto'>
+<div class='w-[90%] max-w-3xl mx-auto'>
+  <div class="flex justify-center">
+    <%= link_to "Engadir categoría", new_category_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-2 rounded focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800' %>
+  </div>
   <h1 class="text-3xl font-thin mb-6 text-center">Categorías</h1>
   <div class="py-6 grid auto-cols-max grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 relative">
     <% @categories.each do |category| %>

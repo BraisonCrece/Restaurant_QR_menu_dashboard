@@ -1,0 +1,23 @@
+<div class='w-[90%]'>
+  <h1 class="font-thin text-4xl text-center">Engadir Denominación de Orixe</h1>
+  <%= form_with(model: WineOriginDenomination.new, url: denominations_path, data: { turbo: false }, class: "bg-white shadow-2xl rounded px-8 pt-6 pb-8 my-4") do |f| %>
+    <% if @denomination.errors.any? %>
+      <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <h2 class='font-bold mb-2'><%= pluralize(@denomination.errors.count, "error") %> prohibited this denomination from being saved:</h2>
+        <ul class="list-disc ml-5">
+          <% @denomination.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="mb-4">
+      <%= f.label :name, "Nome", class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.text_field :name, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    </div>
+    <div class="flex items-center justify-between">
+      <%= f.submit "Gardar", class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800" %>
+    </div>
+  <% end %>
+  <%= link_to "Atrás", denominations_path, class: 'underline underline-blue-800 text-blue-600' %>
+</div>

@@ -1,6 +1,7 @@
-<%= link_to 'Control Productos', control_panel_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
-<%= link_to 'Control Alérgenos', allergens_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
-<%= link_to 'Engadir Producto', new_product_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
-<%= link_to 'Engadir Alérxeno', new_allergen_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
-<%= link_to 'Engadir Categoría', new_category_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to 'Productos', control_panel_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to 'Categorías', categories_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to 'Alérxenos', allergens_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to 'Denominacións de Orixe', denominations_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to 'Viños', wines_control_panel_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+
 <%= link_to 'Fechar sesión', destroy_user_session_path, data: { turbo_method: :delete } , class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:mr-6 sm:hover:text-red-600" if current_user %>
