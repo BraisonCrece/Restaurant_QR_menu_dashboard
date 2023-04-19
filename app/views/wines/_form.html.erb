@@ -1,6 +1,6 @@
 <div data-controller="toggle-price-per-glass description">
   <h1 class="font-thin text-4xl text-center"><%= message %></h1>
-  <%= form_with(model: wine, data: { turbo: false }, class: "bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4") do |f| %>
+  <%= form_with(model: wine, data: { turbo: false }, class: "shadow-lg rounded px-8 pt-6 pb-8 mb-4") do |f| %>
     <% if @wine.errors.any? %>
       <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 roundedmb-4">
         <h2 class='font-bold mb-2'><%= pluralize(@wine.errors.count, "error") %> prohibited this wine from being saved:</h2>

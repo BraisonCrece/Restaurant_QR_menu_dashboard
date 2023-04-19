@@ -6,8 +6,8 @@
   <div class="py-6 grid auto-cols-max grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 relative">
     <% @allergens.each do |allergen| %>
       <div class="bg-gray-100 rounded-lg p-4 hover:bg-gray-200 flex justify-between items-center relative">
-        <%= link_to allergen.name, allergen_path(allergen), class: 'text-xl mb-2 text-center' %>
-        <%= image_tag allergen.icon if allergen.icon.attached? %>
+        <%= truncate(allergen.name, length: 10, separator: ' ', omission: '...') %>
+        <%= image_tag allergen.icon, width: '50px' if allergen.icon.attached? %>
         <div class='absolute bottom-0 flex gap-2 left-2'>
           <%= button_to 'Editar', edit_allergen_path(allergen), data: { turbo: false }, class: 'text-xs font-thin text-blue-800 p-0', method: :get%>
           <%= button_to 'Eliminar', allergen_path(allergen), data: { turbo_confirm: 'Seguro que queres eliminar o allergeno?'}, class: 'text-xs font-thin text-red-800 p-0', method: :delete %>

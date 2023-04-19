@@ -1,0 +1,17 @@
+<% if Wine.where(active: true).exists? %>
+  <h2 class="text-3xl font-semibold text-teal-700 mb-2 px-4 text-center" id='viños'>Viños</h2>
+<% end %>
+
+<% @categorized_wines.each do |color, wines_by_denomination| %>
+  <% next if wines_by_denomination.empty? %>
+  <h2 class="text-2xl font-semibold text-teal-900 mb-2 px-4 text-center"><%= color %>s</h2>
+  <% wines_by_denomination.each do |denomination_id, wines| %>
+    <% denomination = @denominations.find { |d| d.id == denomination_id } %>
+    <h2 class="text-2xl font-medium text-slate-500 mb-2 px-4" id="category-<%= denomination.id %>"><%= denomination.name %></h2>
+    <% wines.each do |wine| %>
+      <%= link_to wine, data: { turbo_frame: "modal" } do %>
+        <%= render "wine", wine: wine %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

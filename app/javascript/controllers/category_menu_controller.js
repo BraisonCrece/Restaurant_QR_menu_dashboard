@@ -15,11 +15,13 @@ export default class extends Controller {
   }
 
   handleScroll() {
-    const shouldAddShadow = window.pageYOffset > this.initialOffsetTop;
-    if (shouldAddShadow) {
-      this.menuTarget.classList.add("shadow-lg");
-    } else {
-      this.menuTarget.classList.remove("shadow-lg");
-    }
+    const shouldAddShadow = window.pageYOffset >= this.initialOffsetTop;
+    const isInOriginalPosition = this.menuTarget.getBoundingClientRect().top === 0;
+
+    // console.log(this.menuTarget.getBoundingClientRect().top);
+
+    this.menuTarget.classList.toggle("shadow-lg", shouldAddShadow && isInOriginalPosition);
+    this.menuTarget.classList.toggle("bg-white", shouldAddShadow && isInOriginalPosition);
   }
 }
+

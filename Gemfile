@@ -15,8 +15,13 @@ gem 'dotenv-rails'
 # Rack middleware for handling Cross-Origin Resource Sharing (CORS), which allows sharing of resources between different domains.
 gem 'rack-cors'
 
-# Allows us to process images using the Active Storage framework in Rails.
-# gem "image_processing", ">= 1.2"
+# Allows us to process images using the Active Storage framework in Rails. [https://github.com/janko/image_processing]
+gem "image_processing", ">= 1.2"
+
+# PSQL gem (used on Fly.io deployment)
+gem "pg", "~> 1.4"
+
+# animate.style animatio framework
 gem 'animate-rails'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -70,11 +75,22 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'rspec-rails', '~> 6.0.0'
+  gem "capybara"
+  gem 'capybara-screenshot'
+  gem "selenium-webdriver"
+  gem "webdrivers"
+  gem "factory_bot_rails", "~> 6.2"
+  gem "faker", "~> 3.1"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # Fly.io dockerfile generator
+  gem "dockerfile-rails", ">= 1.2"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -83,13 +99,9 @@ group :development do
   # gem "spring"
 end
 
-group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
-end
 
-gem "pg", "~> 1.4"
 
-gem "dockerfile-rails", ">= 1.2", :group => :development
+
+
+
+

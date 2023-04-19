@@ -14,8 +14,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   </head>
-  <body class='flex flex-col w-full justify-center mt-0'>
-    <%= render 'shared/flash' %>
+  <body class='flex flex-col w-auto h-full justify-center mt-0'>
+    <div class="flex justify-center">
+      <%= render 'shared/flash' %>
+    </div>
     <div data-controller='menu'>
       <% if current_user %>
         <button class="absolute right-5 top-4" data-action="click->menu#toggle"><%= image_tag 'menu.svg', width: 40, heigth: 40, class: 'select-none' %></button>
@@ -24,13 +26,13 @@
           <%= render '/shared/items' %>
         </div>
       <% end %>
-      <div class='flex justify-center p-4 gap-8 mt-5'>
+      <div class='flex justify-center p-4 gap-8 mt-5' id='logo-link'>
         <%= link_to root_path do %>
           <%= image_tag 'Navega_sinfondo.png', width: "115px", class: '' %>
         <% end %>
       </div>
     </div>
-    <main class="w-full my-4 flex justify-center">
+    <main class="w-full mb-4 flex justify-center">
       <%= yield %>
     </main>
   </body>

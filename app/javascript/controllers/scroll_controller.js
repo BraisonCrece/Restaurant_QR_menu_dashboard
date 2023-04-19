@@ -8,7 +8,7 @@ export default class extends Controller {
     const targetElement = document.querySelector(targetId);
 
     const scrollToTarget = () => {
-      const headerOffset = 80; // Adjust this value according to the fixed header height
+      const headerOffset = 70; // Adjust this value according to the fixed header height
       const elementPosition = targetElement.offsetTop;
       const offsetPosition = elementPosition - headerOffset;
 

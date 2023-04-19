@@ -1,0 +1,10 @@
+<% @categories.each do |category| %>
+  <% products = @categorized_products[category.id] %>
+  <% next if products.blank? %>
+  <h2 class="text-3xl font-semibold text-teal-700 mb-2 px-4 text-center" id="category-<%= category.id %>"><%= category.name %></h2>
+  <% products.each do |product| %>
+    <%= link_to product, data: { turbo_frame: "modal" } do %>
+      <%= render  "product", product: product %>
+    <% end %>
+  <% end %>
+<% end %>

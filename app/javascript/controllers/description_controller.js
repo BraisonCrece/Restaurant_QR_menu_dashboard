@@ -80,11 +80,13 @@ export default class extends Controller {
 
   showSpinner() {
     this.spinnerTarget.classList.remove('hidden');
+    this.spinnerTarget.classList.add('flex');
     this.buttonTextTarget.classList.add('hidden');
   }
 
   hideSpinner() {
     this.spinnerTarget.classList.add('hidden');
+    this.spinnerTarget.classList.remove('flex');
     this.buttonTextTarget.classList.remove('hidden');
   }
 

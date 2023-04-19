@@ -3,7 +3,10 @@ class ProductsController < ApplicationController
 
   def index
     @categories = Category.all
-    @denominations = WineOriginDenomination.all
+    @categorized_products = Product.categorized_products
+    @denominations = WineOriginDenomination.all.includes(:wines)
+    @available_colors = ['Blanco', 'Tinto']
+    @categorized_wines = categorized_wines
   end
 
   def new
@@ -14,6 +17,11 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.active = true
+
+    if params[:product][:picture]
+      @product.process_image(params[:product][:picture])
+    end
+
     if @product.save
       flash[:notice] = "Producto engadido!"
       render :new, status: :ok
@@ -62,4 +70,19 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:title, :description, :prize, :category_id, :picture, allergen_ids: [])
   end
+
+  def categorized_wines
+    wines_by_color_and_denomination = {}
+    @available_colors.each do |color|
+      wines_by_color_and_denomination[color] = {}
+      @denominations.each do |denomination|
+        wines = denomination.wines.where(active: true, wine_type: color).order(name: :asc)
+        wines_by_color_and_denomination[color][denomination.id] = wines unless wines.blank?
+      end
+    end
+    wines_by_color_and_denomination
+  end
 end
+
+
+
