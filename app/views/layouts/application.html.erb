@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= favicon_link_tag 'Navega_sinfondo.png' %>
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +28,7 @@
         </div>
       <% end %>
       <div class='flex justify-center p-4 gap-8 mt-5' id='logo-link'>
-        <%= link_to root_path do %>
+        <%= link_to root_path, data: {controller: "install-pwa",action: "click->install-pwa#install"} do %>
           <%= image_tag 'Navega_sinfondo.png', width: "115px", class: '' %>
         <% end %>
       </div>

@@ -1,17 +1,17 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_categories, only: [:index, :new, :edit]
 
   def index
-    @categories = Category.all
     @categorized_products = Product.categorized_products
     @denominations = WineOriginDenomination.all.includes(:wines)
     @available_colors = ['Blanco', 'Tinto']
-    @categorized_wines = categorized_wines
+    @categorized_wines = Wine.categorized_wines(@denominations, @available_colors)
   end
 
   def new
     @product = Product.new
-    @categories = Category.all
   end
 
   def create
@@ -33,7 +33,6 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    session[:scroll_position] = params[:scroll_position]
   end
 
   def edit
@@ -67,20 +66,16 @@ class ProductsController < ApplicationController
   end
 
   private
-  def product_params
-    params.require(:product).permit(:title, :description, :prize, :category_id, :picture, allergen_ids: [])
+  def set_product
+    @product = Product.find(params[:id])
   end
 
-  def categorized_wines
-    wines_by_color_and_denomination = {}
-    @available_colors.each do |color|
-      wines_by_color_and_denomination[color] = {}
-      @denominations.each do |denomination|
-        wines = denomination.wines.where(active: true, wine_type: color).order(name: :asc)
-        wines_by_color_and_denomination[color][denomination.id] = wines unless wines.blank?
-      end
-    end
-    wines_by_color_and_denomination
+  def set_categories
+    @categories = Category.all
+  end
+
+  def product_params
+    params.require(:product).permit(:title, :description, :prize, :category_id, :picture, allergen_ids: [])
   end
 end
 
