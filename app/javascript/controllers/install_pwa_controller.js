@@ -2,10 +2,13 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="install-pwa"
 export default class extends Controller {
+  static targets = ["installButton"];
+
   connect() {
     this.deferredPrompt = null;
     this.handleBeforeInstallPrompt = this.handleBeforeInstallPrompt.bind(this);
     window.addEventListener("beforeinstallprompt", this.handleBeforeInstallPrompt);
+    this.setupMediaQueryListener();
   }
 
   disconnect() {
@@ -15,7 +18,7 @@ export default class extends Controller {
   handleBeforeInstallPrompt(event) {
     event.preventDefault();
     this.deferredPrompt = event;
-    this.element.style.display = "block";
+    this.installButtonTarget.style.display = "block";
   }
 
   install(event) {
@@ -29,6 +32,20 @@ export default class extends Controller {
         }
         this.deferredPrompt = null;
       });
+    }
+  }
+
+  setupMediaQueryListener() {
+    const mediaQuery = window.matchMedia("(display-mode: standalone)");
+    this.handleMediaQueryChange(mediaQuery);
+    mediaQuery.addListener((e) => this.handleMediaQueryChange(e));
+  }
+
+  handleMediaQueryChange(mediaQuery) {
+    if (mediaQuery.matches) {
+      this.installButtonTarget.style.display = "none";
+    } else {
+      this.installButtonTarget.style.display = this.deferredPrompt ? "block" : "none";
     }
   }
 }

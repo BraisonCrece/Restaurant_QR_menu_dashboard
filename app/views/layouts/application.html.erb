@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Taberna Navegación</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, orientation=portrait">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   </head>
-  <body class='flex flex-col w-auto h-full justify-center mt-0'>
+  <body class="flex flex-col w-auto h-full justify-center mt-0 main-content" data-controller="orientation" data-orientation-target="content">
     <div class="flex justify-center">
       <%= render 'shared/flash' %>
     </div>
@@ -28,7 +28,7 @@
         </div>
       <% end %>
       <div class='flex justify-center p-4 gap-8 mt-5' id='logo-link'>
-        <%= link_to root_path, data: {controller: "install-pwa",action: "click->install-pwa#install"} do %>
+        <%= link_to root_path, data: {controller: "install-pwa", action: "click->install-pwa#install" } do %>
           <%= image_tag 'Navega_sinfondo.png', width: "115px", class: '' %>
         <% end %>
       </div>

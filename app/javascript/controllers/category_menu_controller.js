@@ -2,12 +2,16 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="category-menu"
 export default class extends Controller {
-  static targets = ["menu"];
+  static targets = ["menu", "menu-invisible"];
   initialOffsetTop = 0;
 
   connect() {
     this.initialOffsetTop = this.menuTarget.offsetTop;
     window.addEventListener("scroll", this.handleScroll.bind(this));
+    const menuLinks = document.getElementById("menu-links");
+    const wrapper = document.getElementById("category-menu-wrapper");
+
+    wrapper.style.height = `${menuLinks.offsetHeight}px`;
   }
 
   disconnect() {
@@ -18,10 +22,7 @@ export default class extends Controller {
     const shouldAddShadow = window.pageYOffset >= this.initialOffsetTop;
     const isInOriginalPosition = this.menuTarget.getBoundingClientRect().top === 0;
 
-    // console.log(this.menuTarget.getBoundingClientRect().top);
-
-    this.menuTarget.classList.toggle("shadow-lg", shouldAddShadow && isInOriginalPosition);
-    this.menuTarget.classList.toggle("bg-white", shouldAddShadow && isInOriginalPosition);
+    this.menuTarget.classList.toggle("fixed-menu", shouldAddShadow);
   }
 }
 
