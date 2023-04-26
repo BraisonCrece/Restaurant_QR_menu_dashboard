@@ -1,10 +1,10 @@
-<div class='flex justify-between p-4 border-t animate__animated animate__fadeIn animate__slower'>
+<div class='flex justify-between my-2 p-4 pb-0 border-t border-neutral-100 animate__animated animate__fadeIn animate__slower'>
   <div class="title price flex flex-col max-w-[75%]">
     <p class='text-2xl playfare font-normal'> <%= product.title %></p>
-    <p class='font-light text-slate-800 lato'><%= truncate(product.description, length: 35, separator: ' ', omission: '...') %></p>
-    <small class='text-[8px] text-cyan-700 '>ver detalles</small>
+    <%# <p class='font-light text-slate-800 lato'><%= truncate(product.description, length: 35, separator: ' ', omission: '...') %></p>
   </div>
   <div class="text-xl self-center">
     <%= number_with_precision(product.prize, precision: 2, separator: ',') %><small class='text-black text-lg font-extralight'>€</small>
   </div>
 </div>
+<small class='text-[7px] text-cyan-700 font-extralight ml-4'>ver detalles</small>
