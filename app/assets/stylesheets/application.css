@@ -39,10 +39,9 @@
   font-family: 'Lato', sans-serif;
 }
 
-body {
+/* body {
   background-image: url('fondo_navega_transparencia');
-
-}
+} */
 
 .loader {
   border: 4px solid #f3f3f3;
@@ -68,3 +67,7 @@ body {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Añade la sombra */
 }
 
+.active-category {
+  background-color: #9d9a9a; /* Elige el color que desees para el sombreado */
+  transition: background-color 0.3s ease;
+}

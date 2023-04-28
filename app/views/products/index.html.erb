@@ -2,13 +2,13 @@
   <div id="category-menu-wrapper">
     <div data-controller="scroll category-menu" >
       <div class="flex justify-evenly gap-2 py-4 menu-background" data-category-menu-target='menu' id='menu-links'>
-        <%= render  "category_links" %>
+        <%= render "category_links" %>
       </div>
     </div>
   </div>
   <div class="space-y-4 p-3">
-    <%= render  "categorized_products" %>
-    <%= render  "categorized_wines" %>
+    <%= render "categorized_products" %>
+    <%= render "categorized_wines" %>
     <%= turbo_frame_tag :modal %>
   </div>
 </div>
