@@ -5,7 +5,7 @@
       <%= image_tag "close2.png", width: "35px", data: { action: "click->modal#close" }, class: "animate__fadeIn animate__animated mx-auto mt-10 mb-2 sm:mt-0" %>
       <div class="max-w-lg mx-auto bg-white rounded-lg overflow-hidden shadow-xl mb-10 animate__fadeIn animate__animated sm:flex">
         <div class="w-full h-60 sm:h-auto">
-          <%= image_tag(@wine.image.attached? ? @wine.image : "wine-placeholder.webp", class: "rounded-t-lg sm:rounded-none object-contain object-center w-full h-full sm:h-full sm:w-auto") %>
+          <%= image_tag(@wine.image.attached? ? @wine.image : "wine-placeholder.webp", class: "rounded-t-lg sm:rounded-none object-cover object-center w-full h-full sm:h-full sm:w-auto") %>
         </div>
         <div class="px-6 py-2 max-h-[60%] sm:max-w-[70%]">
           <div class="font-bold text-2xl mb-2 playfare"><%= @wine.name %></div>

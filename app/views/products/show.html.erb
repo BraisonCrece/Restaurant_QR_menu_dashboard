@@ -8,7 +8,7 @@
           <% if @product.picture.attached? %>
             <%= image_tag @product.picture, class: "rounded-t-lg sm:rounded-none object-cover object-center w-full h-full sm:h-full sm:w-auto" %>
           <% else %>
-            <%= image_tag "placeholder.jpg", class: "rounded-t-lg sm:rounded-none object-cover object-center w-full sm:h-full sm:w-auto" %>
+            <%= image_tag "placeholder.jpg", class: "rounded-t-lg sm:rounded-none object-cover object-center w-full h-full sm:h-full sm:w-auto" %>
           <% end %>
         </div>
         <div class="px-6 py-2 max-h-[60%] sm:max-w-[70%]">
