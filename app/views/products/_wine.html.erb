@@ -1,4 +1,4 @@
-<div class='flex justify-between p-4 my-2 pb-0 border-t border-neutral-100 animate__animated animate__fadeIn animate__fast'>
+<div class='flex justify-between p-4 my-2 print:my-6 pb-0 border-t border-neutral-100 animate__animated animate__fadeIn animate__fast'>
   <div class="title price flex flex-col max-w-[75%]">
     <p class='text-2xl playfare font-normal'> <%= wine.name %></p>
     <% # <p class='font-light text-slate-800 lato'><%= truncate(wine.description, length: 50, separator: ' ', omission: '...') %>
@@ -13,4 +13,4 @@
     <%= number_with_precision(wine.price, precision: 2, separator: ",") %><small class='text-black text-base font-extralight'>€</small>
   </div>
 </div>
-<small class='text-[1rem]  text-emerald-900 font-thin ml-4'>ver detalles</small>
+<small class='text-[1rem]  text-emerald-900 font-thin ml-4 print:hidden'>ver detalles</small>

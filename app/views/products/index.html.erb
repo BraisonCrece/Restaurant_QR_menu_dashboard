@@ -1,5 +1,5 @@
-<div class='w-full h-full max-w-lg mb-20'>
-  <div id="category-menu-wrapper">
+<div class='w-full h-full max-w-xl print:max-w-[80%] mb-20'>
+  <div id="category-menu-wrapper" class="print:hidden">
     <div data-controller="scroll category-menu" >
       <div class="flex justify-evenly gap-2 py-4 menu-background" data-category-menu-target='menu' id='menu-links'>
         <%= render "category_links" %>
