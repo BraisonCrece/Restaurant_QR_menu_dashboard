@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   def index
     @categorized_products = Product.categorized_products
     @denominations = WineOriginDenomination.all.includes(:wines)
-    @available_colors = ['Blanco', 'Tinto']
+    @available_colors = ["Blanco", "Tinto"]
     @categorized_wines = Wine.categorized_wines(@denominations, @available_colors)
   end
 
@@ -42,8 +42,11 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
+    if params[:product][:picture]
+      @product.process_image(params[:product][:picture])
+    end
     if @product.update(product_params)
-      redirect_to control_panel_path, notice: 'Producto editado con éxito'
+      redirect_to control_panel_path, notice: "Producto editado con éxito"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -52,7 +55,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to control_panel_path, status: 303, notice: 'Producto eliminado!'
+    redirect_to control_panel_path, status: 303, notice: "Producto eliminado!"
   end
 
   def control_panel
@@ -62,10 +65,11 @@ class ProductsController < ApplicationController
   def toggle_active
     product = Product.find(params[:product_id])
     product.update(active: !product.active)
-    render turbo_stream: turbo_stream.replace("product_active_#{product.id}", partial: 'products/active', locals: {product: product})
+    render turbo_stream: turbo_stream.replace("product_active_#{product.id}", partial: "products/active", locals: { product: product })
   end
 
   private
+
   def set_product
     @product = Product.find(params[:id])
   end
@@ -75,9 +79,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :description, :prize, :category_id, :picture, allergen_ids: [])
+    params.require(:product).permit(:title, :description, :prize, :category_id, allergen_ids: [])
   end
 end
-
-
-

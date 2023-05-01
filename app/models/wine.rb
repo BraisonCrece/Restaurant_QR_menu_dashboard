@@ -14,4 +14,14 @@ class Wine < ApplicationRecord
     end
     wines_by_color_and_denomination
   end
+
+  # Image procesing before attach
+  def process_image(file)
+    processed_image = ImageProcessing::Vips
+      .source(file)
+      .resize_and_pad(1024, 480, extend: :copy)
+      .call
+
+    self.image.attach(io: File.open(processed_image.path), filename: "processed_#{file.original_filename}", content_type: "image/jpeg")
+  end
 end
