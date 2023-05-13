@@ -1,10 +1,10 @@
 # require 'pry'
-require 'factory_bot_rails'
-require 'faker'
-require 'capybara-screenshot/rspec'
+require "factory_bot_rails"
+require "faker"
+require "capybara-screenshot/rspec"
 
 Capybara::Screenshot.register_filename_prefix_formatter(:rspec) do |example|
-  "screenshot_#{example.description.tr(' ', '-').downcase}"
+  "screenshot_#{example.description.tr(" ", "-").downcase}"
 end
 
 RSpec.configure do |config|
@@ -16,6 +16,8 @@ RSpec.configure do |config|
       page.save_screenshot("#{filename_prefix}-#{Time.now.to_i}.png")
     end
   end
+
+  config.default_formatter = "doc"
 
   # Resto de la configuración...
 end

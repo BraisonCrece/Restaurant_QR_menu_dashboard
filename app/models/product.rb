@@ -3,6 +3,8 @@ class Product < ApplicationRecord
   has_and_belongs_to_many :allergens, dependent: :destroy
   has_one_attached :picture, dependent: :destroy
 
+  validates :title, :description, :active, :prize, presence: true
+
   def self.categorized_products
     all.where(active: true).order(title: :asc).group_by(&:category_id)
   end
