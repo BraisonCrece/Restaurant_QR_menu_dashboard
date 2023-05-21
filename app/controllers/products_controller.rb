@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   def index
     @categorized_products = Product.categorized_products
     @denominations = WineOriginDenomination.all.includes(:wines)
-    @available_colors = ["Blanco", "Tinto"]
+    @available_colors = WineType.all
     @categorized_wines = Wine.categorized_wines(@denominations, @available_colors)
   end
 
@@ -19,7 +19,13 @@ class ProductsController < ApplicationController
     @product.active = true
 
     if params[:product][:picture]
-      @product.process_image(params[:product][:picture])
+      if params[:product][:picture].content_type == "image/webp"
+        flash.now[:alert] = "Formatos de imaxe disponibles: jpeg, png"
+        render :new
+        return
+      else
+        @product.process_image(params[:product][:picture])
+      end
     end
 
     if @product.save

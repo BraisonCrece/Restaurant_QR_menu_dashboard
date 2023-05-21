@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, presence: { message: "É obrigatorio o uso dun email" }
-  validates :email, uniqueness: { message: "O email xa existe na base de datos" }
+  validates :email, uniqueness: { message: "O email xa existe na base de datos", case_sensitive: false }
 end

@@ -1,12 +1,12 @@
 class OpenAiService
   include HTTParty
-  base_uri 'https://api.openai.com/v1'
+  base_uri "https://api.openai.com/v1"
 
   def initialize
     @api_key = Rails.application.credentials.openai
     @headers = {
       'Authorization': "Bearer #{@api_key}",
-      'Content-Type': 'application/json'
+      'Content-Type': "application/json",
     }
   end
 
@@ -16,16 +16,16 @@ class OpenAiService
       "messages": [
         {
           "role": "user",
-          "content": prompt
-        }
+          "content": prompt,
+        },
       ],
-      "temperature": temperature
+      "temperature": temperature,
     }
 
-    response = self.class.post('/chat/completions', headers: @headers, body: body.to_json)
+    response = self.class.post("/chat/completions", headers: @headers, body: body.to_json)
 
     if response.success?
-      response['choices'][0]['message']['content']
+      response["choices"][0]["message"]["content"]
     else
       raise "Error fetching description: #{response.message}"
     end

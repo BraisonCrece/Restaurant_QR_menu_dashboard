@@ -1,0 +1,20 @@
+<%= form_with(model: wine_type, class: "contents") do |form| %>
+  <% if wine_type.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(wine_type.errors.count, "error") %> prohibited this wine_type from being saved:</h2>
+
+      <ul>
+        <% wine_type.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-4">
+    <%= form.label :name, "Nome", class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :name, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+  </div>
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

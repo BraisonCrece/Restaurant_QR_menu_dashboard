@@ -3,19 +3,12 @@ class Product < ApplicationRecord
   has_and_belongs_to_many :allergens, dependent: :destroy
   has_one_attached :picture, dependent: :destroy
 
-  validates :title, :description, :active, :prize, presence: true
+  validates :title, :description, :prize, presence: true
 
-  def self.categorized_products
-    all.where(active: true).order(title: :asc).group_by(&:category_id)
-  end
+  scope :categorized_products, -> { where(active: true).order(title: :asc).group_by(&:category_id) }
 
-  # Image procesing before attach
+  # Image procesing before attach, allowed formats [:jpg, :png]
   def process_image(file)
-    processed_image = ImageProcessing::Vips
-      .source(file)
-      .resize_and_pad(1024, 480, extend: :copy)
-      .call
-
-    self.picture.attach(io: File.open(processed_image.path), filename: "processed_#{file.original_filename}", content_type: "image/jpeg")
+    ImageProcessingService.new(file: file, record: self, attachment_name: :picture).call
   end
 end

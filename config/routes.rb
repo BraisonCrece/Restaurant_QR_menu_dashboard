@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :wine_types
   root 'products#index'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
