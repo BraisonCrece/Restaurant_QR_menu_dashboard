@@ -1,6 +1,9 @@
 # QR Menu Card for Restaurants 
 (Under development 🔨)
 
+check it out: (user side, not control pannel) (designed to be used on mobiles 📱)
+https://cartanavegacion.fly.dev/
+
 This application allows restaurants to create and manage their menu of food and drinks in QR format. Customers can scan the QR code with their mobile phones to quickly and easily access the restaurant's menu.
 
 The main objectives are:
@@ -18,6 +21,7 @@ The main objectives are:
 
 ## Main features
 
+- Auto generative descriptions based on the name of the product (AI 🔮)
 - Menu creation and editing: restaurants can create and edit their menu of food and drinks in the application.
     - Allergens (associable to products)
     - Wines
