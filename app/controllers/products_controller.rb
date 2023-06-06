@@ -6,7 +6,8 @@ class ProductsController < ApplicationController
   def index
     @categorized_products = Product.categorized_products
     @denominations = WineOriginDenomination.all.includes(:wines)
-    @available_colors = WineType.all
+    # next update, implement the WineType model, and change the ugly harcoded line below
+    @available_colors = ["Blanco", "Tinto"]
     @categorized_wines = Wine.categorized_wines(@denominations, @available_colors)
   end
 

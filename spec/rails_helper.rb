@@ -11,6 +11,7 @@ Capybara.javascript_driver = :selenium_chrome_headless
 # RSpec configuration
 RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :system
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.before(:each, type: :system) do
     driven_by :rack_test
