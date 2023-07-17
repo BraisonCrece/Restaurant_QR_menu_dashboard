@@ -1,7 +1,7 @@
 # QR Menu Card for Restaurants 
 (Under development 🔨)
 
-check it out: (user side, not control pannel) (designed to be used on mobiles 📱)
+check it out: (user side, and control pannel) (designed to be better used on mobiles 📱)
 
 https://cartanavegacion.fly.dev/users/sign_in
 
