@@ -2,7 +2,14 @@
 (Under development 🔨)
 
 check it out: (user side, not control pannel) (designed to be used on mobiles 📱)
-https://cartanavegacion.fly.dev/
+
+https://cartanavegacion.fly.dev/users/sign_in
+
+### email: 
+- admin@qr.com
+### password:
+- abc123.
+
 
 This application allows restaurants to create and manage their menu of food and drinks in QR format. Customers can scan the QR code with their mobile phones to quickly and easily access the restaurant's menu.
 
