@@ -38,6 +38,11 @@ RUN apt-get update -qq && \
     && ninja \
     && ninja install
 
+# Install JEMALLOC
+RUN apt-get install libjemalloc2
+ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
+ENV MALLOC_CONF=dirty_decay_ms:1000,narenas:2,background_thread:true
+
 # Install application gems
 COPY --link Gemfile Gemfile.lock ./
 RUN bundle install && \

@@ -15,9 +15,9 @@ kill_timeout = "5s"
   PRIMARY_REGION = "mad"
 
 [[mounts]]
-  source = "navega_machines"
-  destination = "/data"
-  processes = ["app"]
+  source="navega_machines"
+  destination="/data"
+
 
 [[services]]
   protocol = "tcp"

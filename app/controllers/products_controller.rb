@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     @categorized_products = Product.categorized_products
     @denominations = WineOriginDenomination.all.includes(:wines)
     # next update, implement the WineType model, and change the ugly harcoded line below
-    @available_colors = ["Blanco", "Tinto"]
+    @available_colors = ["Blanco", "Tinto"].freeze
     @categorized_wines = Wine.categorized_wines(@denominations, @available_colors)
   end
 
