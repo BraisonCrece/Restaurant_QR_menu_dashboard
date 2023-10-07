@@ -1,0 +1,13 @@
+<div class='w-full h-full max-w-2xl print:max-w-[80%] mb-20'>
+  <div id="category-menu-wrapper" class="print:hidden">
+    <div data-controller="scroll category-menu" >
+      <div class="flex justify-evenly gap-2 py-4 menu-background" data-category-menu-target='menu' id='menu-links'>
+        <%= render "menu_category_links" %>
+      </div>
+    </div>
+  </div>
+  <div class="space-y-4 p-3">
+    <%= render "menu_categorized_products" %>
+    <%= turbo_frame_tag :modal %>
+  </div>
+</div>

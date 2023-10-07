@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   post 'wine_toggle_active/:wine_id', to: 'wines#toggle_active', as: :wine_toggle_active
   post 'translate', to: 'translate#translate'
   post 'describe_dish', to: 'description#describe_dish'
+  get '/menu', to: 'products#menu', as: :menu
+  get '/pages_control', to: 'products#pages_control', as: :pages_control
+  resources :settings, only: [:edit, :update]
 end

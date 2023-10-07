@@ -14,17 +14,19 @@
         <div class="font-medium text-2xl mb-2 playfare"><%= @product.title %></div>
         <p class="text-gray-600 mb-2 lato break-words w-full"><%= @product.description %></p>
         <div class="flex justify-between items-center align-middle">
-          <div class="font-semibold text-xl block self-center"><%= number_to_currency(
+          <% unless @product.category.category_type == "menu" %>
+            <div class="font-semibold text-xl block self-center"><%= number_to_currency(
                                                                      @product.prize,
                                                                      { unit: "€", separator: ",", format: "%n %u" }
                                                                    ) %></div>
+          <% end %>
           <div class="flex items-center gap-1 alergenos">
             <% @product.allergens.each do |allergen| %>
               <span
                 class="inline-block py-1 tooltip"
                 data-controller="tooltip"
                 data-action="click->tooltip#toggle"
-              >
+                >
                 <%= image_tag allergen.icon, width: "40px" %>
                 <span class="tooltip-text shadow-xl" data-tooltip-target="text">
                   <%= allergen.name %>

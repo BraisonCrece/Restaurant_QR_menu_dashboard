@@ -1,8 +1,7 @@
-<% Category.where("category_type != ? OR category_type IS NULL", "menu").each do |category| %>
+<% Category.where(category_type: "menu").each do |category| %>
   <% next if category.products.blank? %>
   <%= link_to category.name.gsub(/[\p{Emoji_Presentation}\u{FE0F}]|[\u{1F600}-\u{1F64F}\u{1F37D}]/, ""),
               "#category-#{category.id}",
               class: "text-xl font-medium text-teal-900 hover:text-teal-900",
               data: { turbo_frame: "_top", controller: "scroll", action: "click->scroll#scrollToCategory" } %>
 <% end %>
-<%= link_to "Viños", "#viños", class: "text-xl font-medium text-teal-900 hover:text-teal-900", data: { turbo_frame: "_top", controller: "scroll", action: "click->scroll#scrollToCategory" } %>

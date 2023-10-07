@@ -1,14 +1,21 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :menu, :show]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :set_categories, only: [:index, :new, :edit]
 
   def index
-    @categorized_products = Product.categorized_products
-    @denominations = WineOriginDenomination.all.includes(:wines)
-    # next update, implement the WineType model, and change the ugly harcoded line below
-    @available_colors = ["Blanco", "Tinto"].freeze
-    @categorized_wines = Wine.categorized_wines(@denominations, @available_colors)
+    if Setting.use_menu_path?
+        redirect_to menu_path
+    else
+        @categorized_products = Product.categorized_products
+        @denominations = WineOriginDenomination.all.includes(:wines)
+        @available_colors = ["Blanco", "Tinto"].freeze
+        @categorized_wines = Wine.categorized_wines(@denominations, @available_colors)
+    end
+  end
+
+  def menu
+    @categorized_products = Product.menu_categorized_products
   end
 
   def new
@@ -66,7 +73,16 @@ class ProductsController < ApplicationController
   end
 
   def control_panel
-    @products = Product.all
+    case params[:filter]
+    when "menu"
+      @products = Product.menu_categorized_products
+    else
+      @products = Product.categorized_products
+    end
+  end
+
+  def pages_control
+    @settings = Setting.first
   end
 
   def toggle_active

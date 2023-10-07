@@ -35,6 +35,17 @@
     </div>
     <main class="w-full mb-4 flex justify-center">
       <%= yield %>
+      <% if Setting.show_toggler? %>
+        <% if current_page?(root_path) %>
+          <%= link_to "/menu", class: "flex items-center gap-2 fixed bottom-5 right-5 cursor-pointer bg-teal-700 bg-opacity-25 text-white p-3 rounded-lg ring-1 ring-teal-600" do %>
+            <option data-menu-toggler-target="menu" class="text-4l font-bold text-teal-800" >MENÚ</option>
+          <% end %>
+        <% else %>
+          <%= link_to root_path, class: "flex items-center gap-2 fixed bottom-5 right-5 cursor-pointer bg-teal-700 bg-opacity-25 text-white p-3 rounded-lg ring-1 ring-teal-600" do %>
+            <option data-menu-toggler-target="carta" class="text-4l font-bold text-teal-800" >CARTA</option>
+          <% end %>
+        <% end %>
+      <% end %>
     </main>
   </body>
 </html>
