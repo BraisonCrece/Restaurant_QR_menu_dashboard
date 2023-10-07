@@ -8,15 +8,15 @@
     <%= link_to 'Carta', control_panel_path(filter: 'carta'), class: "p-2 bg-blue-300 text-white rounded" %>
   </div>
   <div id="productList">
-    <% @products.each do |_, product| %>
-      <div class='flex justify-between w-[90%] h-24 mx-auto border-t align-middle relative product-item' data-product-title='<%= product.first.title.downcase %>' data-product-search-target="item">
+    <% @products.each do |product| %>
+      <div class='flex justify-between w-[90%] h-24 mx-auto border-t align-middle relative product-item' data-product-title='<%= product.title.downcase %>' data-product-search-target="item">
         <p class='max-w-[75%] self-center flex flex-col gap-2 text-lg font-medium'>
-          <%= truncate(product.first.title, length: 30, separator: " ", omission: "...") %>
+          <%= truncate(product.title, length: 30, separator: " ", omission: "...") %>
         </p>
         <p class='self-center'>
-          <%= turbo_frame_tag "product_active_#{product.first.id}" do %>
-            <%= link_to "🔴", toggle_active_path(product_id: product.first.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if !product.first.active %>
-            <%= link_to "🟢", toggle_active_path(product_id: product.first.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if product.first.active %>
+          <%= turbo_frame_tag "product_active_#{product.id}" do %>
+            <%= link_to "🔴", toggle_active_path(product_id: product.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if !product.active %>
+            <%= link_to "🟢", toggle_active_path(product_id: product.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if product.active %>
           <% end %>
         </p>
         <div class='absolute flex gap-2'>

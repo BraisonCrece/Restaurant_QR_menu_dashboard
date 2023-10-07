@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :wine_types
-  root 'products#index'
+  root to: redirect("/#{Setting.root_page}")
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post 'translate', to: 'translate#translate'
   post 'describe_dish', to: 'description#describe_dish'
   get '/menu', to: 'products#menu', as: :menu
+  get '/carta', to: 'products#index', as: :carta
   get '/pages_control', to: 'products#pages_control', as: :pages_control
   resources :settings, only: [:edit, :update]
 end

@@ -39,9 +39,33 @@
   font-family: 'Lato', sans-serif;
 }
 
-/* body {
-  background-image: url('fondo_navega_transparencia');
-} */
+body, html, main {
+    scrollbar-gutter: stable;
+}
+
+/* Personaliza el contenedor de la barra */
+::-webkit-scrollbar {
+    width: 6px;  /* Ancho de la barra vertical */
+    height: 6px;  /* Altura de la barra horizontal */
+  }
+
+  /* Personaliza el track o la pista de la barra */
+  ::-webkit-scrollbar-track {
+    background-color: #c5c5c5;
+    border-radius: 6px;
+  }
+
+  /* Personaliza el thumb o el mango de la barra */
+  ::-webkit-scrollbar-thumb {
+    background-color: #505050;
+    border-radius: 6px;
+  }
+
+  /* Cambia el color del thumb al pasar el ratón */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+
 
 /* body {
   background-color: Canvas;
@@ -127,3 +151,4 @@
 .balance {
     text-wrap: balance;
 }
+

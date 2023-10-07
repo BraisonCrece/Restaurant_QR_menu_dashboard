@@ -4,14 +4,10 @@ class ProductsController < ApplicationController
   before_action :set_categories, only: [:index, :new, :edit]
 
   def index
-    if Setting.use_menu_path?
-        redirect_to menu_path
-    else
-        @categorized_products = Product.categorized_products
-        @denominations = WineOriginDenomination.all.includes(:wines)
-        @available_colors = ["Blanco", "Tinto"].freeze
-        @categorized_wines = Wine.categorized_wines(@denominations, @available_colors)
-    end
+    @categorized_products = Product.categorized_products
+    @denominations = WineOriginDenomination.all.includes(:wines)
+    @available_colors = ["Blanco", "Tinto"].freeze
+    @categorized_wines = Wine.categorized_wines(@denominations, @available_colors)
   end
 
   def menu
@@ -75,9 +71,9 @@ class ProductsController < ApplicationController
   def control_panel
     case params[:filter]
     when "menu"
-      @products = Product.menu_categorized_products
+      @products = Product.where(category: Category.where(category_type: "menu"))
     else
-      @products = Product.categorized_products
+      @products = Product.where.not(category: Category.where(category_type: "menu"))
     end
   end
 

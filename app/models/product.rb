@@ -3,14 +3,14 @@ class Product < ApplicationRecord
   has_and_belongs_to_many :allergens, dependent: :destroy
   has_one_attached :picture, dependent: :destroy
 
-  validates :title, :description, :prize, presence: true
+  validates :title, :description, presence: true
 
   scope :categorized_products, -> {
     where(active: true)
-    .joins(:category)
-    .where('categories.category_type IS NULL OR categories.category_type != ?', 'menu')
-    .order(title: :asc)
-    .group_by(&:category_id)
+      .joins(:category)
+      .where('categories.category_type IS NULL OR categories.category_type != ?', 'menu')
+      .order(title: :asc)
+      .group_by(&:category_id)
   }
 
   scope :menu_categorized_products, -> {
