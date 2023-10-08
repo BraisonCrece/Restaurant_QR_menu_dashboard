@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :wine_types
-  root to: redirect("/#{Setting.root_page}")
+  root "dynamic_router#call"
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'

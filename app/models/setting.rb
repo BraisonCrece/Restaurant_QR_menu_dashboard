@@ -10,9 +10,8 @@ class Setting < ApplicationRecord
   end
 
   def self.root_page
-    "menu"
-    # create(root_page: "index", show_toggler: true, use_menu_path: false) unless first
-    # first.root_page
+    create(root_page: "index", show_toggler: true, use_menu_path: false) unless first
+    first.root_page
   end
 end
 

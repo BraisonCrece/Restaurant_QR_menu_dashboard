@@ -15,6 +15,6 @@ class SettingsController < ApplicationController
   private
 
   def setting_params
-    params.require(:setting).permit(:use_menu_path, :show_toggler)
+    params.require(:setting).permit(:root_page, :show_toggler)
   end
 end

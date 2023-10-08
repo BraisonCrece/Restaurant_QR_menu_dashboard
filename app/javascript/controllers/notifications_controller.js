@@ -8,7 +8,6 @@ export default class extends Controller {
   }
 
   connect() {
-    this.element.classList.add("animate__animated", "animate__fadeInRight");
     this.timeout = setTimeout(() => {
       this.hideNotification();
     }, 3000);
@@ -24,7 +23,7 @@ export default class extends Controller {
 
     setTimeout(() => {
       this.element.remove();
-    }, 1000); // Duración de la animación
+    }, 500);
   }
 
 }

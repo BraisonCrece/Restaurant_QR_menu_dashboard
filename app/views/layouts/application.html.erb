@@ -28,7 +28,7 @@
         </div>
       <% end %>
       <div class='flex justify-center p-4 gap-8 mt-5' id='logo-link' >
-        <%= link_to root_path, data: { controller: "install_pwa", action: "click->install-pwa#install" } do %>
+        <%= link_to "/#{Setting.root_page}", data: { controller: "install_pwa", action: "click->install-pwa#install" } do %>
           <%= image_tag "Navega_sinfondo.png", width: "115px", class: "" %>
         <% end %>
       </div>
