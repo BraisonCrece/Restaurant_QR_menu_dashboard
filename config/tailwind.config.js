@@ -16,6 +16,9 @@ module.exports = {
       },
       fontSize: {
         xxs: '0.4rem'
+      },
+      animation: {
+        'pulse-subtle': 'pulse-subtle 6.5s infinite'
       }
     },
   },
