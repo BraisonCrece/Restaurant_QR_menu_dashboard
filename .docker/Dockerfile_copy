@@ -24,9 +24,19 @@ FROM base as build
 # Install packages needed to build gems and libvips dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential libpq-dev pkg-config libglib2.0-dev libexpat1-dev \
-    libvips-dev \
-    libvips \
-    libvips-tools
+    wget \
+    tar \
+    libgirepository1.0-dev \
+    libjpeg-dev \
+    libpng-dev \
+    && wget https://github.com/libvips/libvips/archive/refs/tags/v8.14.2.tar.gz \
+    && tar xvzf v8.14.2.tar.gz \
+    && cd libvips-8.14.2 \
+    && apt-get install -y meson ninja-build \
+    && meson setup build --prefix /usr/local \
+    && cd build \
+    && ninja \
+    && ninja install
 
 # Install JEMALLOC
 RUN apt-get install libjemalloc2
@@ -54,9 +64,6 @@ FROM base
 # Install packages needed for deployment and libvips dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y libsqlite3-0 postgresql-client libglib2.0-0 libexpat1 libjpeg62-turbo libpng16-16 \
-    libvips \
-    libvips-tools \
-    libvips-dev \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy vips libraries from build stage

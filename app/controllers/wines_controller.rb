@@ -18,7 +18,7 @@ class WinesController < ApplicationController
   def create
     @wine = Wine.new(wine_params)
     if params[:wine][:image]
-      @wine.process_image(params[:wine][:image])
+      @wine.process_wine(params[:wine][:image])
     end
     if @wine.save
       redirect_to wines_control_panel_path, notice: "Viño creado con éxito."
@@ -29,7 +29,7 @@ class WinesController < ApplicationController
 
   def update
     if params[:wine][:image]
-      @wine.process_image(params[:wine][:image])
+      @wine.process_wine(params[:wine][:image])
     end
     if @wine.update(wine_params)
       redirect_to wines_control_panel_path, notice: "Viño actualizado con éxito."

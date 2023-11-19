@@ -23,13 +23,7 @@ class ProductsController < ApplicationController
     @product.active = true
 
     if params[:product][:picture]
-      if params[:product][:picture].content_type == "image/webp"
-        flash.now[:alert] = "Formatos de imaxe disponibles: jpeg, png"
-        render :new
-        return
-      else
-        @product.process_image(params[:product][:picture])
-      end
+      @product.process_image(params[:product][:picture])
     end
 
     if @product.save
@@ -52,10 +46,10 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    if params[:product][:picture]
-      @product.process_image(params[:product][:picture])
-    end
     if @product.update(product_params)
+      if params[:product][:picture]
+        @product.process_image(params[:product][:picture])
+      end
       redirect_to control_panel_path, notice: "Producto editado con éxito"
     else
       render :edit, status: :unprocessable_entity
@@ -98,6 +92,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :description, :prize, :category_id, allergen_ids: [])
+    params.require(:product).permit(:title, :description, :prize, :category_id, :picture, allergen_ids: [])
   end
 end

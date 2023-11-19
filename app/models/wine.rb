@@ -16,7 +16,7 @@ class Wine < ApplicationRecord
   end
 
   # Image procesing before attach, allowed formats [:jpg, :png]
-  def process_image(file)
-    ImageProcessingService.new(file: file, record: self, attachment_name: :image).call
+  def process_wine(file)
+    ImageProcessingService.new(file: file, record: self, attachment_name: :image, wine: true).call
   end
 end

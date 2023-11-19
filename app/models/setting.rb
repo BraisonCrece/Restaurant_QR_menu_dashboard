@@ -1,17 +1,23 @@
 class Setting < ApplicationRecord
   def self.use_menu_path?
-    create(use_menu_path: false, show_toggler: true, root_page: "index") unless first
+    init_settings unless first
     first.use_menu_path
   end
 
   def self.show_toggler?
-    create(use_menu_path: false, show_toggler: true, root_page: "index") unless first
+    init_settings unless first
     first.show_toggler
   end
 
   def self.root_page
-    create(root_page: "index", show_toggler: true, use_menu_path: false) unless first
+    init_settings unless first
     first.root_page
+  end
+
+  private
+
+  def self.init_settings
+    create(root_page: nil, show_toggler: true, use_menu_path: false)
   end
 end
 
