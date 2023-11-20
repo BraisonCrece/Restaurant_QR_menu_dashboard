@@ -12,18 +12,13 @@ class ImageProcessingService
 
   def call
     if wine
-      background_color = [255, 255, 255]
-
-      if file.content_type == "image/png"
-        background_color = [255, 255, 255, 0]
-      end
+      adjusted_y = size_y - 100
 
       processed_image = ImageProcessing::Vips
         .source(file)
         .resize_to_fit(size_x, size_y)
-        .resize_and_pad(size_x, size_y, background: background_color )
+        .resize_and_pad(size_x, adjusted_y, extend: :white)
         .call
-
     else
       processed_image = ImageProcessing::Vips
       .source(file)

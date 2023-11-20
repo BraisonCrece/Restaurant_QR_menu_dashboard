@@ -28,10 +28,10 @@ class WinesController < ApplicationController
   end
 
   def update
-    if params[:wine][:image]
-      @wine.process_wine(params[:wine][:image])
-    end
     if @wine.update(wine_params)
+      if params[:wine][:image]
+        @wine.process_wine(params[:wine][:image])
+      end
       redirect_to wines_control_panel_path, notice: "Viño actualizado con éxito."
     else
       render :edit, status: :unprocessable_entity
