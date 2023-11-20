@@ -1,15 +1,8 @@
 # QR Menu Card for Restaurants 
 (Under development 🔨)
+(designed to be better used on mobiles 📱)
 
-check it out: (user side, and control pannel) (designed to be better used on mobiles 📱)
-
-https://cartanavegacion.fly.dev/users/sign_in
-
-### email: 
-- admin@qr.com
-### password:
-- abc123.
-
+https://cartanavegacion.fly.dev/
 
 This application allows restaurants to create and manage their menu of food and drinks in QR format. Customers can scan the QR code with their mobile phones to quickly and easily access the restaurant's menu.
 
