@@ -14,10 +14,32 @@ class Setting < ApplicationRecord
     first.root_page
   end
 
+  def self.menu_price
+    init_settings unless first
+    first.menu_price
+  end
+
+  def self.phone_number
+    init_settings unless first
+    first.phone_number
+  end
+
+  def self.mobile
+    init_settings unless first
+    first.mobile
+  end
+
   private
 
   def self.init_settings
-    create(root_page: nil, show_toggler: true, use_menu_path: false)
+    create(
+      root_page: nil,
+      show_toggler: true,
+      use_menu_path: false,
+      menu_price: 12.5,
+      phone_number: '986 07 16 61',
+      mobile: '635 44 00 68'
+    )
   end
 end
 

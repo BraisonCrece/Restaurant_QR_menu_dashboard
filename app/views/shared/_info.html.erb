@@ -1,0 +1,26 @@
+<% if request.path == "/menu" %>
+    <div class="w-[96%] max-w-2xl m-auto flex flex-col gap-2 justify-center items-center text-xl font-play font-thin mb-6">
+        <p class="text-2xl underline underline-offset-4 decoration-emerald-500/30"> O menú do día inclúe: </p>
+        <p>🍽 1er plato</p>
+        <p>🍽 2º plato</p>
+        <p>🥖 Pan e Auga local 🥤</p>
+        <p>🍮 postre ou café ☕</p>
+        <div class="italic font-sans font-light text-5xl text-emerald-500"><%= Setting.first.menu_price %> €</div>
+    </div>
+<% end %>
+<% if (request.path == "/carta" || request.path == "/menu") %>
+    <div class="w-[96%] max-w-2xl m-auto border border-gray-400/10 rounded py-4 px-3 my-8 shadow-md flex flex-col gap-4 font-play text-lg text-slate-700">
+        <a href="https://maps.app.goo.gl/CrYmgCEuEAy8XA6R8" target="_blank" class="flex gap-3 items-center font-light">
+            <%= image_tag 'map.svg', class: "w-10" %>
+            Travesía da Igrexa, 6, 36680 A Estrada, Pontevedra
+        </a>
+        <a href="tel:<%= Setting.first.phone_number %>" class="flex gap-3 items-center font-light">
+            <%= image_tag 'phone.svg', class: "w-10" %>
+            <%= Setting.first.phone_number %>
+        </a>
+        <a href="tel:<%= Setting.first.mobile %>" class="flex gap-3 items-center font-light">
+            <%= image_tag 'smartphone.svg', class: "w-10" %>
+            <%= Setting.first.mobile %>
+        </a>
+    </div>
+<% end %>

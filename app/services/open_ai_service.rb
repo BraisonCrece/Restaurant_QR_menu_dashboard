@@ -12,7 +12,7 @@ class OpenAiService
 
   def get_description(prompt, temperature = 0.7)
     body = {
-      "model": "gpt-3.5-turbo",
+      "model": "gpt-4-1106-preview",
       "messages": [
         {
           "role": "user",

@@ -19,33 +19,11 @@
     <div class="flex justify-center">
       <%= render "shared/flash" %>
     </div>
-    <div data-controller='menu'>
-      <% if current_user %>
-        <button class="absolute right-5 top-4 print:hidden" data-action="click->menu#toggle"><%= image_tag "menu.svg", width: 40, heigth: 40, class: "select-none" %></button>
-        <div class="fixed bg-white top-0 right-0 shadow z-20 h-full flex flex-col min-w-[45%] md:min-w-[25%]  ease-in-out duration-300 p-5 translate-x-full " data-menu-target="items">
-          <button class="mr-8 mb-3  select-none" data-action="click->menu#toggle"><%= image_tag "close.svg", width: 40, heigth: 40, class: "select-none" %></button>
-          <%= render "/shared/items" %>
-        </div>
-      <% end %>
-      <div class='flex justify-center p-4 gap-8 mt-5' id='logo-link' >
-        <%= link_to "/#{Setting.root_page}", data: { controller: "install_pwa", action: "click->install-pwa#install" } do %>
-          <%= image_tag "Navega_sinfondo.png", width: "115px", class: "" %>
-        <% end %>
-      </div>
-    </div>
+    <%= render "shared/menu" %>
     <main class="w-full mb-4 flex justify-center">
       <%= yield %>
-      <% if Setting.show_toggler? && (request.path == "/carta" || request.path == "/menu")%>
-        <% if request.path == "/carta" %>
-          <%= link_to menu_path, class: "fixed bottom-5 right-5 cursor-pointer drop-shadow-lg bg-teal-700/[90%] text-white h-[75px] w-[75px] flex justify-center items-center aspect-square rounded-full transition-colors duration-200 animate-pulse-subtle" do %>
-            <span class="font-semibold text-lg">MENÚ</span>
-          <% end %>
-        <% else %>
-          <%= link_to carta_path, class: "fixed bottom-5 right-5 cursor-pointer drop-shadow-lg bg-teal-700/[90%] text-white h-[75px] w-[75px] flex justify-center items-center aspect-square rounded-full transition-colors duration-200 animate-pulse-subtle" do %>
-            <span class="font-semibold text-lg">CARTA</span>
-          <% end %>
-        <% end %>
-      <% end %>
+      <%= render "shared/card_menu_switch" %>
     </main>
+    <%= render "shared/info" %>
   </body>
 </html>
