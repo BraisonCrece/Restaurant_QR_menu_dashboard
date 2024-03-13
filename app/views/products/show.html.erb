@@ -14,7 +14,7 @@
         <div class="font-medium text-2xl mb-2 playfare"><%= @product.title %></div>
         <p class="text-gray-600 mb-2 lato break-words w-full"><%= @product.description %></p>
         <div class="flex justify-between items-center align-middle">
-          <% unless @product.category.category_type == "menu" %>
+          <% unless @product.category.category_type == "daily" %>
             <div class="font-semibold text-xl block self-center"><%= number_to_currency(
                                                                      @product.prize,
                                                                      { unit: "€", separator: ",", format: "%n %u" }

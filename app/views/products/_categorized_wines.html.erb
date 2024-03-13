@@ -9,6 +9,8 @@
     <% denomination = @denominations.find { |d| d.id == denomination_id } %>
     <h2 class="text-2xl font-medium text-teal-500 mb-2 px-4" id="category-<%= denomination.id %>"><%= denomination.name %></h2>
     <% wines.each do |wine| %>
+      <%= turbo_stream_from wine %>
+
       <%= link_to wine, data: { turbo_frame: "modal" } do %>
         <%= render "wine", wine: wine %>
       <% end %>

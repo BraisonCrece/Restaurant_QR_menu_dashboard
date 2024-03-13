@@ -1,17 +1,19 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :menu, :show]
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :set_categories, only: [:index, :new, :edit]
+  before_action :authenticate_user!, except: %i[index menu show]
+  before_action :set_product, only: %i[show edit update destroy]
+  before_action :set_categories, only: %i[index new edit]
 
   def index
     @categorized_products = Product.categorized_products
+    @categories = Category.menu
     @denominations = WineOriginDenomination.all.includes(:wines)
-    @available_colors = ["Blanco", "Tinto"].freeze
+    @available_colors = %w[Blanco Tinto].freeze
     @categorized_wines = Wine.categorized_wines(@denominations, @available_colors)
   end
 
   def menu
     @categorized_products = Product.menu_categorized_products
+    @menu_categories = Category.daily
   end
 
   def new
@@ -22,12 +24,10 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.active = true
 
-    if params[:product][:picture]
-      @product.process_image(params[:product][:picture])
-    end
+    @product.process_image(params[:product][:picture]) if params[:product][:picture]
 
     if @product.save
-      flash[:notice] = "Producto engadido!"
+      flash[:notice] = 'Producto engadido!'
       render :new, status: :ok
       flash.clear
     else
@@ -47,10 +47,8 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      if params[:product][:picture]
-        @product.process_image(params[:product][:picture])
-      end
-      redirect_to control_panel_path, notice: "Producto editado con éxito"
+      @product.process_image(params[:product][:picture]) if params[:product][:picture]
+      redirect_to control_panel_path, notice: 'Producto editado con éxito'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -59,16 +57,16 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to control_panel_path, status: 303, notice: "Producto eliminado!"
+    redirect_to control_panel_path, status: 303, notice: 'Producto eliminado!'
   end
 
   def control_panel
-    case params[:filter]
-    when "menu"
-      @products = Product.where(category: Category.where(category_type: "menu"))
-    else
-      @products = Product.where.not(category: Category.where(category_type: "menu"))
-    end
+    @products = case params[:filter]
+                when 'menu'
+                  Product.where(category: Category.where(category_type: 'daily'))
+                else
+                  Product.where.not(category: Category.where(category_type: 'daily'))
+                end
   end
 
   def pages_control
@@ -78,7 +76,8 @@ class ProductsController < ApplicationController
   def toggle_active
     product = Product.find(params[:product_id])
     product.update(active: !product.active)
-    render turbo_stream: turbo_stream.replace("product_active_#{product.id}", partial: "products/active", locals: { product: product })
+    render turbo_stream: turbo_stream.replace("product_active_#{product.id}", partial: 'products/active',
+                                                                              locals: { product: })
   end
 
   private

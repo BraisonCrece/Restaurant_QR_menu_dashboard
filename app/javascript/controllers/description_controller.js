@@ -13,11 +13,12 @@ export default class extends Controller {
     try {
       const response = await fetch('/describe_dish', requestOptions);
       if (!response.ok) {
+        console.error(response);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const result = await response.json();
-      console.log(result);
       const description = result.description;
+
       this.outputTarget.value = description;
     } catch (error) {
       console.error('Error fetching description:', error);
@@ -35,11 +36,12 @@ export default class extends Controller {
     try {
       const response = await fetch('/describe_dish', requestOptions);
       if (!response.ok) {
+        console.warn(response);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const result = await response.json();
-      console.log(result);
       const description = result.description;
+
       this.outputTarget.value = description;
     } catch (error) {
       console.error('Error fetching description:', error);
