@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
+# Beautiful monadic error handling in Ruby
+gem 'dry-monads'
+
 # Handle User Authentication easily
 gem 'devise'
 
@@ -29,6 +32,9 @@ gem 'rails', '~> 7.0.4', '>= 7.0.4.1'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
+
+# Translations
+gem 'rails-i18n', '~> 7.0.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'

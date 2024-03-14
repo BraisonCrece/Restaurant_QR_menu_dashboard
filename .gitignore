@@ -39,3 +39,5 @@
 
 # credentials and so on
 .env
+config/master_prod.key
+config/credentials_prod.yml.enc

@@ -10,7 +10,7 @@ class OpenAiService
     }
   end
 
-  def get_description(prompt, temperature = 0.7)
+  def request(prompt, temperature = 0.7)
     body = {
       "model": 'gpt-4-1106-preview',
       "messages": [
@@ -24,8 +24,21 @@ class OpenAiService
 
     response = self.class.post('/chat/completions', headers: @headers, body: body.to_json)
 
-    raise "Error fetching description: #{response.message}" unless response.success?
+    return Response.new(error: response.message) unless response.success?
 
-    response['choices'][0]['message']['content']
+    Response.new(content: response['choices'][0]['message']['content'])
+  end
+
+  class Response
+    attr_reader :content, :error
+
+    def initialize(content: nil, error: nil)
+      @content = content
+      @error = error
+    end
+
+    def success?
+      @content.present?
+    end
   end
 end
