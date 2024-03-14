@@ -61,12 +61,7 @@ class ProductsController < ApplicationController
   end
 
   def control_panel
-    @products = case params[:filter]
-                when 'menu'
-                  Product.where(category: Category.where(category_type: 'daily'))
-                else
-                  Product.where.not(category: Category.where(category_type: 'daily'))
-                end
+    @products, @color = set_products_and_color_based_on_params
   end
 
   def pages_control
@@ -81,6 +76,21 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def set_products_and_color_based_on_params
+    case params[:filter]
+    when 'menu'
+      [
+        Product.joins(:category).where(categories: { category_type: 'daily' }).order('products.active DESC'),
+        { carta: 'clarito', menu: 'oscuro' }
+      ]
+    else
+      [
+        Product.joins(:category).where.not(categories: { category_type: 'daily' }).order('products.active DESC'),
+        { carta: 'oscuro', menu: 'clarito' }
+      ]
+    end
+  end
 
   def set_product
     @product = Product.find(params[:id])

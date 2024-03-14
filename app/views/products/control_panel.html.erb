@@ -4,8 +4,8 @@
   </div>
   <div class="flex justify-center items-center gap-2 mb-2">
     <input type="search" id="productSearch" placeholder="Buscar producto" data-product-search-target="search" data-action="input->product-search#search" class="bg-white focus:ring-blue-500 focus:border-blue-500 border border-gray-300 rounded-md py-2 px-4 block w-full" />
-    <%= link_to 'Menú', control_panel_path(filter: 'menu'), class: "p-2 bg-blue-300 text-white rounded" %>
-    <%= link_to 'Carta', control_panel_path(filter: 'carta'), class: "p-2 bg-blue-300 text-white rounded" %>
+    <%= link_to 'Menú', control_panel_path(filter: 'menu'), class: "p-2 #{@color[:menu]} text-white rounded" %>
+    <%= link_to 'Carta', control_panel_path(filter: 'carta'), class: "p-2 #{@color[:carta]} text-white rounded" %>
   </div>
   <div id="productList">
     <% @products.each do |product| %>

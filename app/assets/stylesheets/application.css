@@ -177,3 +177,19 @@ main {
     opacity: 1;
   }
 }
+
+.clarito {
+    background-color: #0069fd56;
+}
+
+.oscuro {
+    background-color: #0069fde6;
+}
+
+.clarito:hover {
+    background-color: #0069fd;
+}
+
+.oscuro:hover {
+    background-color: #0069fd;
+}
