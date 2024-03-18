@@ -1,0 +1,52 @@
+---
+de:
+  product:
+    1:
+      title: Iberisches Geheimnis mit Teriyaki-Sauce und Basmatireis
+      description: Scheiben vom iberischen Schweinenacken, glasiert mit Teriyaki-Sauce,
+        serviert auf einem Bett aus aromatischem Basmati-Reis. Hispano-japanische
+        Fusion
+    2:
+      title: Seefahrerreis
+      description: Eintopf mit ausgewählten Meeresfrüchten, gekocht in Holzrauch,
+        der die Traditionen der galicischen Fischerdörfer hervorruft
+    3:
+      title: Linseneintopf
+      description: Linsen perfekt gekocht in einer aromatischen Brühe mit Gemüse und
+        einem Hauch von Pfeffer, um ein nahrhaftes und wohltuendes Eintopfgericht
+        zu kreieren
+    4:
+      title: Gebratener Tofu mit Basmatireis
+      description: Knusprig gebratene Tofuwürfel mit verschiedenen Gemüsesorten auf
+        einem Bett aus aromatischem Basmatireis, eine geschmackvolle vegetarische
+        Reise
+    5:
+      title: Haferflan ohne Ei
+      description: Traditioneller süßer Pudding mit cremiger Textur, hergestellt aus
+        Hafer und Milch, ohne Ei, im Wasserbad gekocht und mit goldenem Karamell überzogen
+  wine:
+    1:
+      description: Ein toller Wein, sehr gut. Schmeckt schlecht, aber wirkt gut, was
+        nicht jeder schafft
+    2:
+      description: ja gut, du weißt
+  category:
+    10:
+      name: Hauptgerichte
+    11:
+      name: Desserts
+    9:
+      name: Vorspeisen
+    1:
+      name: "\U0001F957 Vorspeisen"
+    2:
+      name: "\U0001F37D️ Hauptgerichte"
+    3:
+      name: "\U0001F370 Desserts"
+    Viños:
+      name: "\U0001F377 Weine"
+  detalles: details anzeigen
+  copa: als Glas erhältlich
+  Blancos: Weißweine
+  Tintos: Rotweine
+  IVA: Alle Preise inklusive MwSt.

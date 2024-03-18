@@ -13,8 +13,8 @@ module CartaQr
 
     config.rails_i18n.enabled_modules = [:locale]
     # Spanish, German, English, Italian, French, Russian
-    config.i18n.available_locales = %i[gal es de en it fr ru]
-    config.i18n.default_locale = :gal
+    config.i18n.available_locales = %i[gl es de en it fr ru]
+    config.i18n.default_locale = :gl
 
     # add services
     # config.autoload_paths += %W(#{config.root}/app/services)

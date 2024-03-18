@@ -10,9 +10,9 @@ class OpenAiService
     }
   end
 
-  def request(prompt, temperature = 0.7)
+  def request(prompt, model = 'gpt-4-1106-preview', temperature = 0.7)
     body = {
-      "model": 'gpt-4-1106-preview',
+      "model": model,
       "messages": [
         {
           "role": 'user',

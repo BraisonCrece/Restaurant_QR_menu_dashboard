@@ -3,25 +3,23 @@
 require 'dry/monads'
 require 'dry/monads/do'
 
-class ProductTranslatorService
+class WineTranslatorService
   include Dry::Monads[:result, :try]
   include Dry::Monads::Do.for(:call)
 
-  attr_reader :product, :language, :title_translation, :description_translation, :title_prompt, :description_prompt
+  attr_reader :wine, :language, :description_translation, :description_prompt
 
-  def initialize(product, language)
-    @product = product
+  def initialize(wine, language)
+    @wine = wine
     @language = language
-    @title_prompt = "Eres un experto linguista, as túas respostas so conteñen a traducción, nada máis. Quero que traduzas o nome do seguinte prato de comida do Galego ao #{language}: \n #{product.title}"
-    @description_prompt = "Eres un experto linguista, as túas respostas so conteñen a traducción, nada máis. Quero que traduzas a descrición do seguinte prato de comida do Galego ao #{language}: \n #{product.description}"
+    @description_prompt = "Eres un experto linguista, as túas respostas so conteñen a traducción, nada máis. Quero que traduzas a descrición do seguinte viño do Galego ao #{language}: \n #{wine.description}"
   end
 
   def call
     file_path = yield get_file_path
     file_content = yield get_file_content(file_path)
-    title_translation = yield ask_for_translation(title_prompt)
     description_translation = yield ask_for_translation(description_prompt)
-    save_translation(file_path, file_content, title_translation, description_translation)
+    save_translation(file_path, file_content, description_translation)
   end
 
   private
@@ -42,9 +40,8 @@ class ProductTranslatorService
     end
   end
 
-  def save_translation(file_path, file_content, title_translation, description_translation)
-    file_content[get_language_key(language)]['product'][product.id] = {
-      'title' => title_translation,
+  def save_translation(file_path, file_content, description_translation)
+    file_content[get_language_key(language)]['wine'][wine.id] = {
       'description' => description_translation
     }
 

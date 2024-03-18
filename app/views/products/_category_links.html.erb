@@ -1,8 +1,8 @@
 <% @categories.each do |category| %>
   <% next if category.products.blank? %>
-  <%= link_to category.name.gsub(/[\p{Emoji_Presentation}\u{FE0F}]|[\u{1F600}-\u{1F64F}\u{1F37D}]/, ""),
+  <%= link_to translate("category.#{category.id}.name", category.name).gsub(/[\p{Emoji_Presentation}\u{FE0F}]|[\u{1F600}-\u{1F64F}\u{1F37D}]/, ""),
               "#category-#{category.id}",
               class: "text-xl font-medium text-teal-900 hover:text-teal-900",
               data: { turbo_frame: "_top", controller: "scroll", action: "click->scroll#scrollToCategory" } %>
 <% end %>
-<%= link_to "Viños", "#viños", class: "text-xl font-medium text-teal-900 hover:text-teal-900", data: { turbo_frame: "_top", controller: "scroll", action: "click->scroll#scrollToCategory" } %>
+<%= link_to translate("category.Viños.name", "Viños").gsub(/[\p{Emoji_Presentation}\u{FE0F}]|[\u{1F600}-\u{1F64F}\u{1F37D}]/, ""), "#viños", class: "text-xl font-medium text-teal-900 hover:text-teal-900", data: { turbo_frame: "_top", controller: "scroll", action: "click->scroll#scrollToCategory" } %>

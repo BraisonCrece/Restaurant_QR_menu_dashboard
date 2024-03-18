@@ -1,0 +1,54 @@
+---
+es:
+  product:
+    1:
+      title: Secreto ibérico con salsa teriyaki y arroz basmati
+      description: "Lonchas de secreto ibérico, glaseadas con salsa teriyaki, servidas
+        sobre lecho de arroz basmati aromático. Fusión hispano-japonesa. \n\nLonchas
+        de secreto ibérico, glaseadas con salsa teriyaki, servidas sobre lecho de
+        arroz basmati aromático. Fusión hispano-japonesa"
+    2:
+      title: Arroz marinero
+      description: Arroz caldoso con mariscos seleccionados, cocinado en humo de leña,
+        evocando las tradiciones de los pueblos pesqueros gallegos
+    3:
+      title: Estofado de lentejas
+      description: Lentejas cocinadas hasta la perfección en un caldo aromatizado
+        con verduras y un toque de pimiento, componiendo un estofado nutritivo y reconfortante
+    4:
+      title: |-
+        Tofu salteado con arroz basmati
+
+        Tofu salteado con arroz basmati
+      description: Cubos de tofu crujientes salteados con diversas verduras sobre
+        una cama de arroz basmati aromático, un viaje vegetariano lleno de sabor
+    5:
+      title: Flan de avena sin huevo
+      description: Dulce tradicional de textura cremosa, elaborado con avena y leche,
+        sin huevo, cocinado al baño María y terminado con caramelo dorado
+  wine:
+    1:
+      description: Vino de calidad, es muy bueno. Tiene un sabor fuerte pero es agradable,
+        algo que no todos consiguen
+    2:
+      description: sí bueno, ya sabes
+  category:
+    10:
+      name: Segundos
+    11:
+      name: Postres
+    9:
+      name: Primeros
+    1:
+      name: "\U0001F957 Entrantes"
+    2:
+      name: "\U0001F37D️ Platos"
+    3:
+      name: "\U0001F370 Postres"
+    Viños:
+      name: "\U0001F377 Vinos"
+  copa: disponible en copa
+  detalles: ver detalles
+  Blancos: Blancos
+  Tintos: Tintos
+  IVA: Todos los precios llevan el IVA incluído

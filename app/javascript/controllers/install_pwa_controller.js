@@ -5,14 +5,18 @@ export default class extends Controller {
   static targets = ["installButton"];
 
   connect() {
-    this.deferredPrompt = null;
-    this.handleBeforeInstallPrompt = this.handleBeforeInstallPrompt.bind(this);
+    this.deferredPrompt = null
     window.addEventListener("beforeinstallprompt", this.handleBeforeInstallPrompt);
+
+    this.installButtonTarget.addEventListener("click", () => this.install());
+
     this.setupMediaQueryListener();
   }
 
   disconnect() {
     window.removeEventListener("beforeinstallprompt", this.handleBeforeInstallPrompt);
+
+    this.installButtonTarget.removeEventListener("click", () => this.install());
   }
 
   handleBeforeInstallPrompt(event) {
@@ -31,6 +35,7 @@ export default class extends Controller {
           console.log("El usuario no aceptó instalar la app");
         }
         this.deferredPrompt = null;
+        this.installButtonTarget.style.display = "none";
       });
     }
   }
@@ -38,7 +43,8 @@ export default class extends Controller {
   setupMediaQueryListener() {
     const mediaQuery = window.matchMedia("(display-mode: standalone)");
     this.handleMediaQueryChange(mediaQuery);
-    mediaQuery.addListener((e) => this.handleMediaQueryChange(e));
+
+    mediaQuery.addEventListener('change', this.handleMediaQueryChange.bind(this));
   }
 
   handleMediaQueryChange(mediaQuery) {

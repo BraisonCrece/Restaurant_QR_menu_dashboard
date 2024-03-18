@@ -18,7 +18,6 @@ kill_timeout = "5s"
   source="navega_machines"
   destination="/data"
 
-
 [[services]]
   protocol = "tcp"
   internal_port = 3000

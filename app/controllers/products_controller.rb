@@ -7,8 +7,8 @@ class ProductsController < ApplicationController
     @categorized_products = Product.categorized_products
     @categories = Category.menu
     @denominations = WineOriginDenomination.all.includes(:wines)
-    @available_colors = %w[Blanco Tinto].freeze
-    @categorized_wines = Wine.categorized_wines(@denominations, @available_colors)
+    available_colors = %w[Blanco Tinto].freeze
+    @categorized_wines = Wine.categorized_wines(@denominations, available_colors)
   end
 
   def menu
@@ -22,12 +22,17 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.active = true
+    @product.active = false
+    @product.lock_it!
+
+    Thread.new do
+      NewItemTranslatorService.new(@product).call
+    end
 
     @product.process_image(params[:product][:picture]) if params[:product][:picture]
 
     if @product.save
-      flash[:notice] = 'Producto engadido!'
+      flash[:notice] = 'Producto engadido! Poderá ser activado cando as traduccións rematen.'
       render :new, status: :ok
       flash.clear
     else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_04_224150) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_18_172704) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -70,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_224150) do
     t.float "prize"
     t.integer "category_id"
     t.string "product_type"
+    t.boolean "lock", default: false
   end
 
   create_table "settings", force: :cascade do |t|
@@ -81,6 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_224150) do
     t.decimal "menu_price", default: "12.5"
     t.string "phone_number", default: "986 07 16 61"
     t.string "mobile", default: "635 44 00 68"
+    t.boolean "translator", default: false
   end
 
   create_table "users", force: :cascade do |t|

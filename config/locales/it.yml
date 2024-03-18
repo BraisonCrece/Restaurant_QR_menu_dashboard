@@ -1,0 +1,49 @@
+---
+it:
+  product:
+    1:
+      title: Segreto iberico con salsa teriyaki e riso basmati
+      description: Fette di segreto iberico glassate con salsa teriyaki, servite su
+        un letto di riso basmati aromatico. Fusione ispano-giapponese
+    2:
+      title: Risotto alla marinara
+      description: Riso brodoso con frutti di mare selezionati, cucinato nel fumo
+        di legna, evocando le tradizioni dei villaggi di pescatori galiziani
+    3:
+      title: Stufato di lenticchie
+      description: Lenticchie cotte alla perfezione in un brodo aromatizzato con verdure
+        e un tocco di pepe, componendo uno stufato nutriente e confortante
+    4:
+      title: Tofu saltato con riso basmati
+      description: Cubi di tofu croccanti saltati con varie verdure su un letto di
+        riso basmati aromatico, un viaggio vegetariano ricco di sapore
+    5:
+      title: Flan di avena senza uova
+      description: Dolce tradizionale di consistenza cremosa, preparato con avena
+        e latte, senza uova, cotto a bagnomaria e finito con caramello dorato
+  wine:
+    1:
+      description: Vino fantastico, è molto buono. Ha un sapore forte ma colpisce
+        bene, cosa che non tutti riescono a fare
+    2:
+      description: sì buono, lo sai già
+  category:
+    10:
+      name: Secondi
+    11:
+      name: Dolci
+    9:
+      name: Primi
+    1:
+      name: "\U0001F957 Antipasti"
+    2:
+      name: "\U0001F37D️ Piatti principali"
+    3:
+      name: "\U0001F370 Dolci"
+    Viños:
+      name: "\U0001F377 Vini"
+  detalles: vedi i dettagli
+  copa: disponibile al bicchiere
+  Blancos: Bianchi
+  Tintos: Rossi
+  IVA: Tutti i prezzi includono l'IVA.
