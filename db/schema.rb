@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_18_172704) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_18_215457) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -119,6 +119,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_18_172704) do
     t.datetime "updated_at", null: false
     t.decimal "price_per_glass"
     t.boolean "active", default: true
+    t.boolean "lock", default: false
     t.index ["wine_origin_denomination_id"], name: "index_wines_on_wine_origin_denomination_id"
   end
 

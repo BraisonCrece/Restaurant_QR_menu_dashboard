@@ -2,34 +2,36 @@
 de:
   product:
     1:
-      title: Iberisches Geheimnis mit Teriyaki-Sauce und Basmatireis
+      title: Iberisches Geheimnis mit Teriyaki-Sauce und Basmati-Reis
       description: Scheiben vom iberischen Schweinenacken, glasiert mit Teriyaki-Sauce,
-        serviert auf einem Bett aus aromatischem Basmati-Reis. Hispano-japanische
-        Fusion
+        serviert auf einem Bett aus aromatischem Basmatireis. Hispano-japanische Fusion
     2:
       title: Seefahrerreis
-      description: Eintopf mit ausgewählten Meeresfrüchten, gekocht in Holzrauch,
-        der die Traditionen der galicischen Fischerdörfer hervorruft
+      description: Suppe Reis mit ausgewählten Meeresfrüchten, gekocht in Holzrauch,
+        erinnert an die Traditionen der galizischen Fischerdörfer
     3:
       title: Linseneintopf
-      description: Linsen perfekt gekocht in einer aromatischen Brühe mit Gemüse und
-        einem Hauch von Pfeffer, um ein nahrhaftes und wohltuendes Eintopfgericht
-        zu kreieren
+      description: Linsen gekocht bis zur Perfektion in einer aromatisierten Brühe
+        mit Gemüse und einem Hauch von Paprika, um einen nahrhaften und wohltuenden
+        Eintopf zu kreieren
     4:
-      title: Gebratener Tofu mit Basmatireis
-      description: Knusprig gebratene Tofuwürfel mit verschiedenen Gemüsesorten auf
-        einem Bett aus aromatischem Basmatireis, eine geschmackvolle vegetarische
-        Reise
+      title: Gebratener Tofu mit Basmati-Reis
+      description: Krosse Tofuwürfel mit verschiedenen Gemüsesorten auf einem Bett
+        aus aromatischem Basmatireis, eine geschmackvolle vegetarische Reise
     5:
       title: Haferflan ohne Ei
       description: Traditioneller süßer Pudding mit cremiger Textur, hergestellt aus
         Hafer und Milch, ohne Ei, im Wasserbad gekocht und mit goldenem Karamell überzogen
+    7:
+      title: Mangoeiscreme
+      description: Cremiges Mango-Sorbet mit frischem Obst und einem Hauch Limettensaft,
+        serviert als erfrischendes Dessert. Ideal für heiße Tage
   wine:
     1:
-      description: Ein toller Wein, sehr gut. Schmeckt schlecht, aber wirkt gut, was
-        nicht jeder schafft
+      description: Weinbruder, es ist sehr gut,. Es schmeckt schlecht, aber es schlägt
+        gut, was nicht alle schaffen
     2:
-      description: ja gut, du weißt
+      description: ja, du weißt es
   category:
     10:
       name: Hauptgerichte

@@ -8,7 +8,7 @@ class NewItemTranslatorService
   include Dry::Monads::Do.for(:call)
 
   LANGUAGES = %w[Español Inglés Francés Alemán Italiano Ruso].freeze
-  attr_reader :item
+  attr_reader :item, :notify
 
   def initialize(item)
     @item = item
@@ -16,7 +16,7 @@ class NewItemTranslatorService
 
   def call
     result = yield process_item_translations
-    yield notify_user(result)
+    yield activate_item
   end
 
   def process_item_translations
@@ -25,7 +25,7 @@ class NewItemTranslatorService
         "#{item.class.name}TranslatorService".constantize.new(item, language)
       end.to_result
 
-      raise NameError, 'Service not found' if service.failure?
+      raise "Service #{item.class.name}TranslatorService not found" if service.failure?
 
       result = service.success.call
       if result.success?
@@ -39,9 +39,15 @@ class NewItemTranslatorService
     result.all? ? Success('All translations successful') : Failure("Failed translations: #{result.filter(&:failure?).map(&:failure).join(', ')}")
   end
 
-  def notify_user(result)
-    ActiveSupport::Notifications.instrument('new_item_translated', item:, result:)
-    Rails.logger.info(result)
-    Success("#{result} and user notified")
+  def activate_item
+    activation_result = Try[ActiveRecord::RecordInvalid] do
+      item.update!(lock: false, active: true)
+    end.to_result
+
+    return Failure(activation_result.failure) if activation_result.failure
+
+    I18n.backend.reload!
+    Rails.logger.info("Item #{item.class.name} #{item.id} activated")
+    Success("#{item.class.name} #{item.id} activated")
   end
 end

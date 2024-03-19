@@ -16,6 +16,9 @@ module CartaQr
     config.i18n.available_locales = %i[gl es de en it fr ru]
     config.i18n.default_locale = :gl
 
+    # ../data/locales
+    config.i18n.load_path += Dir[Rails.root.join('..', 'data', 'locales', '*.{rb,yml}')]
+
     # add services
     # config.autoload_paths += %W(#{config.root}/app/services)
 

@@ -2,9 +2,9 @@
 it:
   product:
     1:
-      title: Segreto iberico con salsa teriyaki e riso basmati
-      description: Fette di segreto iberico glassate con salsa teriyaki, servite su
-        un letto di riso basmati aromatico. Fusione ispano-giapponese
+      title: Secreto iberico con salsa teriyaki e riso basmati
+      description: Fette di secreto iberico glassate con salsa teriyaki, servite su
+        letto di riso basmati aromatico. Fusione ispano-giapponese
     2:
       title: Risotto alla marinara
       description: Riso brodoso con frutti di mare selezionati, cucinato nel fumo
@@ -15,15 +15,20 @@ it:
         e un tocco di pepe, componendo uno stufato nutriente e confortante
     4:
       title: Tofu saltato con riso basmati
-      description: Cubi di tofu croccanti saltati con varie verdure su un letto di
-        riso basmati aromatico, un viaggio vegetariano ricco di sapore
+      description: Cubi di tofu croccanti saltati con verdure miste su un letto di
+        riso basmati aromatico, un viaggio vegetariano pieno di sapore
     5:
       title: Flan di avena senza uova
       description: Dolce tradizionale di consistenza cremosa, preparato con avena
         e latte, senza uova, cotto a bagnomaria e finito con caramello dorato
+    7:
+      title: Gelato di mango
+      description: Gelato cremoso al mango preparato con frutta fresca e un tocco
+        di succo di lime, servito come dessert rinfrescante. Ideale per le giornate
+        calde
   wine:
     1:
-      description: Vino fantastico, è molto buono. Ha un sapore forte ma colpisce
+      description: Vino incredibile, è molto buono. Ha un sapore forte ma colpisce
         bene, cosa che non tutti riescono a fare
     2:
       description: sì buono, lo sai già

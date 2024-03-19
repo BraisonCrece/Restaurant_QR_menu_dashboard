@@ -3,7 +3,7 @@ en:
   product:
     1:
       title: Iberian secret with teriyaki sauce and basmati rice
-      description: Slices of Iberian pork secreto, glazed with teriyaki sauce, served
+      description: Slices of Iberian pork secret, glazed with teriyaki sauce, served
         on a bed of aromatic basmati rice. Hispano-Japanese fusion
     2:
       title: Seafood rice
@@ -21,12 +21,16 @@ en:
       title: Oat flan without egg
       description: Traditional sweet dessert with a creamy texture, made with oats
         and milk, without egg, cooked in a water bath and topped with golden caramel
+    7:
+      title: Mango sorbet
+      description: Creamy mango sorbet made with fresh fruit and a touch of lime juice,
+        served as a refreshing dessert. Ideal for hot days
   wine:
     1:
-      description: Great wine, man, it's really good. It tastes bad but hits you well,
-        something not everyone achieves
+      description: Great wine, mate, it's really good. Tastes bad but hits well, not
+        everyone can achieve that
     2:
-      description: Yes, good, you know
+      description: if good, you know
   category:
     10:
       name: Main Courses

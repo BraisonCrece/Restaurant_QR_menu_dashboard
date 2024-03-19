@@ -28,7 +28,7 @@ class WineTranslatorService
     language_key = get_language_key(language)
     return Failure('Language not found') if language_key.nil?
 
-    file_path = Rails.root.join('config', 'locales', "#{language_key}.yml")
+    file_path = Rails.root.join('..', 'data', 'locales', "#{language_key}.yml")
     Success(file_path)
   end
 
