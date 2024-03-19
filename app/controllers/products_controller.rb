@@ -25,9 +25,7 @@ class ProductsController < ApplicationController
     @product.active = false
     @product.lock_it!
 
-    Thread.new do
-      NewItemTranslatorService.new(@product).call
-    end
+    NewItemTranslatorService.new(@product).call
 
     @product.process_image(params[:product][:picture]) if params[:product][:picture]
 

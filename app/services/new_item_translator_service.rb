@@ -40,13 +40,14 @@ class NewItemTranslatorService
   end
 
   def activate_item
+    I18n.backend.reload!
+
     activation_result = Try[ActiveRecord::RecordInvalid] do
       item.update!(lock: false, active: true)
     end.to_result
 
     return Failure(activation_result.failure) if activation_result.failure
 
-    I18n.backend.reload!
     Rails.logger.info("Item #{item.class.name} #{item.id} activated")
     Success("#{item.class.name} #{item.id} activated")
   end

@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
       session[:locale] = locale
     end
 
-    I18n.backend.reload!
-
     I18n.with_locale(session[:locale], &action)
   end
 end
