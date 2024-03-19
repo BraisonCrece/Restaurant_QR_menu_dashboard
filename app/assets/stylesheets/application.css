@@ -194,4 +194,16 @@ main {
     background-color: #0069fd;
 }
 
+.other-locales {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform-origin: bottom;
+    opacity: 0;
+    transform: scaleY(0);
+}
+
+.other-locales.active {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
 

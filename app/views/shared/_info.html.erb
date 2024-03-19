@@ -1,10 +1,10 @@
 <% if request.path == "/menu" %>
     <div class="w-[96%] max-w-2xl m-auto flex flex-col gap-2 justify-center items-center text-xl font-play font-thin mb-6">
-        <p class="text-2xl underline underline-offset-4 decoration-emerald-500/30"> O menú do día inclúe: </p>
-        <p>🍽 1er plato</p>
-        <p>🍽 2º plato</p>
-        <p>🥖 Pan e Auga local 🥤</p>
-        <p>🍮 postre ou café ☕</p>
+        <p class="text-2xl underline underline-offset-4 decoration-emerald-500/30"> <%= translate("info.title", "O menú do día inclúe") %>: </p>
+        <p>🍽 <%=  translate("info.starter", "1er plato")%></p>
+        <p>🍽 <%=  translate("info.main", "2º plato")%></p>
+        <p>🥖 <%=  translate("info.water_bread", "Pan e Auga local") %> 🥤</p>
+        <p>🍮 <%=  translate("info.dessert_or_coffee", "postre ou café") %> ☕</p>
         <div class="italic font-sans font-light text-5xl text-emerald-500"><%= Setting.first.menu_price %> €</div>
     </div>
 <% end %>

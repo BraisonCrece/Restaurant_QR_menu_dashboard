@@ -12,9 +12,13 @@
           <%= truncate(wine.name, length: 30, separator: " ", omission: "...") %>
         </p>
         <p class='self-center'>
-          <%= turbo_frame_tag "wine_active_#{wine.id}" do %>
-            <%= link_to "🔴", wine_toggle_active_path(wine_id: wine.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if !wine.active %>
-            <%= link_to "🟢", wine_toggle_active_path(wine_id: wine.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if wine.active %>
+          <% if wine.lock? %>
+                🔒
+          <% else %>
+            <%= turbo_frame_tag "wine_active_#{wine.id}" do %>
+              <%= link_to "🔴", wine_toggle_active_path(wine_id: wine.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if !wine.active %>
+              <%= link_to "🟢", wine_toggle_active_path(wine_id: wine.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if wine.active %>
+            <% end %>
           <% end %>
         </p>
         <div class='absolute flex gap-2'>

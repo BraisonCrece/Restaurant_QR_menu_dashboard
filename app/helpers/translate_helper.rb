@@ -13,4 +13,23 @@ module TranslateHelper
 
     "#{send(method_name, object)}?locale=#{I18n.locale}"
   end
+
+  def locale_flag(locale = nil)
+    case locale || I18n.locale
+    when :es
+      "spain.png"
+    when :en
+      'ingles.png'
+    when :fr
+      'france.png'
+    when :de
+      'germany.png'
+    when :it
+      'italy.png'
+    when :ru
+      'rusia.png'
+    else
+      'galicia.png'
+    end
+  end
 end

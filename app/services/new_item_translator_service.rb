@@ -8,21 +8,26 @@ class NewItemTranslatorService
   include Dry::Monads::Do.for(:call)
 
   LANGUAGES = %w[Español Inglés Francés Alemán Italiano Ruso].freeze
-  attr_reader :item, :notify
+  attr_reader :item, :model, :temperature
 
-  def initialize(item)
+  def initialize(item, model: 'gpt-3.5-turbo-0125', temperature: 0.3)
     @item = item
+    @model = model
+    @temperature = temperature
   end
 
   def call
-    result = yield process_item_translations
-    yield activate_item
+    yield process_item_translations
+    yield unlock_item
+    yield reload_i18n
   end
+
+  private
 
   def process_item_translations
     result = LANGUAGES.each do |language|
-      service = Try do
-        "#{item.class.name}TranslatorService".constantize.new(item, language)
+      service = Try[NameError] do
+        "#{item.class.name}TranslatorService".constantize.new(item, language, model: model, temperature: temperature)
       end.to_result
 
       raise "Service #{item.class.name}TranslatorService not found" if service.failure?
@@ -39,16 +44,14 @@ class NewItemTranslatorService
     result.all? ? Success('All translations successful') : Failure("Failed translations: #{result.filter(&:failure?).map(&:failure).join(', ')}")
   end
 
-  def activate_item
-    I18n.backend.reload!
-
-    activation_result = Try[ActiveRecord::RecordInvalid] do
-      item.update!(lock: false, active: true)
+  def unlock_item
+    Try[ActiveRecord::RecordInvalid] do
+      item.update(lock: false, active: true)
     end.to_result
+  end
 
-    return Failure(activation_result.failure) if activation_result.failure
-
-    Rails.logger.info("Item #{item.class.name} #{item.id} activated")
-    Success("#{item.class.name} #{item.id} activated")
+  def reload_i18n
+    I18n.reload!
+    Success('Item translated and reloaded I18n')
   end
 end

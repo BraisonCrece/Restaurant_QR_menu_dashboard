@@ -1,27 +1,32 @@
 class WinesController < ApplicationController
-  before_action :set_wine, only: [:show, :edit, :update, :destroy]
+  before_action :set_wine, only: %i[show edit update destroy]
 
   def index
     @wines = Wine.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @wine = Wine.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @wine = Wine.new(wine_params)
-    if params[:wine][:image]
-      @wine.process_wine(params[:wine][:image])
+    @wine.active = false
+    @wine.lock_it!
+
+    Thread.new do
+      NewItemTranslatorService.new(@wine).call
     end
+
+    @wine.process_wine(params[:wine][:image]) if params[:wine][:image]
+
     if @wine.save
-      redirect_to wines_control_panel_path, notice: "Viño creado con éxito."
+      redirect_to wines_control_panel_path,
+                  notice: 'Viño engadido! Será automáticamente activado cando as traduccións rematen.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,10 +34,8 @@ class WinesController < ApplicationController
 
   def update
     if @wine.update(wine_params)
-      if params[:wine][:image]
-        @wine.process_wine(params[:wine][:image])
-      end
-      redirect_to wines_control_panel_path, notice: "Viño actualizado con éxito."
+      @wine.process_wine(params[:wine][:image]) if params[:wine][:image]
+      redirect_to wines_control_panel_path, notice: 'Viño actualizado con éxito.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,7 +43,7 @@ class WinesController < ApplicationController
 
   def destroy
     @wine.destroy
-    redirect_to wines_control_panel_path, notice: "Viño eliminado!"
+    redirect_to wines_control_panel_path, notice: 'Viño eliminado!'
   end
 
   def control_panel
@@ -50,7 +53,7 @@ class WinesController < ApplicationController
   def toggle_active
     wine = Wine.find(params[:wine_id])
     wine.update(active: !wine.active)
-    render turbo_stream: turbo_stream.replace("wine_active_#{wine.id}", partial: "wines/active", locals: { wine: wine })
+    render turbo_stream: turbo_stream.replace("wine_active_#{wine.id}", partial: 'wines/active', locals: { wine: })
   end
 
   private
@@ -60,6 +63,7 @@ class WinesController < ApplicationController
   end
 
   def wine_params
-    params.require(:wine).permit(:name, :description, :wine_type, :wine_origin_denomination_id, :price, :price_per_glass)
+    params.require(:wine).permit(:name, :description, :wine_type, :wine_origin_denomination_id, :price,
+                                 :price_per_glass)
   end
 end

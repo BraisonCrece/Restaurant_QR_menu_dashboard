@@ -25,12 +25,14 @@ class ProductsController < ApplicationController
     @product.active = false
     @product.lock_it!
 
-    NewItemTranslatorService.new(@product).call
+    Thread.new do
+      NewItemTranslatorService.new(@product).call
+    end
 
     @product.process_image(params[:product][:picture]) if params[:product][:picture]
 
     if @product.save
-      flash[:notice] = 'Producto engadido! Poderá ser activado cando as traduccións rematen.'
+      flash[:notice] = 'Producto engadido! Será automáticamente activado cando as traduccións rematen.'
       render :new, status: :ok
       flash.clear
     else

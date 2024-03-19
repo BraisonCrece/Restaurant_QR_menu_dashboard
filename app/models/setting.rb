@@ -9,6 +9,11 @@ class Setting < ApplicationRecord
     first.show_toggler
   end
 
+  def self.show_locale_toggler?
+    init_settings unless first
+    first.locale_toggler
+  end
+
   def self.root_page
     init_settings unless first
     first.root_page
@@ -29,12 +34,11 @@ class Setting < ApplicationRecord
     first.mobile
   end
 
-  private
-
   def self.init_settings
     create(
       root_page: nil,
       show_toggler: true,
+      locale_toggler: false,
       use_menu_path: false,
       menu_price: 12.5,
       phone_number: '986 07 16 61',
@@ -42,4 +46,3 @@ class Setting < ApplicationRecord
     )
   end
 end
-

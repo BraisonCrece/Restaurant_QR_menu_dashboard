@@ -41,3 +41,8 @@
 .env
 config/master_prod.key
 config/credentials_prod.yml.enc
+
+# .DS_Store
+.DS_Store
+*/.DS_Store
+*/**/.DS_Store

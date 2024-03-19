@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   get '/menu', to: 'products#menu', as: :menu
   get '/carta', to: 'products#index', as: :carta
   get '/pages_control', to: 'products#pages_control', as: :pages_control
+  post '/reload_i18n', to: 'translate#reload_i18n'
 end

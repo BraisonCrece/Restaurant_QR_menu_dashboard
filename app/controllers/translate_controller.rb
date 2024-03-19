@@ -23,4 +23,9 @@ class TranslateController < ApplicationController
       render json: { error: 'Error fetching translation' }, status: :unprocessable_entity
     end
   end
+
+  def reload_i18n
+    I18n.reload!
+    redirect_to root_path, notice: 'I18n reloaded'
+  end
 end

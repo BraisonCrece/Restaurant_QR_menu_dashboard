@@ -6,7 +6,7 @@ class SettingsController < ApplicationController
   def update
     @setting = Setting.first
     if @setting.update(setting_params)
-      redirect_to pages_control_path, notice: "Configuración actualizada con éxito"
+      redirect_to pages_control_path, notice: 'Configuración actualizada con éxito'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -15,6 +15,6 @@ class SettingsController < ApplicationController
   private
 
   def setting_params
-    params.require(:setting).permit(:root_page, :show_toggler, :menu_price, :phone_number, :mobile)
+    params.require(:setting).permit(:root_page, :show_toggler, :locale_toggler, :menu_price, :phone_number, :mobile)
   end
 end

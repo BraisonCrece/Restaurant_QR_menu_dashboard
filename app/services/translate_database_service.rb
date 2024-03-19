@@ -7,13 +7,13 @@ class TranslateDatabaseService
   include Dry::Monads[:result, :try]
   include Dry::Monads::Do.for(:call)
 
-  attr_reader :yaml, :not_translated_products, :not_translated_wines
+  attr_reader :yaml, :products, :wines
 
   LANGUAGES = %w[Español Inglés Francés Alemán Italiano Ruso].freeze
 
   def call
     yield get_yaml_file
-    yield get_not_translated_items
+    yield get_items
     yield process_products_translations
     yield process_wines_translations
     yield reload_i18n_backend
@@ -31,27 +31,21 @@ class TranslateDatabaseService
     end
   end
 
-  def get_not_translated_items
-    already_translated_products = yaml['es']['product'].keys
-    already_translated_wines = yaml['es']['wine'].keys
-    @not_translated_products = Product.where('id NOT IN (?)', already_translated_products)
-    @not_translated_wines = Wine.where('id NOT IN (?)', already_translated_wines)
-    if not_translated_products.empty? && not_translated_wines.empty?
-      Failure('All items already translated :)')
-    else
-      Success('Items to translate found')
-    end
+  def get_items
+    @products = Product.all
+    @wines = Wine.all
+    Success('Items loaded')
   end
 
   def process_products_translations
-    not_translated_products.each do |product|
+    products.each do |product|
       NewItemTranslatorService.new(product).call
     end
     Success('Products translations processed')
   end
 
   def process_wines_translations
-    not_translated_wines.each do |wine|
+    wines.each do |wine|
       NewItemTranslatorService.new(wine).call
     end
     Success('Wines translations processed')
@@ -59,6 +53,6 @@ class TranslateDatabaseService
 
   def reload_i18n_backend
     I18n.backend.reload!
-    Success('All done!')
+    Success('All done! :)')
   end
 end

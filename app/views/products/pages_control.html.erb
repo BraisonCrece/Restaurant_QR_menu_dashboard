@@ -20,6 +20,11 @@
       <%= f.select :show_toggler, [["Amosar", true], ["Ocultar", false]],{}, class: "form-select mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full" %>
     </div>
     <hr>
+    <div class="form-group mb-4">
+      <%= f.label :locale_toggler, "Amosar botón de selección de idioma", class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.select :locale_toggler, [["Amosar", true], ["Ocultar", false]],{}, class: "form-select mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full" %>
+    </div>
+    <hr>
     <div class="form-group mb-4 mt-2">
       <%= f.label :menu_price, "Prezo do menú", class: "block text-gray-700 font-bold mb-2" %>
       <%= f.number_field :menu_price, step: :any, class: "form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
