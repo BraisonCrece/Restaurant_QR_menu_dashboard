@@ -49,9 +49,9 @@
       <%= f.label :price, "Precio", class: "block text-gray-700 font-bold mb-2" %>
       <%= f.number_field :price, step: :any, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
-    <div class="mb-4">
-      <%= f.label :price_per_glass_enabled, "Precio por copa", class: "block text-gray-700 font-bold mb-2" %>
-      <%= f.check_box :price_per_glass_enabled, {class: "form-checkbox h-4 w-4 text-indigo-600 rounded", data: { action: "change->toggle-price-per-glass#toggle" }} %>
+    <div class="mb-4 flex items-center gap-4">
+      <div for="por-copa" class="text-gray-700 font-bold">¿Dispoñible por copa? 🍷</div>
+      <input type="checkbox" id="por-copa" class="form-checkbox rounded" data-action="change->toggle-price-per-glass#toggle">
     </div>
     <div class="mb-4 hidden" data-toggle-price-per-glass-target="pricePerGlassField">
       <%= f.label :price_per_glass, "Precio por copa (opcional)", class: "block text-gray-700 font-bold mb-2" %>

@@ -19,7 +19,7 @@ class WinesController < ApplicationController
     @wine.lock_it!
 
     Thread.new do
-      NewItemTranslatorService.new(@wine).call
+      Translators::ProcessTranslationsService.new(@wine, :create).call
     end
 
     @wine.process_wine(params[:wine][:image]) if params[:wine][:image]
@@ -34,6 +34,11 @@ class WinesController < ApplicationController
 
   def update
     if @wine.update(wine_params)
+      if description_changed?
+        Thread.new do
+          Translators::ProcessTranslationsService.new(@wine, :update).call
+        end
+      end
       @wine.process_wine(params[:wine][:image]) if params[:wine][:image]
       redirect_to wines_control_panel_path, notice: 'Viño actualizado con éxito.'
     else
@@ -43,6 +48,9 @@ class WinesController < ApplicationController
 
   def destroy
     @wine.destroy
+    Thread.new do
+      Translators::ProcessTranslationsService.new(@wine, :destroy).call
+    end
     redirect_to wines_control_panel_path, notice: 'Viño eliminado!'
   end
 
@@ -57,6 +65,10 @@ class WinesController < ApplicationController
   end
 
   private
+
+  def description_changed?
+    @wine.previous_changes.include?('description')
+  end
 
   def set_wine
     @wine = Wine.find(params[:id])

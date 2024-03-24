@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
     @product.lock_it!
 
     Thread.new do
-      NewItemTranslatorService.new(@product).call
+      Translators::ProcessTranslationsService.new(@product, :create).call
     end
 
     @product.process_image(params[:product][:picture]) if params[:product][:picture]
@@ -52,6 +52,12 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
+      if title_or_description_changed?
+        Thread.new do
+          Translators::ProcessTranslationsService.new(@product, :update).call
+        end
+      end
+
       @product.process_image(params[:product][:picture]) if params[:product][:picture]
       redirect_to control_panel_path, notice: 'Producto editado con éxito'
     else
@@ -62,6 +68,11 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
+
+    Thread.new do
+      Translators::ProcessTranslationsService.new(@product, :destroy).call
+    end
+
     redirect_to control_panel_path, status: 303, notice: 'Producto eliminado!'
   end
 
@@ -81,6 +92,10 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def title_or_description_changed?
+    @product.previous_changes.include?('title') || @product.previous_changes.include?('description')
+  end
 
   def set_products_and_color_based_on_params
     case params[:filter]
