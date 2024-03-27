@@ -1,13 +1,35 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="modal"
 export default class extends Controller {
-    close(event) {
-        const modal = document.querySelector('#product-modal')
+    static targets = ["image", "skeleton"]
 
+    connect() {
+        this.loadImages().then(() => {
+            this.removeSkeletonClasses();
+        });
+    }
+
+    async loadImages() {
+        const imagePromises = this.imageTargets.map(image => {
+            return image.complete ? Promise.resolve() : this.waitForLoad(image);
+        });
+
+        await Promise.all(imagePromises);
+    }
+
+    waitForLoad(image) {
+        return new Promise(resolve => {
+            image.addEventListener('load', resolve, { once: true });
+        });
+    }
+
+    removeSkeletonClasses() {
+        this.skeletonTargets.forEach(skeleton => skeleton.classList.remove('skeleton'));
+    }
+
+    close(event) {
         if (event.target === this.element) {
-          modal.remove()
-          this.element.remove()
+            this.element.remove();
         }
     }
 }
