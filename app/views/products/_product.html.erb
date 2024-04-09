@@ -1,9 +1,13 @@
-<div class='flex justify-between my-2 print:my-6 p-4 pb-0 border-t border-neutral-100 animate__animated animate__fadeIn animate__slower'>
-  <div class="title price flex flex-col max-w-[72.5%]">
-    <p class='text-2xl  playfare font-light balance'> <%= translate("product.#{product.id}.title", product.title) %></p>
-  </div>
-  <div class="text-2xl self-center font-extralight">
-    <%= number_with_precision(product.prize, precision: 2, separator: ",") %><small class='text-black text-lg font-extralight'>€</small>
-  </div>
+<div class='flex w-full justify-between gap-2 overflow-hidden my-2 h-24 rounded-xl border border-neutral-100 animate__animated animate__fadeIn animate__slower print:my-6'>
+    <div class="flex gap-2 w-full">
+        <div class="h-24 w-24 rounded-l-xl flex-none">
+        <%= image_tag product.picture.attached? ? product.picture.variant(:thumb) : "placeholder.jpg", class: "object-cover min-w-full min-h-full" %>
+        </div>
+        <div class="title flex flex-col justify-between grow">
+            <p class='text-xl  playfare font-light balance'> <%= translate("product.#{product.id}.title", product.title) %></p>
+            <div class="text-2xl pe-2 font-extralight self-end">
+                <%= number_with_precision(product.prize, precision: 2, separator: ",") %><small class='text-black text-lg font-extralight'>€</small>
+            </div>
+        </div>
+    </div>
 </div>
-<small class='text-[1rem] text-emerald-900 font-thin ml-4 print:hidden'> <%= translate("detalles", "ver detalles") %> </small>

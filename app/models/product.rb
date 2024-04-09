@@ -3,7 +3,10 @@ class Product < ApplicationRecord
 
   belongs_to :category
   has_and_belongs_to_many :allergens, dependent: :destroy
-  has_one_attached :picture, dependent: :destroy
+
+  has_one_attached :picture, dependent: :destroy do |attachable|
+    attachable.variant :thumb, resize_to_limit: [200, 200]
+  end
 
   validates :title, :description, presence: true
   validate :active_when_not_locked
