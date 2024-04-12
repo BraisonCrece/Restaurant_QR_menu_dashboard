@@ -1,8 +1,8 @@
-<div class='flex w-full justify-between gap-2 overflow-hidden my-2 h-24 rounded-xl border border-neutral-100 animate__animated animate__fadeIn animate__slower print:my-6'>
+<div class='flex flex-col w-full justify-between gap-2 overflow-hidden my-2 rounded-xl border border-neutral-100 animate__animated animate__fadeIn animate__slower print:my-6'>
+    <div class=" w-full h-48 rounded-l-xl flex-none overflow-hidden">
+        <%= image_tag product.picture.attached? ? product.picture : "placeholder.jpg", class: "object-cover object-center min-w-full min-h-full" %>
+    </div>
     <div class="flex gap-2 w-full">
-        <div class="h-24 w-24 rounded-l-xl flex-none">
-        <%= image_tag product.picture.attached? ? product.picture.variant(:thumb) : "placeholder.jpg", class: "object-cover min-w-full min-h-full" %>
-        </div>
         <div class="title flex flex-col justify-between grow">
             <p class='text-xl  playfare font-light balance'> <%= translate("product.#{product.id}.title", product.title) %></p>
             <div class="text-2xl pe-2 font-extralight self-end">

@@ -26,10 +26,8 @@ module Translators
       yield initialize_example_prompts
       file_path = yield get_file_path
       file_content = yield get_file_content(file_path)
-      title_translation = yield ask_for_translation(title_system_message, example_title, example_title_response,
-                                                    product.title)
-      description_translation = yield ask_for_translation(description_system_message, example_description,
-                                                          example_description_response, product.description)
+      title_translation = yield ask_for_translation(title_system_message, example_title, example_title_response, product.title)
+      description_translation = yield ask_for_translation(description_system_message, example_description, example_description_response, product.description)
       save_translation(file_path, file_content, title_translation, description_translation)
     end
 
