@@ -1,7 +1,7 @@
 <%= turbo_frame_tag :modal do %>
-  <div data-controller='modal' id='product-modal' class="flex items-center fixed inset-0 z-20 modal-container h-screen animate__fadeIn animate__animated animate__faster" data-action="click->modal#close">
+  <div data-controller='modal' id='product-modal' class="flex items-center fixed inset-0 z-20 modal-container h-screen animate__fadeIn animate__animated" data-action="click->modal#close">
     <!-- CARD -->
-    <div class=" w-[95%] flex flex-col max-w-2xl sm:flex-row sm:items-center sm:h-[280px] mx-auto bg-white rounded-lg overflow-hidden shadow-xl animate__fadeIn animate__animated animate__faster">
+    <div class=" w-[95%] flex flex-col max-w-2xl sm:flex-row sm:items-center sm:h-[280px] mx-auto bg-white rounded-lg overflow-hidden shadow-xl">
       <!-- PICTURE -->
       <div class="w-full h-48 grow-0 sm:h-full sm:w-72 skeleton" data-modal-target="skeleton">
           <%= image_tag @product.picture.attached? ? @product.picture : "placeholder.jpg", class: "rounded-t-lg sm:rounded-none object-cover object-center w-full h-full wait", data: { modal_target: "image" } %>

@@ -29,7 +29,11 @@ export default class extends Controller {
 
     close(event) {
         if (event.target === this.element) {
-            this.element.remove();
+            this.element.classList.remove('animate__fadeIn', 'animate__animated')
+            this.element.classList.add('animate__fadeOut', 'animate__animated', 'animate__faster')
+            setTimeout(() => {
+                this.element.remove();
+            }, 500);
         }
     }
 }
