@@ -19,7 +19,7 @@
           <div class="flex items-center gap-1 alergenos skeleton" data-modal-target="skeleton">
             <% @product.allergens.each do |allergen| %>
               <span class="inline-block py-1 tooltip" data-controller="tooltip" data-action="click->tooltip#toggle">
-                <%= image_tag allergen.icon, data: { modal_target: "image" }, width: "40px" %>
+                <%= image_tag allergen.icon.variant(:medium), data: { modal_target: "image" }, width: "40px" %>
                 <span class="tooltip-text shadow-xl" data-tooltip-target="text">
                   <%= allergen.name %>
                 </span>
