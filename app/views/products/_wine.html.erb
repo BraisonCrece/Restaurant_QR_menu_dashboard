@@ -1,4 +1,4 @@
-<div class='flex justify-between p-4 my-2 print:my-6 pb-0 border-t border-neutral-100 animate__animated animate__fadeIn animate__fast'>
+<div class='flex justify-between py-6 px-4 print:my-6 border-t border-neutral-100 animate__animated animate__fadeIn animate__fast'>
   <div class="title price flex flex-col max-w-[75%]">
     <p class='text-2xl playfare font-light balance'> <%= wine.name %></p>
     <% if wine.price_per_glass %>
@@ -12,4 +12,3 @@
     <%= number_with_precision(wine.price, precision: 2, separator: ",") %><small class='text-black text-lg font-extralight'>€</small>
   </div>
 </div>
-<small class='text-[1rem]  text-emerald-900 font-thin ml-4 print:hidden'> <%= translate("detalles", "ver detalles") %> </small>
