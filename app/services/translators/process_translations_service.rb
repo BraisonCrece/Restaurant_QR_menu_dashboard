@@ -19,6 +19,8 @@ module Translators
       yield process_item_translations
     end
 
+    private
+
     def process_item_translations
       case method
       when :create, :update

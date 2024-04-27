@@ -8,6 +8,7 @@
   </div>
   <div class="space-y-4 p-3">
     <%= render "categorized_products" %>
+    <%= render "special_menus/active_special_menus", special_menus: @special_menus if SpecialMenu.active.any? %>
     <%= render "categorized_wines" %>
     <%= turbo_frame_tag :modal %>
   </div>

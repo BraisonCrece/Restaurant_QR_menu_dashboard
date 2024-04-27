@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "special_menu_active_#{special_menu.id}" do %>
+  <%= link_to '🔴', toggle_special_menu_path(special_menu_id: special_menu.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if !special_menu.active %>
+  <%= link_to '🟢', toggle_special_menu_path(special_menu_id: special_menu.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if special_menu.active %>
+<% end %>

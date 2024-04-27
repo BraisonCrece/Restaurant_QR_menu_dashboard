@@ -1,12 +1,12 @@
-<select name="product[category_id]" id="product_category_id" data-product-type-target="categorySelect" class="form-select mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
-  <option >Selecciona unha categoría</option>
-  <% Category.menu.each do |cat| %>
-    <option value="<%= cat.id %>" <%= "selected" if product.category_id == cat.id %>><%= cat.name %></option>
+<select name="product[category_id]" id="product_category_id" data-product-type-target="categorySelect" data-product-form-target="categorySelect" class="form-select mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full animate__animated">
+    <option >Selecciona unha categoría</option>
+    <% Category.menu.each do |cat| %>
+        <option value="<%= cat.id %>" <%= "selected" if product.category_id == cat.id %>><%= cat.name %></option>
     <% end %>
     <% unless Category.daily.empty? %>
-      <option disabled>──────────</option>
+        <option disabled>──────────</option>
     <% end %>
     <% Category.daily.each do |cat| %>
-      <option value="<%= cat.id %>" <%= "selected" if product.category_id == cat.id %>><%= cat.name %></option>
-      <% end %>
-    </select>
+        <option value="<%= cat.id %>" <%= "selected" if product.category_id == cat.id %>><%= cat.name %></option>
+    <% end %>
+</select>

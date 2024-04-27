@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get 'users/sign_in', to: redirect('/') # trick in order to match the client QR code with the root path ;)
   root "dynamic_router#call"
 
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :allergens
   resources :products
+  resources :special_menus
   resources :categories
   resources :wines
   resources :wine_types
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/wines_control_panel', to: 'wines#control_panel', as: :wines_control_panel
   post 'toggle_active/:product_id', to: 'products#toggle_active', as: :toggle_active
   post 'wine_toggle_active/:wine_id', to: 'wines#toggle_active', as: :wine_toggle_active
+  post 'toggle_special_menu/:special_menu_id', to: 'special_menus#toggle_active', as: :toggle_special_menu
   post 'translate', to: 'translate#translate'
   post 'describe_dish', to: 'description#describe_dish'
   get '/menu', to: 'products#menu', as: :menu

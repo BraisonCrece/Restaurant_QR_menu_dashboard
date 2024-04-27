@@ -1,4 +1,4 @@
-<div data-controller="description" >
+<div data-controller="description product-form" >
   <h1 class="font-thin text-4xl text-center"><%= message %></h1>
   <%= form_with(model: product, data: { turbo: false }, class: " shadow-lg rounded px-8 pt-6 pb-8 mb-4") do |f| %>
     <% if @product.errors.any? %>
@@ -28,6 +28,14 @@
     <div class="mb-4" >
       <%= f.label :prize, "Prezo", class: "block text-gray-700 font-bold mb-2" %>
       <%= f.number_field :prize, step: :any, class: "form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    </div>
+    <div class="mb-4 flex items-center gap-4">
+      <div for="especial" class="text-gray-700 font-bold">¿Menú especial? 🍱</div>
+      <input type="checkbox" id="especial" class="form-checkbox rounded" data-action="change->product-form#toggle">
+    </div>
+    <div class="mb-4 hidden" data-product-form-target="specialMenuField">
+      <%= f.label :special_menu_id, "Menú especial", class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.collection_select :special_menu_id, SpecialMenu.all, :id, :name, {prompt: "Selecciona un menú especial"}, {class: "form-select mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"} %>
     </div>
     <div class="mb-4">
       <%= f.label :category_id, "Categoría", class: "block text-gray-700 font-bold mb-2" %>

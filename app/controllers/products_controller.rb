@@ -4,10 +4,11 @@ class ProductsController < ApplicationController
   before_action :set_categories, only: %i[index new edit]
 
   def index
+    available_colors = %w[Blanco Tinto].freeze
     @categorized_products = Product.categorized_products
+    @special_menus = SpecialMenu.active
     @categories = Category.menu
     @denominations = WineOriginDenomination.all.includes(:wines)
-    available_colors = %w[Blanco Tinto].freeze
     @categorized_wines = Wine.categorized_wines(@denominations, available_colors)
   end
 
@@ -121,6 +122,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :description, :prize, :category_id, :picture, allergen_ids: [])
+    params.require(:product).permit(:title, :description, :prize, :category_id, :special_menu_id, :picture, allergen_ids: [])
   end
 end

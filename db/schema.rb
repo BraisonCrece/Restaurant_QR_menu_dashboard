@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_19_175224) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_19_132343) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -69,8 +69,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_19_175224) do
     t.boolean "active"
     t.float "prize"
     t.integer "category_id"
-    t.string "product_type"
     t.boolean "lock", default: false
+    t.integer "special_menu_id"
+    t.index ["special_menu_id"], name: "index_products_on_special_menu_id"
   end
 
   create_table "settings", force: :cascade do |t|
@@ -84,6 +85,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_19_175224) do
     t.string "mobile", default: "635 44 00 68"
     t.boolean "translator", default: false
     t.boolean "locale_toggler", default: false
+  end
+
+  create_table "special_menus", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "active", default: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -128,5 +138,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_19_175224) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "allergens_products", "allergens"
   add_foreign_key "allergens_products", "products"
+  add_foreign_key "products", "special_menus"
   add_foreign_key "wines", "wine_origin_denominations"
 end

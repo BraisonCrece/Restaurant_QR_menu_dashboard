@@ -1,0 +1,38 @@
+<div class="">
+    <h2 class="text-3xl font-semibold text-teal-700 mb-2 px-4 text-center">Especiais</h2>
+
+    <div class="flex flex-col gap-2">
+        <% @special_menus.each do |special_menu| %>
+            <div class="w-full p-4 rounded shadow mb-8 border border-gray-300">
+                <div class="">
+                    <div class="card-header px-3">
+                        <div class="flex justify-<%= special_menu.price.present? ? "between" : "center" %> items-center">
+                            <h2 class="text-2xl font-normal text-teal-800"><%= special_menu.name %></h2>
+                            <% if  special_menu.price %>
+                                <span class="text-2xl text-teal-700 font-extralight">
+                                    <%= number_with_precision(special_menu.price, precision: 2, separator: ",") %><small class='text-teal text-lg font-extralight'>€</small>
+                                </span>
+                            <% end %>
+                        </div>
+                        <p class="text-green-900 mt-2 mb-4 text-base font-thin whitespace-pre-wrap"><%= special_menu.description %></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="flex flex-col">
+                            <% special_menu.products.filter(&:active?).each do |product| %>
+                                <%= turbo_stream_from product %>
+
+                                <%= link_to build_link(product), data: { turbo_frame: "modal" } do %>
+                                    <% unless special_menu.price.present?  %>
+                                        <%= render "product", product: product %>
+                                    <% else %>
+                                        <%= render "menu_product", product: product %>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
