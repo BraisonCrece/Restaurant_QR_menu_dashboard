@@ -53,12 +53,10 @@ FROM base
 
 # Install packages needed for deployment and libvips dependencies
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y libsqlite3-0 postgresql-client libglib2.0-0 libexpat1 libjpeg62-turbo libpng16-16 \
-    libvips \
-    libvips-tools \
-    libvips-dev \
-    apt update && apt install -y neovim \
-    && rm -rf /var/lib/apt/lists /var/cache/apt/archives
+    apt-get install --no-install-recommends -y libsqlite3-0 postgresql-client libglib2.0-0 \
+    libexpat1 libjpeg62-turbo libpng16-16 libvips libvips-tools libvips-dev && \
+    apt update && apt install -y neovim && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy vips libraries from build stage
 COPY --from=build /usr/local/lib /usr/local/lib

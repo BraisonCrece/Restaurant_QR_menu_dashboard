@@ -7,7 +7,7 @@
                 <div class="">
                     <div class="card-header px-3">
                         <div class="flex justify-<%= special_menu.price.present? ? "between" : "center" %> items-center">
-                            <h2 class="text-2xl font-normal text-teal-800"><%= special_menu.name %></h2>
+                            <h2 class="text-2xl font-normal text-teal-800 text-pretty"><%= special_menu.name %></h2>
                             <% if  special_menu.price %>
                                 <span class="text-2xl text-teal-700 font-extralight">
                                     <%= number_with_precision(special_menu.price, precision: 2, separator: ",") %><small class='text-teal text-lg font-extralight'>€</small>
