@@ -10,7 +10,7 @@ class ProductTranslatorService
   attr_reader :product, :language, :temperature, :model, :title_system_message, :description_system_message,
               :example_title, :example_description, :example_title_response, :example_description_response
 
-  def initialize(product, language, temperature: 0.3, model: 'gpt-3.5-turbo-0125')
+  def initialize(product, language, temperature: 0.3, model: 'gpt-4o-mini')
     @product = product
     @language = language
     @temperature = temperature

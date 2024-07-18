@@ -11,7 +11,7 @@ module Translators
     LANGUAGES = %w[Español Inglés Francés Alemán Italiano Ruso].freeze
     attr_reader :item, :model, :temperature
 
-    def initialize(item, model: 'gpt-3.5-turbo-0125', temperature: 0.3)
+    def initialize(item, model: 'gpt-4o-mini', temperature: 0.3)
       @item = item
       @model = model
       @temperature = temperature

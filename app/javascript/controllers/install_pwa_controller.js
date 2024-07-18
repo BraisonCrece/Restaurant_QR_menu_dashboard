@@ -2,20 +2,17 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="install-pwa"
 export default class extends Controller {
-  static targets = ["installButton"];
+  static targets = ["installButton"]
 
   connect() {
     // this.deferredPrompt = null
     // window.addEventListener("beforeinstallprompt", this.handleBeforeInstallPrompt);
-
     // this.installButtonTarget.addEventListener("click", () => this.install());
-
     // this.setupMediaQueryListener();
   }
 
   disconnect() {
     // window.removeEventListener("beforeinstallprompt", this.handleBeforeInstallPrompt);
-
     // this.installButtonTarget.removeEventListener("click", () => this.install());
   }
 
@@ -43,7 +40,6 @@ export default class extends Controller {
   setupMediaQueryListener() {
     // const mediaQuery = window.matchMedia("(display-mode: standalone)");
     // this.handleMediaQueryChange(mediaQuery);
-
     // mediaQuery.addEventListener('change', this.handleMediaQueryChange.bind(this));
   }
 

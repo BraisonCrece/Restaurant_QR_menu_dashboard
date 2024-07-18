@@ -10,7 +10,7 @@ class NewItemTranslatorService
   LANGUAGES = %w[Español Inglés Francés Alemán Italiano Ruso].freeze
   attr_reader :item, :model, :temperature
 
-  def initialize(item, model: 'gpt-3.5-turbo-0125', temperature: 0.3)
+  def initialize(item, model: 'gpt-4o-mini', temperature: 0.3)
     @item = item
     @model = model
     @temperature = temperature
@@ -27,7 +27,7 @@ class NewItemTranslatorService
   def process_item_translations
     result = LANGUAGES.each do |language|
       service = Try[NameError] do
-        "#{item.class.name}TranslatorService".constantize.new(item, language, model: model, temperature: temperature)
+        "#{item.class.name}TranslatorService".constantize.new(item, language, model:, temperature:)
       end.to_result
 
       raise "Service #{item.class.name}TranslatorService not found" if service.failure?

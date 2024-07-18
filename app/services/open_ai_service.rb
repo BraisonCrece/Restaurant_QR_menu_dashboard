@@ -10,7 +10,7 @@ class OpenAiService
     }
   end
 
-  def request(system_message:, prompt:, example_prompt:, example_response:, model: 'gpt-4-1106-preview',
+  def request(system_message:, prompt:, example_prompt:, example_response:, model: 'gpt-4o-mini',
               temperature: 0.7)
     body = {
       "model": model,

@@ -11,7 +11,7 @@ module Translators
     attr_reader :allergen, :language, :temperature, :model, :name_system_message,
                 :example_name, :example_name_response
 
-    def initialize(allergen, language, temperature: 0.3, model: 'gpt-3.5-turbo-0125')
+    def initialize(allergen, language, temperature: 0.3, model: 'gpt-4o-mini')
       @allergen = allergen
       @language = language
       @temperature = temperature
@@ -24,7 +24,8 @@ module Translators
       yield initialize_example_prompts
       file_path = yield get_file_path
       file_content = yield get_file_content(file_path)
-      name_translation = yield ask_for_translation(name_system_message, example_name, example_name_response, allergen.name)
+      name_translation = yield ask_for_translation(name_system_message, example_name, example_name_response,
+                                                   allergen.name)
       save_translation(file_path, file_content, name_translation)
     end
 
@@ -66,7 +67,7 @@ module Translators
 
     def save_translation(file_path, file_content, name_translation)
       file_content[get_language_key(language)]['allergen'][allergen.id] = {
-        'name' => name_translation,
+        'name' => name_translation
       }
 
       result = Try[Errno::ENOENT, Errno::EACCES] do
@@ -97,17 +98,17 @@ module Translators
     def example_responses(language)
       case language
       when 'Inglés'
-        "Milk"
+        'Milk'
       when 'Español'
-        "Leche"
+        'Leche'
       when 'Alemán'
-        "Milch"
+        'Milch'
       when 'Italiano'
-        "Latte"
+        'Latte'
       when 'Francés'
-        "Lait"
+        'Lait'
       when 'Ruso'
-        "Молоко"
+        'Молоко'
       end
     end
   end

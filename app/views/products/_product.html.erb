@@ -3,6 +3,7 @@
     <p class='text-2xl  playfare font-light balance'> <%= translate("product.#{product.id}.title", product.title) %></p>
   </div>
   <div class="text-2xl self-center font-extralight">
-    <%= number_with_precision(product.prize, precision: 2, separator: ",") %><small class='text-black text-lg font-extralight'>€</small>
+    <%= number_with_precision(product.prize, precision: 2, separator: ",") %>
+    <small class='text-black text-lg font-extralight'>€</small>
   </div>
 </div>

@@ -11,7 +11,7 @@ module Translators
     attr_reader :wine, :language, :model, :temperature, :system_message, :example_description,
                 :example_description_response
 
-    def initialize(wine, language, temperature: 0.3, model: 'gpt-3.5-turbo-0125')
+    def initialize(wine, language, temperature: 0.3, model: 'gpt-4o-mini')
       @wine = wine
       @language = language
       @temperature = temperature
@@ -55,7 +55,7 @@ module Translators
     def ask_for_translation
       prompt = wine.description
       result = OpenAiService.new.request(system_message:, prompt:, example_prompt: example_description,
-                                         example_response: example_description_response, model: 'gpt-3.5-turbo-0125', temperature: 0.3)
+                                         example_response: example_description_response, model: 'gpt-4o-mini', temperature: 0.3)
       if result.success?
         # Remove the final period in case it was added by the AI
         result.content.chomp!('.') if result.content.end_with?('.')
