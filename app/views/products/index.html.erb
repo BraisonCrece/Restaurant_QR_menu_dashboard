@@ -1,7 +1,7 @@
 <div class='w-full h-full max-w-2xl print:max-w-[80%]'>
   <div id="category-menu-wrapper" class="print:hidden">
     <div data-controller="scroll category-menu" >
-      <div class="flex justify-evenly content-center items-center gap-2 py-4 menu-background" data-category-menu-target='menu' id='menu-links'>
+      <div class="flex justify-evenly content-center items-center gap-2 py-4 bg-white dark:bg-gray-800 transition-colors duration-500" data-category-menu-target='menu' id='menu-links'>
         <%= render "category_links" %>
       </div>
     </div>
@@ -12,7 +12,7 @@
     <%= render "categorized_wines" %>
     <%= turbo_frame_tag :modal %>
   </div>
-  <div class="flex items-center max-w-2xl mt-10 gap-2 prose text-emerald-900 font-thin italic justify-center">
+  <div class="flex items-center max-w-2xl mt-10 gap-2 prose text-emerald-900 font-thin italic justify-center dark:text-emerald-200">
       <%= image_tag "info.svg", class: "w-6" %>
       <%= translate("IVA", "Todos os prezos levan o IVE incluído") %>
   </div>

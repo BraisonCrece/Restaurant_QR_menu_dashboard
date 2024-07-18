@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html class="" data-controller="theme-switcher" data-theme-switcher-target="root">
+    <script>
+        document.documentElement.classList.add(localStorage.theme)
+    </script>
   <head>
     <title>Taberna Navegación</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -18,7 +21,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   </head>
-  <body class="flex flex-col w-auto h-full justify-center mt-0 main-content">
+  <body class="transition-colors duration-500 flex flex-col w-auto h-full justify-center mt-0 main-content bg-white dark:bg-gray-800 dark:text-white">
+    <%= render "shared/theme_switch" %>
     <div class="flex justify-center">
       <%= render "shared/flash" %>
     </div>
