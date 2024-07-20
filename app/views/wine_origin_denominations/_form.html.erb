@@ -1,5 +1,5 @@
 <h1 class="font-thin text-4xl text-center"><%= message %></h1>
-<%= form_with(model: wine, url: url, data: { turbo: false }, class: "shadow dark:shadow-white rounded-[3px] px-8 pt-6 pb-8 my-4 w-full max-w-[400px]") do |f| %>
+<%= form_with(model: wine, url: url, data: { turbo: false }, class: "shadow dark:shadow-white rounded-[3px] px-8 pt-6 pb-8 my-4 w-full ") do |f| %>
   <% if @denomination.errors.any? %>
     <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[3px] mb-4">
       <h2 class='font-bold mb-2'><%= pluralize(@denomination.errors.count, "error") %> prohibited this denomination from being saved:</h2>

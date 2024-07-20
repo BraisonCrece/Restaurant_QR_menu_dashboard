@@ -1,4 +1,4 @@
-<div class="w-full max-w-[400px]">
+<div class="w-full ">
   <h1 class="font-thin text-4xl text-center">Engadir alérgeno</h1>
   <%= form_with(model: Allergen.new, data: { turbo: false }, class: "shadow dark:shadow-white rounded-[3px] px-8 pt-6 pb-8 my-4") do |f| %>
     <% if @allergen.errors.any? %>

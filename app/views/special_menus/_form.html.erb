@@ -1,5 +1,5 @@
 
-<div data-controller="description special_menu-form" class="w-screen max-w-[400px]" >
+<div data-controller="description special_menu-form" class="w-screen " >
   <%= form_with(model: special_menu, data: { turbo: false }, class: "w-full shadow-lg rounded-[3px] px-8 pt-6 pb-8 mb-4") do |f| %>
     <% if @special_menu.errors.any? %>
       <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[3px] mb-4">
