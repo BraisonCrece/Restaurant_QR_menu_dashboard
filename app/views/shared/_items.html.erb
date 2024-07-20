@@ -1,13 +1,13 @@
-<%= link_to "Configuracións", pages_control_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
-<%= link_to "Productos", control_panel_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
-<%= link_to "Viños", wines_control_panel_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
-<%= link_to "Especiais", special_menus_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
-<%# link_to "Categorías", categories_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
-<%= link_to "Denominacións de Orixe", denominations_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
-<%= link_to "Alérxenos", allergens_path, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
-<%= link_to "Fechar sesión", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:mr-6 sm:hover:text-red-600" if current_user %>
+<%= link_to "Configuracións", pages_control_path, class: "text-center py-4 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to "Productos", control_panel_path, class: "text-center py-4 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to "Viños", wines_control_panel_path, class: "text-center py-4 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to "Especiais", special_menus_path, class: "text-center py-4 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%# link_to "Categorías", categories_path, class: "text-center py-4 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to "Denominacións de Orixe", denominations_path, class: "text-center py-4 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to "Alérxenos", allergens_path, class: "text-center py-4 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" if current_user %>
+<%= link_to "Fechar sesión", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-center py-4 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:mr-6 sm:hover:text-red-600" if current_user %>
 <% if current_user.email == "braisoncrece@gmail.com" %>
 <hr>
-    <%= link_to "Recargar i18n", reload_i18n_path, data: { turbo_method: :post }, class: "text-center py-3 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" %>
+    <%= link_to "Recargar i18n", reload_i18n_path, data: { turbo_method: :post }, class: "text-center py-4 text-xl lg:text-2xl border-y border-gray-50 sm:border-none sm:font-light sm:hover:text-blue-600" %>
 <% end %>
 

@@ -1,7 +1,7 @@
 <div class="w-full max-w-2xl p-3" data-controller="product-search">
   <div class="flex justify-center items-center align-middle gap-2 mb-6">
     <%= link_to "+", new_wine_path, class: "bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold px-3 py-1 rounded-full focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800" %>
-    <input type="search" id="productSearch" placeholder="Buscar viño" data-product-search-target="search" data-action="input->product-search#search" class="bg-white focus:ring-blue-500 focus:border-blue-500 border border-gray-300 rounded-[3px] py-2 px-4 block w-full" />
+    <input type="search" id="productSearch" placeholder="Buscar viño" data-product-search-target="search" data-action="input->product-search#search" class="bg-white focus:ring-blue-500 focus:border-blue-500 border border-gray-300 dark:text-gray-800 rounded-[3px] py-2 px-4 block w-full" />
   </div>
   <div id="productList">
     <% @wines.each do |wine| %>
