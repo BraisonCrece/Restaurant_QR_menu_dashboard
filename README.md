@@ -2,6 +2,11 @@
 (Under development 🔨)
 (designed to be better used on mobiles 📱)
 
+
+https://github.com/user-attachments/assets/4b511c73-fc80-4223-9a30-f3cf4abb7efb
+
+
+
 https://cartanavegacion.fly.dev/
 
 This application allows restaurants to create and manage their menu of food and drinks in QR format. Customers can scan the QR code with their mobile phones to quickly and easily access the restaurant's menu.
