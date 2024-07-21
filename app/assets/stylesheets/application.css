@@ -45,6 +45,18 @@ main {
   scrollbar-gutter: stable;
 }
 
+.cubic-transition {
+  transition-property: background-color, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+}
+
+.menu-transition {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+}
+
 /* Personaliza el contenedor de la barra */
 ::-webkit-scrollbar {
   width: 6px; /* Ancho de la barra vertical */

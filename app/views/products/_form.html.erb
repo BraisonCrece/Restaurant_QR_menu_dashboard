@@ -1,9 +1,9 @@
-<div data-controller="description product-form" class="w-full" >
-  <h1 class="font-thin text-4xl text-center"><%= message %></h1>
-  <%= form_with(model: product, data: { turbo: false }, class: "shadow-lg rounded-[3px] px-8 pt-6 pb-8 mb-8") do |f| %>
+<div data-controller="description product-form file-input" class="w-full" >
+  <h1 class="font-thin text-4xl text-center mb-8 text-pretty"><%= message %></h1>
+  <%= form_with(model: product, data: { turbo: false }, class: "shadow-md rounded-[3px] px-6 pt-4 pb-8 mb-4 dark:shadow-white/25") do |f| %>
     <% if @product.errors.any? %>
       <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[3px] mb-8">
-        <h2 class='font-bold mb-2'><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+        <h2 class='font-semibold mb-2'><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
         <ul class="list-disc ml-5">
           <% @product.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -12,59 +12,69 @@
       </div>
     <% end %>
     <div class="mb-8">
-      <%= f.label :title,"Nome", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+      <%= f.label :picture, "📸 Foto", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
+      <%= image_tag @product.picture.attached? ? @product.picture : "placeholder.jpg", class: "w-full aspect-1 rounded-[3px] mb-4 object-cover hover:scale-[101%] hover:cursor-pointer", data: { file_input_target: "imagePreview", action: "click->file-input#changePicture" } %>
+      <div class="hidden" data-file-input-target="placeholderUrl">
+        <%= asset_path("placeholder.jpg") %>
+      </div>
+      <div class="relative">
+        <div class="flex items-center justify-between  border border-gray-300 rounded-[3px] px-4 py-2 w-full">
+          <span data-file-input-target="fileName" class="text-gray-400">Seleccione un archivo</span>
+          <button type="button" class="text-blue-500">Examinar</button>
+        </div>
+        <%= f.file_field :picture, class: "absolute inset-0 opacity-0 cursor-pointer w-full h-full", data: { action: "change->file-input#updateFile", file_input_target: "fileInput" } %>
+      </div>
+    </div>
+    <div class="mb-8">
+      <%= f.label :title,"Nome", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
       <%= f.text_field :title,
-        class: "dark:text-gray-800 form-input mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+        class: "placeholder:italic placeholder:text-gray-700 placeholder:font-extralight dark:text-gray-800 form-input mt-1 block w-full overflow-scroll rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+        placeholder: "Plato delicioso",
+        onfocus: "this.placeholder=''",
+        onblur: "this.placeholder='Plato delicioso'",
         data: { description_target: 'input'} %>
     </div>
     <div class="mb-8" >
-      <%= f.label :description, "Descripción", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+      <%= f.label :description, "Descripción", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
       <%= f.text_area :description,
-        class: "dark:text-gray-800 form-textarea mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+        class: "placeholder:italic placeholder:text-gray-700 placeholder:font-extralight dark:text-gray-800 form-textarea mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+        placeholder: "\"Un prato delicioso que combina o sabor do mar coa frescura da terra\"",
+        onfocus: "this.placeholder=''",
+        onblur: "this.placeholder='\"Un prato delicioso que combina o sabor do mar coa frescura da terra\"'",
         rows: 8,
         maxlength: 350,
         data: { description_target: 'output' } %>
     </div>
     <div class="mb-8 flex gap-4" >
         <div class="flex-grow">
-            <%= f.label :prize, "Prezo", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+            <%= f.label :prize, "Prezo", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
             <%= f.number_field :prize, step: :any, class: "dark:text-gray-800 form-input mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
         </div>
         <div class="flex items-end gap-4" data-controller="price-per">
             <div class="flex items-center gap-2">
                 <%= f.check_box :per_kilo, class: "form-checkbox rounded-[3px]", data: { action: "change->price-per#toggle", price_per_target: "pricePerKg" } %>
-                <%= f.label :per_kilo, "Prezo por kg", class: "block text-gray-700 font-bold dark:text-gray-200" %>
+                <%= f.label :per_kilo, "Prezo por kg", class: "block text-gray-700 font-semibold dark:text-gray-200" %>
             </div>
             <div class="flex items-center gap-2">
                 <%= f.check_box :per_gram, class: "form-checkbox rounded-[3px]", data: { action: "change->price-per#toggle", price_per_target: "pricePerGr" } %>
-                <%= f.label :per_gram, "Prezo por gr", class: "block text-gray-700 font-bold dark:text-gray-200" %>
+                <%= f.label :per_gram, "Prezo por gr", class: "block text-gray-700 font-semibold dark:text-gray-200" %>
             </div>
         </div>
     </div>
     <div class="mb-8 flex items-center gap-4">
-      <div for="especial" class="dark:text-gray-200 text-gray-700 font-bold">¿Menú especial? 🍱</div>
+      <div for="especial" class="dark:text-gray-200 text-gray-700 font-semibold">¿Menú especial? 🍱</div>
       <input type="checkbox" id="especial" class="form-checkbox rounded-[3px]" data-action="change->product-form#toggle">
     </div>
     <div class="mb-8 hidden" data-product-form-target="specialMenuField">
-      <%= f.label :special_menu_id, "Menú especial", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+      <%= f.label :special_menu_id, "Menú especial", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
       <%= f.collection_select :special_menu_id, SpecialMenu.all, :id, :name, {prompt: "Selecciona un menú especial"}, {class: "dark:text-gray-800 form-select mt-1 block rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"} %>
     </div>
     <div class="mb-8">
-      <%= f.label :category_id, "Categoría", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+      <%= f.label :category_id, "Categoría", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
       <%= render "categories_select", product: @product %>
     </div>
-    <div class="mb-8" data-controller="file-input">
-      <%= f.label :picture, "Foto", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
-      <div class="relative">
-        <div class="flex items-center justify-between  border border-gray-300 rounded-[3px] px-4 py-2 w-full">
-          <span data-file-input-target="fileName" class="text-gray-400">Seleccione un archivo</span>
-          <button type="button" class="text-blue-500">Examinar</button>
-        </div>
-        <%= f.file_field :picture, class: "absolute inset-0 opacity-0 cursor-pointer w-full h-full", data: { action: "change->file-input#updateFileName", file_input_target: "fileInput" } %>
-      </div>
-    </div>
     <div class="mb-8">
-      <%= f.label :allergen_ids, "Alérxenos", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+      <%= f.label :allergen_ids, "Alérxenos", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
       <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
         <%= f.collection_check_boxes :allergen_ids, Allergen.all, :id, :name do |cb| %>
           <div class="flex flex-col items-center truncate justify-center mb-2 bg-slate-400 rounded-[3px] p-2">
@@ -75,8 +85,8 @@
       </div>
     </div>
     <div class="flex flex-wrap items-center gap-1 justify-between">
-      <%= f.submit "Gardar", class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800" %>
-      <button data-action="click->description#describeDish" class="w-full bg-purple-800 hover:bg-purple-950 text-white font-bold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800">
+      <%= f.submit "Gardar", class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800" %>
+      <button data-action="click->description#describeDish" class="w-full bg-purple-800 hover:bg-purple-950 text-white font-semibold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800">
         <span data-description-target="buttonText">Xerar descripción</span>
         <span data-description-target="spinner" class="hidden items-center justify-center space-x-2">
           <svg aria-hidden="true" role="status" class="inline w-6 h-6 mr-1 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

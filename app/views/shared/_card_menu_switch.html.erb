@@ -1,11 +1,11 @@
-<% if Setting.show_toggler? && (request.path == "/carta" || request.path == "/menu")%>
-    <% if request.path == "/carta" %>
-        <%= link_to menu_path, class: "print:hidden fixed bottom-5 right-5 cursor-pointer drop-shadow-lg bg-teal-700/[90%] text-white h-[75px] w-[75px] flex justify-center items-center aspect-square rounded-full transition-colors duration-200 animate-pulse-subtle" do %>
-        <span class="font-semibold text-lg">MENÚ</span>
-        <% end %>
-    <% else %>
-        <%= link_to carta_path, class: "print:hidden fixed bottom-5 right-5 cursor-pointer drop-shadow-lg bg-teal-700/[90%] text-white h-[75px] w-[75px] flex justify-center items-center aspect-square rounded-full transition-colors duration-200 animate-pulse-subtle" do %>
-        <span class="font-semibold text-lg">CARTA</span>
-        <% end %>
+<% if Setting.show_toggler? && (request.path == "/carta" || request.path == "/menu") %>
+  <% if request.path == "/carta" %>
+    <%= link_to menu_path, class: "print:hidden fixed bottom-5 right-5 cursor-pointer drop-shadow-lg bg-teal-700/[90%] text-white h-[75px] w-[75px] flex justify-center items-center aspect-square rounded-full transition-colors duration-500 animate-pulse-subtle" do %>
+      <span class="font-semibold text-lg">MENÚ</span>
     <% end %>
+  <% else %>
+    <%= link_to carta_path, class: "print:hidden fixed bottom-5 right-5 cursor-pointer drop-shadow-lg bg-teal-700/[90%] text-white h-[75px] w-[75px] flex justify-center items-center aspect-square rounded-full transition-colors duration-500 animate-pulse-subtle" do %>
+      <span class="font-semibold text-lg">CARTA</span>
+    <% end %>
+  <% end %>
 <% end %>

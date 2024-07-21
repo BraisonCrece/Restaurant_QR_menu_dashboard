@@ -1,29 +1,15 @@
-<div class="w-full max-w-2xl p-3" data-controller="product-search">
-  <div class="flex justify-center items-center align-middle gap-2 mb-6">
-    <%= link_to "+", new_wine_path, class: "bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold px-3 py-1 rounded-full focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800" %>
-    <input type="search" id="productSearch" placeholder="Buscar viño" data-product-search-target="search" data-action="input->product-search#search" class="bg-white focus:ring-blue-500 focus:border-blue-500 border border-gray-300 dark:text-gray-800 rounded-[3px] py-2 px-4 block w-full" />
-  </div>
-  <div id="productList">
-    <% @wines.each do |wine| %>
-      <div class='flex justify-between w-[90%] h-20 mx-auto border-t align-middle relative product-item' data-product-title='<%= wine.name.downcase %>' data-product-search-target="item">
-        <p class='max-w-[75%] self-center flex flex-col gap-2 text-lg font-medium'>
-          <%= truncate(wine.name, length: 30, separator: " ", omission: "...") %>
-        </p>
-        <p class='self-center'>
-          <% if wine.lock? %>
-                🔒
-          <% else %>
-            <%= turbo_frame_tag "wine_active_#{wine.id}" do %>
-              <%= link_to "🔴", wine_toggle_active_path(wine_id: wine.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if !wine.active %>
-              <%= link_to "🟢", wine_toggle_active_path(wine_id: wine.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if wine.active %>
-            <% end %>
-          <% end %>
-        </p>
-        <div class='absolute flex gap-2'>
-          <%= button_to "Editar", edit_wine_path(wine), data: { turbo: false }, class: "text-xs font-thin text-blue-800 p-0 dark:text-blue-200", method: :get %>
-          <%= button_to "Eliminar", wine_path(wine), data: { turbo_confirm: "Seguro que queres eliminar o producto?" }, class: "text-xs font-thin text-red-800 p-0 dark:text-red-200", method: :delete %>
+<div class="w-full max-w-2xl" data-controller="product-search sticky-shadow">
+    <div class="sticky top-[-1px] bg-white dark:bg-gray-800 pt-4 pb-1 z-10 cubic-transition" data-sticky-shadow-target="sticky">
+        <h1 class="font-thin text-4xl text-center mb-8 text-pretty"> Viños </h1>
+        <div class="flex justify-center items-center align-middle gap-2 mb-6 px-3">
+          <%= render "shared/add_button", path: new_wine_path %>
+          <input type="search" id="productSearch" placeholder="Buscar viño" data-product-search-target="search" data-action="input->product-search#search" class="bg-white focus:ring-blue-500 focus:border-blue-500 border border-gray-300 dark:text-gray-800 rounded-[3px] py-2 px-4 block w-full" />
         </div>
-      </div>
-    <% end %>
-  </div>
+    </div>
+    <div id="productList" class="p-3">
+      <% @wines.each do |wine| %>
+          <%= turbo_stream_from wine %>
+          <%= render "control_panel_wine", wine: wine %>
+      <% end %>
+    </div>
 </div>

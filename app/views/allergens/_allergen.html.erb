@@ -1,0 +1,8 @@
+<div class="bg-gray-100 rounded-[3px] p-4 flex justify-between items-center relative hover:bg-gray-200 dark:bg-gray-200 dark:text-gray-700">
+    <%= truncate(allergen.name, length: 10, separator: ' ', omission: '...') %>
+    <%= image_tag allergen.icon, width: '50px' if allergen.icon.attached? %>
+    <div class='absolute bottom-0 flex gap-2 left-2'>
+        <%= button_to 'Editar', edit_allergen_path(allergen), data: { turbo: false }, class: 'text-xs font-thin text-blue-800 dark:text-blue-900 p-0', method: :get%>
+        <%= button_to 'Eliminar', allergen_path(allergen), data: { turbo_confirm: 'Seguro que queres eliminar o alérxeno?'}, class: 'text-xs font-thin text-red-800 dark:text-red-900 p-0', method: :delete %>
+    </div>
+</div>

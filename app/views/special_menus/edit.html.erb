@@ -1,23 +1,5 @@
-<div>
-  <h1 class="font-bold text-4xl mb-8">Editar menú especial</h1>
-    <%= form_for @special_menu do |f| %>
-        <div class="mb-4">
-        <%= f.label :name, "Nome", class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= f.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-        </div>
-
-        <div class="mb-4">
-        <%= f.label :price, "Prezo", class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= f.text_field :price, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-        </div>
-
-        <div class="mb-4">
-        <%= f.label :description, "Descripción", class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= f.text_area :description, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-        </div>
-
-        <div class="flex items-center justify-between">
-            <%= f.submit "Actualizar Menú Especial", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-        </div>
-    <% end %>
+<div class="flex flex-col w-[90%] max-w-2xl">
+    <h1 class="font-thin text-4xl text-center mb-8 text-pretty">Editar menú especial</h1>
+    <%= render 'form', special_menu: @special_menu %>
+    <%= link_to 'Atras', special_menus_path, class: 'btn btn-secondary' %>
 </div>

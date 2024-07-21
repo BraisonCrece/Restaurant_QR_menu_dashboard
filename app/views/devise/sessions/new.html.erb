@@ -1,13 +1,13 @@
-<div class="w-full ">
+<div class="flex flex-col w-[90%] max-w-2xl">
   <h2 class='text-center my-4 text-4xl'>Log in</h2>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'flex flex-col rounded-[3px] shadow p-8 dark:shadow-white'}) do |f| %>
     <div class="mb-2">
       <%= f.label :email, class: "font-semibold text-sm text-gray-600 pb-1 block dark:text-gray-200" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "jhon@doe.com", class: "placeholder:italic placeholder:text-gray-300 placeholder:font-thin border rounded-[3px] px-3 py-2 mt-1 mb-5 text-sm w-full dark:text-gray-800" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "jhon@doe.com", class: "placeholder:italic placeholder:text-gray-700 placeholder:font-extralight border rounded-[3px] px-3 py-2 mt-1 mb-5 text-sm w-full dark:text-gray-800" %>
     </div>
     <div class="mb-2">
       <%= f.label :password, "Contrasinal", class: "font-semibold text-sm text-gray-600 pb-1 block dark:text-gray-200" %>
-      <%= f.password_field :password , autocomplete: "current-password", placeholder: "SecurePassw0rd", class: "placeholder:italic placeholder:text-gray-300 placeholder:font-thin border rounded-[3px] px-3 py-2 mt-1 mb-5 text-sm w-full dark:text-gray-800" %>
+      <%= f.password_field :password , autocomplete: "current-password", placeholder: "SecurePassw0rd", class: "placeholder:italic placeholder:text-gray-700 placeholder:font-extralight border rounded-[3px] px-3 py-2 mt-1 mb-5 text-sm w-full dark:text-gray-800" %>
     </div>
     <% if devise_mapping.rememberable? %>
       <div class="mb-2">
@@ -16,7 +16,7 @@
       </div>
     <% end %>
     <div class="mb-2">
-      <%= f.submit "Log in", class: "p-2 w-full bg-sky-800 rounded-[3px] text-white font-bold" %>
+      <%= f.submit "Log in", class: "p-2 w-full bg-sky-800 rounded-[3px] text-white font-bold active:bg-sky-950" %>
     </div>
   <% end %>
   <%= render "devise/shared/links"%>

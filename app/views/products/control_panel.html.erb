@@ -1,33 +1,17 @@
-<div class="w-full max-w-2xl p-3" data-controller="product-search">
-  <div class="flex justify-center items-center align-middle gap-2 mb-6">
-    <%= link_to "+", new_product_path, class: "bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold px-3 py-1 rounded-full focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800" %>
-    <input type="search" id="productSearch" placeholder="Buscar producto" data-product-search-target="search" data-action="input->product-search#search" class="bg-white focus:ring-blue-500 focus:border-blue-500 border border-gray-300 dark:text-gray-800 rounded-[3px] py-2 px-4 block w-full" />
-    <%= link_to 'Menú', control_panel_path(filter: 'menu'), class: "p-2 #{@color[:menu]} text-white rounded-[3px]" %>
-    <%= link_to 'Carta', control_panel_path(filter: 'carta'), class: "p-2 #{@color[:carta]} text-white rounded-[3px]" %>
-  </div>
-  <div id="productList">
+<div class="w-full max-w-2xl" data-controller="product-search sticky-shadow">
+    <div class="sticky top-[-1px] bg-white dark:bg-gray-800 pt-4 pb-1 z-10 cubic-transition" data-sticky-shadow-target="sticky">
+        <h1 class="font-thin text-4xl text-center mb-8 text-pretty"> Productos </h1>
+        <div class="flex justify-center items-center align-middle gap-2 mb-6 px-3">
+            <%= render "shared/add_button", path: new_product_path %>
+            <input type="search" id="productSearch" placeholder="Buscar producto" data-product-search-target="search" data-action="input->product-search#search" class="bg-white focus:ring-blue-500 focus:border-blue-500 border border-gray-300 dark:text-gray-800 rounded-[3px] py-2 px-4 block w-full" />
+            <%= link_to 'Menú', control_panel_path(filter: 'menu'), class: "p-2 #{@color[:menu]} text-white rounded-[3px]" %>
+            <%= link_to 'Carta', control_panel_path(filter: 'carta'), class: "p-2 #{@color[:carta]} text-white rounded-[3px]" %>
+        </div>
+    </div>
+  <div id="productList" class="p-3">
     <% @products.each do |product| %>
         <%= turbo_stream_from product %>
-
-      <div class='flex justify-between w-[90%] h-24 mx-auto border-t align-middle relative product-item' data-product-title='<%= product.title.downcase %>' data-product-search-target="item">
-        <p class='max-w-[75%] self-center flex flex-col gap-2 text-lg font-medium'>
-          <%= truncate(product.title, length: 30, separator: " ", omission: "...") %>
-        </p>
-        <p class='self-center'>
-            <% if product.lock? %>
-                🔒
-            <% else %>
-                <%= turbo_frame_tag "product_active_#{product.id}" do %>
-                    <%= link_to "🔴", toggle_active_path(product_id: product.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if !product.active %>
-                    <%= link_to "🟢", toggle_active_path(product_id: product.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if product.active %>
-                <% end %>
-            <% end %>
-        </p>
-        <div class='absolute flex gap-2'>
-          <%= button_to "Editar", edit_product_path(product), data: { turbo: false }, class: "text-xs font-thin text-blue-800 p-0 dark:text-blue-200", method: :get %>
-          <%= button_to "Eliminar", product_path(product), data: { turbo_confirm: "Seguro que queres eliminar o producto?" }, class: "text-xs font-thin text-red-800 p-0 dark:text-red-200", method: :delete %>
-        </div>
-      </div>
+        <%= render "control_panel_product", product: product %>
     <% end %>
   </div>
 </div>

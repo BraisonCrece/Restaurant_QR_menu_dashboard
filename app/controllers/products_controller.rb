@@ -34,8 +34,7 @@ class ProductsController < ApplicationController
 
     if @product.save
       flash[:notice] = 'Producto engadido! Será automáticamente activado cando as traduccións rematen.'
-      render :new, status: :ok
-      flash.clear
+      redirect_to control_panel_path
     else
       render :new, status: :unprocessable_entity
     end

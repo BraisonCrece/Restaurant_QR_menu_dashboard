@@ -1,17 +1,11 @@
-<div class='w-[90%] max-w-3xl mx-auto h-full'>
+<div class="flex flex-col w-[90%] max-w-2xl h-full">
   <div class="flex justify-center">
-    <%= link_to "Engadir categoría", new_category_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-2 rounded focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800' %>
+    <%= render "shared/add_button", path: new_category_path %>
   </div>
-  <h1 class="text-3xl font-thin mb-6 text-center">Categorías</h1>
+  <h1 class="font-thin text-4xl text-center mb-8 text-pretty">Categorías</h1>
   <div class="py-6 grid auto-cols-max grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 relative">
     <% @categories.each do |category| %>
-      <div class="bg-gray-100 rounded-lg p-4 hover:bg-gray-200 flex justify-center items-center relative">
-        <%= link_to category.name, categories_path(category), class: 'text-xl mb-2 text-center' %>
-        <div class='absolute bottom-0 flex gap-2 left-2'>
-          <%= button_to 'Editar', edit_category_path(category), data: { turbo: false }, class: 'text-xs font-thin text-blue-800 p-0', method: :get%>
-          <%= button_to 'Eliminar', category_path(category), data: {turbo_confirm: 'Seguro que queres eliminar a categoría?'}, class: 'text-xs font-thin text-red-800 p-0', method: :delete%>
-        </div>
-      </div>
+        <%= render "category", category: category %>
     <% end %>
   </div>
 </div>

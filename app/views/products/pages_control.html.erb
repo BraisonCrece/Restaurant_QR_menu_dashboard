@@ -1,5 +1,5 @@
 <div class="w-[90%] max-w-2xl">
-  <h1 class="font-thin text-4xl text-center">Configuracións</h1>
+  <h1 class="font-thin text-4xl text-center mb-8 text-pretty">Configuracións</h1>
   <%= form_with(model: @settings, data: { turbo: false }, class: "shadow rounded-[3px] px-8 pt-6 pb-8 my-4 dark:shadow-white") do |f| %>
     <% if @settings.errors.any? %>
       <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[3px] mb-8">

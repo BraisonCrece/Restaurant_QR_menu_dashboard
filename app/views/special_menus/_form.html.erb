@@ -1,37 +1,28 @@
-
-<div data-controller="description special_menu-form" class="w-screen " >
-  <%= form_with(model: special_menu, data: { turbo: false }, class: "w-full shadow-lg rounded-[3px] px-8 pt-6 pb-8 mb-4") do |f| %>
+<%= form_with model: special_menu, data: { turbo: false }, class: "shadow-md rounded-[3px] px-6 pt-4 pb-8 mb-4 dark:shadow-white/25" do |f| %>
     <% if @special_menu.errors.any? %>
-      <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[3px] mb-4">
+        <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[3px] mb-8">
         <h2 class='font-bold mb-2'><%= pluralize(@special_menu.errors.count, "error") %> prohibited this special_menu from being saved:</h2>
         <ul class="list-disc ml-5">
-          <% @special_menu.errors.full_messages.each do |msg| %>
+            <% @special_menu.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
-          <% end %>
+            <% end %>
         </ul>
-      </div>
+        </div>
     <% end %>
-    <div class="mb-4">
-      <%= f.label :name,"Nome", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
-      <%= f.text_field :name,
-        class: "dark:text-gray-800 form-input mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
-        data: { description_target: 'input'} %>
+    <div class="mb-8">
+        <%= f.label :name,"Nome", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+        <%= f.text_field :name, class: "dark:text-gray-800 form-input mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
-    <div class="mb-4" >
-      <%= f.label :description, "Descripción", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
-      <%= f.text_area :description,
-        class: "dark:text-gray-800 form-textarea mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
-        rows: 8,
-        maxlength: 350,
-        data: { description_target: 'output' } %>
+    <div class="mb-8" >
+        <%= f.label :description, "Descripción", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+        <%= f.text_area :description, class: "dark:text-gray-800 form-textarea mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring -indigo-200 focus:ring-opacity-50", rows: 8, maxlength: 350 %>
     </div>
-    <div class="mb-4" >
-      <%= f.label :prize, "Prezo", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
-      <%= f.number_field :prize, step: :any, class: "dark:text-gray-800 form-input mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    <div class="mb-8" >
+        <%= f.label :prize, "Prezo", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+        <%= f.number_field :prize, step: :any, class: "dark:text-gray-800 form-input mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
 
     <div class="flex flex-wrap items-center gap-1 justify-between">
-      <%= f.submit "Gardar", class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800" %>
+        <%= f.submit "Gardar", class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800" %>
     </div>
-  <% end %>
-</div>
+<% end %>
