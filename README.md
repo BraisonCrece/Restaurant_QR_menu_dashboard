@@ -11,19 +11,6 @@ https://cartanavegacion.fly.dev/
 
 This application allows restaurants to create and manage their menu of food and drinks in QR format. Customers can scan the QR code with their mobile phones to quickly and easily access the restaurant's menu.
 
-The main objectives are:
-- To provide maximum **ease** in menu management
-- **Mobile & desktop** design
-- **Immediate** menu updates
-
-## Technologies used
-
-- Ruby on Rails 7
-- Tailwind CSS
-- ImportMaps
-- MySQL
-- StimulusJS
-
 ## Main features
 
 - Mobile first 📲
@@ -41,6 +28,13 @@ The main objectives are:
     - Desserts
     - Special menus
 
+## Technologies beind used
+
+- Ruby on Rails 7
+- Tailwind CSS
+- ImportMaps
+- MySQL
+- StimulusJS
 
 ## Installation and configuration
 
