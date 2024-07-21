@@ -1,0 +1,19 @@
+<div class='flex justify-between w-[90%] h-20 mx-auto border-t align-middle relative product-item' data-product-title='<%= wine.name.downcase %>' data-product-search-target="item">
+    <p class='max-w-[75%] self-center flex flex-col gap-2 text-lg font-medium'>
+        <%= truncate(wine.name, length: 30, separator: " ", omission: "...") %>
+    </p>
+    <p class='self-center'>
+        <% if wine.lock? %>
+            🔒
+        <% else %>
+        <%= turbo_frame_tag "wine_active_#{wine.id}" do %>
+            <%= link_to "🔴", wine_toggle_active_path(wine_id: wine.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if !wine.active %>
+            <%= link_to "🟢", wine_toggle_active_path(wine_id: wine.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if wine.active %>
+        <% end %>
+        <% end %>
+    </p>
+    <div class='absolute flex gap-2'>
+        <%= button_to "Editar", edit_wine_path(wine), data: { turbo: false }, class: "text-xs font-thin text-blue-800 p-0 dark:text-blue-200", method: :get %>
+        <%= button_to "Eliminar", wine_path(wine), data: { turbo_confirm: "Seguro que queres eliminar o producto?" }, class: "text-xs font-thin text-red-800 p-0 dark:text-red-200", method: :delete %>
+    </div>
+</div>

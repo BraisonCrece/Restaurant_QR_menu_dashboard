@@ -1,7 +1,7 @@
-<div data-controller='menu'>
+<div data-controller="menu" class="transition-colors duration-500">
     <% if current_user %>
-    <button class="fixed z-30 right-4 top-4 rounded-full p-2 shadow shadow-gray-400 bg-white print:hidden active:shadow-gray-700 hover:bg-gray-100 transition-colors duration-200" data-action="click->menu#toggle"><%= image_tag "menu.svg", width: 40, heigth: 40, class: "select-none" %></button>
-    <div class="fixed bg-white top-0 right-0 shadow z-40 h-full flex flex-col min-w-[45%] md:min-w-[25%]  ease-in-out duration-300 p-5 translate-x-full dark:bg-gray-900" data-menu-target="items">
+    <button class="fixed z-30 right-4 top-4 rounded-full p-2 shadow shadow-gray-400 bg-white print:hidden active:shadow-gray-700 hover:bg-gray-100" data-action="click->menu#toggle"><%= image_tag "menu.svg", width: 40, heigth: 40, class: "select-none" %></button>
+    <div class="fixed bg-white top-0 right-0 shadow z-40 h-full flex flex-col min-w-[45%] md:min-w-[25%] ease-in-out duration-300 p-5 translate-x-full dark:bg-gray-900" data-menu-target="items">
         <button class="mr-8 mb-3 select-none dark:text-white" data-action="click->menu#toggle">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 dark:text-white">
                 <path stroke="currentColor" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -10,7 +10,7 @@
         <%= render "/shared/items" %>
     </div>
     <% end %>
-    <div class='flex justify-center p-4 gap-8 mt-5' id='logo-link' >
+    <div class="flex justify-center p-4 gap-8 mt-5" id="logo-link" >
     <%= link_to "/#{Setting.root_page}", data: { controller: "install-pwa", action: "click->install-pwa#install" } do %>
         <%= image_tag "Navega_sinfondo.png", width: "115px", class: "" %>
     <% end %>

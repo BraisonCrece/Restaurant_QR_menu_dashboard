@@ -1,0 +1,24 @@
+<div class="special_menu flex flex-col border border-gray-200 rounded p-2 shadow-md">
+<div class='flex justify-between w-[90%] h-24 mx-auto align-middle relative special_menu-item' data-special_menu-title='<%= special_menu.name.downcase %>' data-special_menu-search-target="item">
+    <p class='max-w-[75%] self-center flex flex-col gap-2 text-lg font-medium'>
+        <%= truncate(special_menu.name, length: 30, separator: " ", omission: "...") %>
+    </p>
+    <p class='self-center'>
+        <%= turbo_frame_tag "special_menu_active_#{special_menu.id}" do %>
+            <%= link_to "🔴", toggle_special_menu_path(special_menu_id: special_menu.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if !special_menu.active %>
+            <%= link_to "🟢", toggle_special_menu_path(special_menu_id: special_menu.id), class: "no-underline select-none text-xl", data: { turbo_method: :post } if special_menu.active %>
+        <% end %>
+    </p>
+    <div class='absolute flex gap-2'>
+        <%= button_to "Editar", edit_special_menu_path(special_menu), data: { turbo: false }, class: "dark:text-blue-200 text-xs font-thin text-blue-800 p-0", method: :get %>
+        <%= button_to "Eliminar", special_menu_path(special_menu), data: { turbo_confirm: "Seguro que queres eliminar o producto?" }, class: "dark:text-red-200 text-xs font-thin text-red-800 p-0", method: :delete %>
+    </div>
+
+</div>
+<div class="special_menu_products w-full border rounded border-grey mx-auto">
+    <h3 class="text-center text-lg font-light m-2 rounded text-slate-600 dark:text-slate-200 bg-emerald-100/25 dark:bg-emerald-200/25">Platos</h3>
+    <% special_menu.products.each do |product| %>
+        <%= render 'special_menu_product', product: product %>
+    <% end %>
+</div>
+</div>

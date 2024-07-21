@@ -9,21 +9,20 @@ export default class extends Controller {
 
   connect() {
     this.timeout = setTimeout(() => {
-      this.hideNotification();
-    }, 3000);
+      this.hideNotification()
+    }, 3000)
   }
 
   disconnect() {
-    clearTimeout(this.timeout);
+    clearTimeout(this.timeout)
   }
 
   hideNotification() {
-    this.element.classList.remove("animate__fadeInRight");
-    this.element.classList.add("animate__fadeOutRight");
+    this.element.classList.remove("animate__fadeInRight")
+    this.element.classList.add("animate__fadeOutRight")
 
     setTimeout(() => {
-      this.element.remove();
-    }, 500);
+      this.element.remove()
+    }, 100)
   }
-
 }

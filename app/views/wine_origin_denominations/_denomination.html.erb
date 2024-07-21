@@ -1,0 +1,7 @@
+<div class="bg-gray-100 dark:bg-gray-200 dark:text-gray-700 rounded-[3px] p-4 hover:bg-gray-200 flex justify-between items-center relative">
+    <%= link_to denomination.name, denomination_path(denomination), class: 'text-xl mb-2 text-center' %>
+    <div class='absolute bottom-0 flex gap-2 left-2'>
+        <%= button_to 'Editar', edit_denomination_path(denomination), data: { turbo: false }, class: 'text-xs font-thin text-blue-800 dark:text-blue-900 p-0', method: :get%>
+        <%= button_to 'Eliminar', denomination_path(denomination), data: { turbo_confirm: 'Seguro que queres eliminar o denominationo?'}, class: 'text-xs font-thin text-red-800 dark:text-red-900 p-0', method: :delete %>
+    </div>
+</div>
