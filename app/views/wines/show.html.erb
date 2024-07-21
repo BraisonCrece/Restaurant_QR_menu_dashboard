@@ -5,8 +5,8 @@
         <%= image_tag @wine.image.attached? ? @wine.image : "wine-placeholder.webp", class: "rounded-t-lg sm:rounded-none object-cover object-center w-full h-full sm:h-full sm:w-auto",  data: { modal_target: "image" } %>
       </div>
       <div class="card__body h-full px-6 py-2 sm:max-w-[70%] flex flex-col justify-around">
-        <div class="font-bold text-2xl mb-2 playfare balance skeleton skeleton-dark" data-modal-target="skeleton"><%= @wine.name %></div>
-        <p class="text-gray-700 mb-4 lato w-full text-start break-words balance skeleton skeleton-dark dark:text-slate-300" data-modal-target="skeleton"><%= translate("wine.#{@wine.id}.description", @wine.description) %></p>
+        <div class="font-bold text-2xl mb-2 playfare skeleton skeleton-dark" data-modal-target="skeleton"><%= @wine.name %></div>
+        <p class="text-gray-700 mb-4 lato w-full text-start break-words skeleton skeleton-dark dark:text-slate-300" data-modal-target="skeleton"><%= translate("wine.#{@wine.id}.description", @wine.description) %></p>
         <div class="flex justify-between items-center align-middle">
           <div class="font-semibold text-xl block self-center skeleton skeleton-dark" data-modal-target="skeleton"><%= number_to_currency(@wine.price, { unit: "€", separator: ",", format: "%n %u" }) %></div>
           <% if @wine.price_per_glass %>
