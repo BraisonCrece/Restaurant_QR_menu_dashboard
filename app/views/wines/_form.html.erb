@@ -1,9 +1,9 @@
 <div data-controller="toggle-price-per-glass description file-input" class="w-full ">
   <h1 class="font-thin text-4xl text-center mb-8 text-pretty"><%= message %></h1>
-  <%= form_with(model: wine, data: { turbo: false }, class: "shadow rounded-[3px] px-8 pt-6 pb-8 mb-8 dark:shadow-white/50") do |f| %>
+  <%= form_with(model: wine, data: { turbo: false }, class: "shadow-md rounded-[3px] px-6 pt-4 pb-8 mb-4 dark:shadow-white/25") do |f| %>
     <% if @wine.errors.any? %>
       <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[3px]mb-8">
-        <h2 class='font-bold mb-2'><%= pluralize(@wine.errors.count, "error") %> prohibited this wine from being saved:</h2>
+        <h2 class='font-semibold mb-2'><%= pluralize(@wine.errors.count, "error") %> prohibited this wine from being saved:</h2>
         <ul class="list-disc ml-5">
           <% @wine.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -12,8 +12,8 @@
       </div>
     <% end %>
     <div class="mb-8">
-      <%= f.label :image, "Foto", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
-      <%= image_tag wine.image.attached? ? wine.image : "wine-placeholder.webp", class: "w-full aspect-square rounded-[3px] mb-4 object-cover hover:scale-[101%] hover:cursor-pointer", data: { file_input_target: "imagePreview", action: "click->file-input#changePicture" } %>
+      <%= f.label :image, "📸 Foto", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
+      <%= image_tag wine.image.attached? ? wine.image : "wine-placeholder.webp", class: "w-full aspect-1 rounded-[3px] mb-4 object-cover hover:scale-[101%] hover:cursor-pointer", data: { file_input_target: "imagePreview", action: "click->file-input#changePicture" } %>
       <div class="hidden" data-file-input-target="placeholderUrl">
         <%= asset_path("wine-placeholder.webp") %>
       </div>
@@ -26,45 +26,51 @@
       </div>
     </div>
     <div class="mb-8">
-      <%= f.label :name, "Nombre", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+      <%= f.label :name, "Nombre", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
       <%= f.text_field :name,
-        class: "dark:text-gray-800 mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+        class: "placeholder:italic placeholder:text-gray-700 placeholder:font-extralight dark:text-gray-800 mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+        placeholder: "Viño delicioso",
+        onfocus: "this.placeholder=''",
+        onblur: "this.placeholder='Viño delicioso'",
         data: { description_target: 'input'} %>
     </div>
       <div class="mb-8" >
-      <%= f.label :description, "Descripción", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+      <%= f.label :description, "Descripción", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
       <%= f.text_area :description,
         class: "dark:text-gray-800 form-textarea mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+        placeholder: "\"Un viño delicioso que combina o sabor da uva coa calor do alcohol\"",
+        onfocus: "this.placeholder=''",
+        onblur: "this.placeholder='\"Un viño delicioso que combina o sabor da uva coa calor do alcohol\"'",
         rows: 8,
         maxlength: 350,
         data: { description_target: 'output' } %>
     </div>
     <div class="mb-8">
-      <%= f.label :wine_type, "Tipo de vino", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+      <%= f.label :wine_type, "Tipo de vino", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
       <%= f.select :wine_type, [["Tinto", "Tinto"], ["Blanco", "Blanco"]],
         { prompt: "Selecciona un tipo de vino" },
         class: "dark:text-gray-800 form-select mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
     <div class="mb-8">
-      <%= f.label :wine_origin_denomination_id, "Denominación de origen", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+      <%= f.label :wine_origin_denomination_id, "Denominación de origen", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
       <%= f.collection_select :wine_origin_denomination_id, WineOriginDenomination.all, :id, :name, {prompt: "Selecciona una denominación de origen"}, {class: "dark:text-gray-800 form-select mt-1 block rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"} %>
     </div>
     <div class="mb-8">
-      <%= f.label :price, "Precio", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+      <%= f.label :price, "Precio", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
       <%= f.number_field :price, step: :any, class: "dark:text-gray-800 mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
     <div class="mb-8 flex items-center gap-4">
-      <div for="por-copa" class="dark:text-gray-200 text-gray-700 font-bold">¿Dispoñible por copa? 🍷</div>
+      <div for="por-copa" class="dark:text-gray-200 text-gray-700 font-semibold">¿Dispoñible por copa? 🍷</div>
       <input type="checkbox" id="por-copa" class="form-checkbox rounded-[3px]" data-action="change->toggle-price-per-glass#toggle">
     </div>
     <div class="mb-8 hidden" data-toggle-price-per-glass-target="pricePerGlassField">
-      <%= f.label :price_per_glass, "Precio por copa (opcional)", class: "block text-gray-700 font-bold mb-2 dark:text-gray-200" %>
+      <%= f.label :price_per_glass, "Precio por copa (opcional)", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
       <%= f.number_field :price_per_glass, step: :any, class: "dark:text-gray-800 mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50", data: {toggle_price_per_glass_target: "input"} %>
     </div>
 
     <div class="flex flex-wrap items-center gap-1 justify-between">
-      <%= f.submit "Guardar", class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800" %>
-      <button data-action="click->description#describeWine" class="w-full bg-purple-800 hover:bg-purple-950 text-white font-bold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800">
+      <%= f.submit "Guardar", class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800" %>
+      <button data-action="click->description#describeWine" class="w-full bg-purple-800 hover:bg-purple-950 text-white font-semibold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800">
         <span data-description-target="buttonText">Xerar descripción</span>
         <span data-description-target="spinner" class="hidden flex items-center justify-center space-x-2">
           <svg aria-hidden="true" role="status" class="inline w-6 h-6 mr-1 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

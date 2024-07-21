@@ -1,4 +1,4 @@
-<%= form_with(model: category, data: { turbo: false }, class: "shadow rounded-[3px] px-8 pt-6 pb-8 my-4 dark:shadow-white/50") do |f| %>
+<%= form_with model: category, data: { turbo: false }, class: "shadow-md rounded-[3px] px-6 pt-4 pb-8 mb-4 dark:shadow-white/25" do |f| %>
     <% if @category.errors.any? %>
         <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[3px] mb-4">
             <h2 class='font-bold mb-2'>

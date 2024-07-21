@@ -4,13 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["fileInput", "fileName", "imagePreview", "placeholderUrl"]
 
-  //   resetImagePreview() {
-  //     console.log("resetImagePreview")
-  //     const placeholderUrl = this.placeholderUrlTarget.textContent.trim()
-  //     console.log(this.imagePreviewTarget.src)
-  //     this.imagePreviewTarget.src = placeholderUrl
-  //   }
-
   updateFile() {
     const input = this.fileInputTarget
     const fileName =

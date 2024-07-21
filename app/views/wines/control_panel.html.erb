@@ -1,13 +1,15 @@
-<div class="w-full max-w-2xl p-3" data-controller="product-search">
-    <h1 class="font-thin text-4xl text-center mb-8 text-pretty"> Viños </h1>
-  <div class="flex justify-center items-center align-middle gap-2 mb-6">
-    <%= render "shared/add_button", path: new_wine_path %>
-    <input type="search" id="productSearch" placeholder="Buscar viño" data-product-search-target="search" data-action="input->product-search#search" class="bg-white focus:ring-blue-500 focus:border-blue-500 border border-gray-300 dark:text-gray-800 rounded-[3px] py-2 px-4 block w-full" />
-  </div>
-  <div id="productList">
-    <% @wines.each do |wine| %>
-        <%= turbo_stream_from wine %>
-        <%= render "control_panel_wine", wine: wine %>
-    <% end %>
-  </div>
+<div class="w-full max-w-2xl" data-controller="product-search sticky-shadow">
+    <div class="sticky top-[-1px] bg-white dark:bg-gray-800 pt-4 pb-1 z-10 cubic-transition" data-sticky-shadow-target="sticky">
+        <h1 class="font-thin text-4xl text-center mb-8 text-pretty"> Viños </h1>
+        <div class="flex justify-center items-center align-middle gap-2 mb-6 px-3">
+          <%= render "shared/add_button", path: new_wine_path %>
+          <input type="search" id="productSearch" placeholder="Buscar viño" data-product-search-target="search" data-action="input->product-search#search" class="bg-white focus:ring-blue-500 focus:border-blue-500 border border-gray-300 dark:text-gray-800 rounded-[3px] py-2 px-4 block w-full" />
+        </div>
+    </div>
+    <div id="productList" class="p-3">
+      <% @wines.each do |wine| %>
+          <%= turbo_stream_from wine %>
+          <%= render "control_panel_wine", wine: wine %>
+      <% end %>
+    </div>
 </div>
