@@ -21,15 +21,21 @@ The main objectives are:
 
 ## Main features
 
+- Mobile first 📲
+- Auto translation in the background each time a new product / wine is created / updated. (`OpenAI` 🔮 + `i18n`) `[ES, IT, FR, EN, RU, IT]`
 - Auto generative descriptions based on the name of the product (AI 🔮)
+- Activate / Deactivate / Modify / Delete products on the fly, the user wont have to refresh the page to see the updates (`WebSocket`)
+- User authentication: Allowing restaurant owners to access their account and manage the data on the fly using a smartphone / tablet / desktop.
+- Automatic image processing and compression to improve the performance while reducing the storage cost. (`libvips`)
+- Theme switcher (`Dark` 🌙 / `Light` 🌞)
 - Menu creation and editing: restaurants can create and edit their menu of food and drinks in the application.
-    - Allergens (associable to products)
+    - Allergens
     - Wines
     - Starters
     - Main courses
     - Desserts
-- QR code scanning: customers can scan the QR code with their mobile phones to access the restaurant's menu.
-- User authentication: the application uses Devise to manage user authentication and authorization, allowing restaurants to access their account and customers to access the restaurant's menu.
+    - Special menus
+
 
 ## Installation and configuration
 
