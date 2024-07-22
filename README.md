@@ -1,11 +1,15 @@
 # QR Menu Card for Restaurants 
 (Under development 🔨)
-(designed to be better used on mobiles 📱)
+(mobile 1st 📱)
 
+https://github.com/user-attachments/assets/d72ea4b1-970d-4ce5-b340-17e25bd211e7
 
-https://github.com/user-attachments/assets/4b511c73-fc80-4223-9a30-f3cf4abb7efb
+---
 
-
+<img width="432" alt="image" src="https://github.com/user-attachments/assets/a8ecccf5-4f44-4639-8c9b-3117392d4463">
+<img width="432" alt="image" src="https://github.com/user-attachments/assets/9ae58413-a1eb-4bb0-bb5e-0426640510ac">
+<img width="432" alt="image" src="https://github.com/user-attachments/assets/6ea2c41e-dfbe-41a9-9bc2-d54bb7ce2b3a">
+<img width="432" alt="image" src="https://github.com/user-attachments/assets/c64a29b0-d8d8-4315-b8be-ed26d88f79ea">
 
 https://cartanavegacion.fly.dev/
 
