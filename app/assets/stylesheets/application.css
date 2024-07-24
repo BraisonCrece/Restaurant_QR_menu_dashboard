@@ -80,12 +80,6 @@ main {
   background-color: #555;
 }
 
-/* body {
-    background-color: Canvas;
-    color: CanvasText;
-    color-scheme: light dark;
-} */
-
 .loader {
   border: 4px solid #f3f3f3;
   border-top: 4px solid #3498db;

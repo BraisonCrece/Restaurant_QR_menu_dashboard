@@ -2,13 +2,22 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="price-per"
 export default class extends Controller {
-  static targets = ["pricePerKg", "pricePerGr"]
+  static targets = ["pricePerKg", "pricePerGr", "pricePerUnit"]
 
   toggle(event) {
-    if (event.target === this.pricePerKgTarget) {
-      this.pricePerGrTarget.checked = false
-    } else {
-      this.pricePerKgTarget.checked = false
+    switch (event.target) {
+      case this.pricePerKgTarget:
+        this.pricePerGrTarget.checked = false
+        this.pricePerUnitTarget.checked = false
+        break
+      case this.pricePerGrTarget:
+        this.pricePerKgTarget.checked = false
+        this.pricePerUnitTarget.checked = false
+        break
+      case this.pricePerUnitTarget:
+        this.pricePerKgTarget.checked = false
+        this.pricePerGrTarget.checked = false
+        break
     }
   }
 }

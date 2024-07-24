@@ -4,11 +4,13 @@
   </div>
   <div class="text-2xl self-center font-extralight flex gap-1">
     <%= number_with_precision(product.prize, precision: 2, separator: ",") %>
-    <small class='text-black font-extralight italic place-self-end text-sm dark:text-white'>
+    <small class='text-black font-extralight italic place-self-end text-sm dark:text-white duration-500'>
       <% if product.per_kilo %>
         €/Kg
       <% elsif product.per_gram %>
         €/100gr
+      <% elsif product.per_unit %>
+        €/ud
       <% else %>
         €
       <% end %>

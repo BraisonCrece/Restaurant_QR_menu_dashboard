@@ -20,7 +20,7 @@
       <div class="relative">
         <div class="flex items-center justify-between  border border-gray-300 rounded-[3px] px-4 py-2 w-full">
           <span data-file-input-target="fileName" class="text-gray-400">Seleccione un archivo</span>
-          <button type="button" class="text-blue-500">Examinar</button>
+          <button type="button" class="text-teal-400">Examinar</button>
         </div>
         <%= f.file_field :picture, class: "absolute inset-0 opacity-0 cursor-pointer w-full h-full", data: { action: "change->file-input#updateFile", file_input_target: "fileInput" } %>
       </div>
@@ -37,14 +37,14 @@
     <div class="mb-8" >
       <%= f.label :description, "Descripción", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
       <%= f.text_area :description,
-        class: "placeholder:italic placeholder:text-gray-700 placeholder:font-extralight dark:text-gray-800 form-textarea mt-1 block w-full rounded-[3px] border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+        class: "placeholder:italic placeholder:text-gray-700 placeholder:font-extralight dark:text-gray-800 form-textarea mt-1 block w-full rounded-[3px] rounded-b-none border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
         placeholder: "\"Un prato delicioso que combina o sabor do mar coa frescura da terra\"",
         onfocus: "this.placeholder=''",
         onblur: "this.placeholder='\"Un prato delicioso que combina o sabor do mar coa frescura da terra\"'",
         rows: 8,
         maxlength: 350,
         data: { description_target: 'output' } %>
-    <button data-action="click->description#describeDish" class="w-full bg-purple-800 hover:bg-purple-950 text-white font-semibold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800">
+    <button data-action="click->description#describeDish" class="w-full bg-teal-700 hover:bg-teal-950 text-white font-semibold py-2 px-4 rounded-[3px] rounded-t-none focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800">
         <span data-description-target="buttonText">Xerar descripción</span>
         <span data-description-target="spinner" class="hidden items-center justify-center space-x-2">
           <svg aria-hidden="true" role="status" class="inline w-6 h-6 mr-1 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,18 +62,22 @@
         </div>
         <div class="flex items-end gap-4" data-controller="price-per">
             <div class="flex items-center gap-2">
-                <%= f.check_box :per_kilo, class: "form-checkbox rounded-[3px]", data: { action: "change->price-per#toggle", price_per_target: "pricePerKg" } %>
-                <%= f.label :per_kilo, "Prezo por kg", class: "block text-gray-700 font-semibold dark:text-gray-200" %>
+                <%= f.check_box :per_kilo, class: "rounded-[3px] h-5 w-5 dark:checked:bg-emerald-500 dark:focus:ring-emerald-200 focus:ring-1 border-gray-300 shadow", data: { action: "change->price-per#toggle", price_per_target: "pricePerKg" } %>
+                <%= f.label :per_kilo, "/kg", class: "block text-gray-700 font-semibold dark:text-gray-100 font-thin text-xl" %>
             </div>
             <div class="flex items-center gap-2">
-                <%= f.check_box :per_gram, class: "form-checkbox rounded-[3px]", data: { action: "change->price-per#toggle", price_per_target: "pricePerGr" } %>
-                <%= f.label :per_gram, "Prezo por gr", class: "block text-gray-700 font-semibold dark:text-gray-200" %>
+                <%= f.check_box :per_gram, class: "rounded-[3px] h-5 w-5 dark:checked:bg-emerald-500 dark:focus:ring-emerald-200 focus:ring-1 border-gray-300 shadow", data: { action: "change->price-per#toggle", price_per_target: "pricePerGr" } %>
+                <%= f.label :per_gram, "/gr", class: "block text-gray-700 font-semibold dark:text-gray-100 font-thin text-xl" %>
+            </div>
+            <div class="flex items-center gap-2">
+                <%= f.check_box :per_unit, class: "rounded-[3px] h-5 w-5 dark:checked:bg-emerald-500 dark:focus:ring-emerald-200 focus:ring-1 border-gray-300 shadow", data: { action: "change->price-per#toggle", price_per_target: "pricePerUnit" } %>
+                <%= f.label :per_gram, "/u", class: "block text-gray-700 font-semibold dark:text-gray-100 font-thin text-xl" %>
             </div>
         </div>
     </div>
-    <div class="mb-8 flex items-center gap-4">
-      <div for="especial" class="dark:text-gray-200 text-gray-700 font-semibold">¿Menú especial? 🍱</div>
-      <input type="checkbox" id="especial" class="form-checkbox rounded-[3px]" data-action="change->product-form#toggle">
+    <div class="mb-8 flex items-center align-middle gap-4">
+      <div for="especial" class="dark:text-gray-200 text-gray-700 font-semibold"><span class="text-2xl">🍱</span> ¿Menú especial?</div>
+      <input type="checkbox" id="especial" class="rounded-[3px] h-5 w-5 dark:checked:bg-emerald-500 dark:focus:ring-emerald-200 focus:ring-1 border-gray-300 shadow" data-action="change->product-form#toggle">
     </div>
     <div class="mb-8 hidden" data-product-form-target="specialMenuField">
       <%= f.label :special_menu_id, "Menú especial", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
@@ -84,15 +88,20 @@
       <%= render "categories_select", product: @product %>
     </div>
     <div class="mb-8">
-      <%= f.label :allergen_ids, "Alérxenos", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        <%= f.collection_check_boxes :allergen_ids, Allergen.all, :id, :name do |cb| %>
-          <div class="flex flex-col items-center truncate justify-center mb-2 bg-slate-400 rounded-[3px] p-2">
-            <%= cb.check_box(class: "form-checkbox h-4 w-4 text-indigo-600 rounded-[3px] mb-1") %>
-            <%= cb.label(class: "text-white text-center")%>
-          </div>
-        <% end %>
-      </div>
+        <%= f.label :allergen_ids, "Alérxenos", class: "block text-gray-700 font-semibold mb-2 dark:text-gray-200" %>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <%= f.collection_check_boxes :allergen_ids, Allergen.all, :id, :name do |cb| %>
+               <div class="relative items-center truncate justify-center mb-2 rounded-[3px] p-2 shadow shadow-black/25 dark:shadow-white/25 hover:cursor-pointer" id=<%= "allergen-#{cb.object.id}" %>>
+                   <label class="hover:cursor-pointer">
+                       <%= cb.check_box(class: "absolute top-2 right-2 rounded-[3px] h-5 w-5 dark:checked:bg-emerald-500 dark:focus:ring-emerald-200 focus:ring-1 border-gray-300") %>
+                       <div class="flex flex-col justify-center items-center gap-2 w-full">
+                           <%= image_tag cb.object.icon, class: "w-14 h-14" %>
+                           <%= cb.label class: "dark:text-white" %>
+                       </div>
+                    </label>
+                </div>
+            <% end %>
+        </div>
     </div>
     <div class="flex flex-wrap items-center gap-1 justify-between">
       <%= f.submit "Gardar", class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800" %>
