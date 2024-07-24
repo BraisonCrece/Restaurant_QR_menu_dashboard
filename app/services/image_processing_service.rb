@@ -11,22 +11,26 @@ class ImageProcessingService
   end
 
   def call
+    image = Vips::Image.new_from_file(file.path, access: :sequential)
+
+    if image.bands == 4
+      image = image.flatten(background: [255, 255, 255])
+    end
+
     if wine
       adjusted_y = size_y - 100
 
       processed_image = ImageProcessing::Vips
-        .source(file)
+        .source(image)
         .resize_to_fit(size_x, size_y)
         .resize_and_pad(size_x, adjusted_y, extend: :white)
-        .custom { |image| image.flatten(background: [255, 255, 255]) if file.content_type == 'image/png' }
         .convert('webp')
         .saver(Q: 75, strip: true)
         .call
       else
         processed_image = ImageProcessing::Vips
-          .source(file)
+          .source(image)
           .resize_to_fit(size_x, size_y)
-          .custom { |image| image.flatten(background: [255, 255, 255]) if file.content_type == 'image/png' }
           .convert('webp')
           .saver(Q: 75, strip: true)
           .call
