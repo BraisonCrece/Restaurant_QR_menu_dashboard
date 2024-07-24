@@ -1,8 +1,8 @@
 <%= turbo_frame_tag :modal do %>
   <div data-controller='modal' id='product-modal' class="flex justify-center align-middle items-center fixed inset-0 z-20 modal-container animate__fadeIn animate__animated animate__faster" data-action="click->modal#close">
     <div class="w-[95%] flex flex-col max-w-2xl sm:flex-row sm:items-center sm:h-[280px] mx-auto bg-white rounded-lg overflow-hidden shadow-xl dark:bg-gray-800 dark:shadow dark:shadow-slate-200/20">
-      <div class="w-full h-48 sm:h-full skeleton skeleton-dark" data-modal-target="skeleton">
-        <%= image_tag @wine.image.attached? ? @wine.image : "wine-placeholder.webp", class: "rounded-t-lg sm:rounded-none object-cover object-center w-full h-full sm:h-full sm:w-auto",  data: { modal_target: "image" } %>
+      <div class="w-full h-48 sm:h-full skeleton skeleton-dark flex justify-center bg-white" data-modal-target="skeleton">
+        <%= image_tag @wine.image.attached? ? @wine.image : "wine-placeholder.webp", class: "rounded-t-lg sm:rounded-none object-cover object-center h-full w-auto",  data: { modal_target: "image" } %>
       </div>
       <div class="card__body h-full px-6 py-2 sm:max-w-[70%] flex flex-col justify-around">
         <div class="font-bold text-2xl mb-2 playfare balance skeleton skeleton-dark" data-modal-target="skeleton"><%= @wine.name %></div>
