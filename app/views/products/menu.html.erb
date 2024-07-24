@@ -1,11 +1,7 @@
-<div class='w-full h-full max-w-2xl print:max-w-[80%]'>
-  <div id="category-menu-wrapper" class="print:hidden">
-    <div data-controller="scroll category-menu" >
-      <div class="flex justify-evenly gap-2 py-4 bg-white dark:bg-gray-800 transition-colors duration-500" data-category-menu-target='menu' id='menu-links'>
+<div class="w-full h-full max-w-2xl print:max-w-[80%]" data-controller="scroll sticky-shadow">
+    <div class="sticky top-[-1px] z-10 bg-white dark:bg-gray-800 flex justify-evenly content-center items-center gap-2 py-4 transition-colors duration-500" data-sticky-shadow-target="sticky">
         <%= render "menu_category_links" %>
-      </div>
     </div>
-  </div>
   <div class="space-y-4 p-3">
     <%= render "menu_categorized_products" %>
     <%= turbo_frame_tag :modal %>
