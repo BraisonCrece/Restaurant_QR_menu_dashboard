@@ -14,15 +14,17 @@
           <% unless @product&.category&.category_type == "daily" %>
             <div class="font-semibold text-xl block self-center skeleton skeleton-dark" data-modal-target="skeleton">
               <%= number_with_precision(@product.prize, precision: 2, separator: ",") %>
-              <small class='text-black font-extralight italic place-self-end text-sm dark:text-white'>
-                <% if @product.per_kilo %>
-                  €/Kg
-                <% elsif @product.per_gram %>
-                  €/100gr
-                <% else %>
-                  €
-                <% end %>
-              </small>
+                <small class='text-black font-extralight italic place-self-end text-sm dark:text-white duration-500'>
+                  <% if @product.per_kilo %>
+                      €/Kg
+                  <% elsif @product.per_gram %>
+                      €/100gr
+                  <% elsif @product.per_unit %>
+                      €/ud
+                  <% else %>
+                      €
+                  <% end %>
+                </small>
             </div>
           <% end %>
           <div class="flex items-center gap-1 alergenos skeleton skeleton-dark" data-modal-target="skeleton">

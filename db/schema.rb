@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_20_163601) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_24_193851) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_20_163601) do
     t.integer "special_menu_id"
     t.boolean "per_gram", default: false
     t.boolean "per_kilo", default: false
+    t.boolean "per_unit", default: false
     t.index ["special_menu_id"], name: "index_products_on_special_menu_id"
   end
 
