@@ -18,12 +18,18 @@ class ImageProcessingService
         .source(file)
         .resize_to_fit(size_x, size_y)
         .resize_and_pad(size_x, adjusted_y, extend: :white)
+        .custom { |image| image.flatten(background: [255, 255, 255]) if file.content_type == 'image/png' }
+        .convert('webp')
+        .saver(Q: 75, strip: true)
         .call
-    else
-      processed_image = ImageProcessing::Vips
-      .source(file)
-      .resize_to_limit(size_x, size_y)
-      .call
+      else
+        processed_image = ImageProcessing::Vips
+          .source(file)
+          .resize_to_fit(size_x, size_y)
+          .custom { |image| image.flatten(background: [255, 255, 255]) if file.content_type == 'image/png' }
+          .convert('webp')
+          .saver(Q: 75, strip: true)
+          .call
     end
 
     record.public_send(attachment_name).attach(
