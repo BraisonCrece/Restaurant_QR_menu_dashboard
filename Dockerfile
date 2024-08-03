@@ -23,7 +23,11 @@ FROM base as build
 
 # Install packages needed to build gems and libvips dependencies
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential libpq-dev pkg-config libglib2.0-dev libexpat1-dev \
+    apt-get install --no-install-recommends -y \
+    build-essential \
+    libpq-dev pkg-config \
+    libglib2.0-dev \
+    libexpat1-dev \
     libvips-dev \
     libvips \
     libvips-tools
