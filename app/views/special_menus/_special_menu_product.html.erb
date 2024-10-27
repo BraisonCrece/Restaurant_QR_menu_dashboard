@@ -9,7 +9,7 @@
         <% end %>
     </p>
     <div class="absolute flex gap-2">
-        <%= button_to "Editar", edit_product_path(product), data: { turbo: false }, class: "dark:text-blue-200 text-xs font-thin text-blue-800 p-0", method: :get %>
-        <%= button_to "Eliminar", product_path(product), data: { turbo_confirm: "Seguro que queres eliminar o producto?" }, class: "dark:text-red-200 text-xs font-thin text-red-800 p-0", method: :delete %>
+        <%= button_to "Editar", edit_special_menu_product_path(special_menu_id: product.special_menu_id, product_id: product.id), data: { turbo: false }, class: "dark:text-blue-200 text-xs font-thin text-blue-800 p-0", method: :get %>
+        <%= button_to "Eliminar", destroy_special_menu_product_path(special_menu_id: product.special_menu_id, product_id: product.id), data: { turbo_confirm: "Seguro que queres eliminar o producto?" }, class: "dark:text-red-200 text-xs font-thin text-red-800 p-0", method: :delete %>
     </div>
 </div>

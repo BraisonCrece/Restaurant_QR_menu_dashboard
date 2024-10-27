@@ -1,4 +1,4 @@
-<div class="special_menu flex flex-col border border-gray-200 rounded p-2 shadow-md">
+<div class="flex flex-col p-2 border border-gray-200 rounded shadow-md special_menu">
 <div class='flex justify-between w-[90%] h-24 mx-auto align-middle relative special_menu-item' data-special_menu-title='<%= special_menu.name.downcase %>' data-special_menu-search-target="item">
     <p class='max-w-[75%] self-center flex flex-col gap-2 text-lg font-medium'>
         <%= truncate(special_menu.name, length: 30, separator: " ", omission: "...") %>
@@ -13,12 +13,16 @@
         <%= button_to "Editar", edit_special_menu_path(special_menu), data: { turbo: false }, class: "dark:text-blue-200 text-xs font-thin text-blue-800 p-0", method: :get %>
         <%= button_to "Eliminar", special_menu_path(special_menu), data: { turbo_confirm: "Seguro que queres eliminar o producto?" }, class: "dark:text-red-200 text-xs font-thin text-red-800 p-0", method: :delete %>
     </div>
-
 </div>
-<div class="special_menu_products w-full border rounded border-grey mx-auto">
-    <h3 class="text-center text-lg font-light m-2 rounded text-slate-600 dark:text-slate-200 bg-emerald-100/25 dark:bg-emerald-200/25">Platos</h3>
-    <% special_menu.products.each do |product| %>
-        <%= render 'special_menu_product', product: product %>
-    <% end %>
-</div>
+<div class="w-full mx-auto border rounded special_menu_products border-grey">
+    <h3 class="m-2 text-lg font-light text-center rounded text-slate-600 dark:text-slate-200 bg-emerald-100/25 dark:bg-emerald-200/25">Platos</h3>
+    <section class="flex justify-center">
+      <%= link_to "Engadir plato ao menú",
+        new_special_menu_product_path(special_menu),
+        class: "mb-3 mt-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-[3px] focus:outline-none focus:shadow-outline-blue focus:ring ring-blue-300 focus:border-blue-300 active:bg-blue-800"%>
+    </section >
+        <% special_menu.products.each do |product| %>
+            <%= render 'special_menu_product', product: product %>
+        <% end %>
+    </div>
 </div>
