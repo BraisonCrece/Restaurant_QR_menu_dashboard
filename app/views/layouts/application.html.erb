@@ -21,13 +21,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   </head>
-  <body class="transition-colors duration-500 flex flex-col w-auto h-full justify-center mt-0 main-content bg-white dark:bg-gray-800 dark:text-white">
+  <body class="flex flex-col justify-center w-auto h-full mt-0 transition-colors duration-500 bg-white main-content dark:bg-gray-800 dark:text-white">
     <%= render "shared/theme_switch" %>
     <div class="flex justify-center">
       <%= render "shared/flash" %>
     </div>
     <%= render "shared/menu" %>
-    <main class="w-full mb-4 flex justify-center">
+    <main class="flex justify-center w-full mb-4">
       <%= yield %>
       <%= render "shared/locale_switch" %>
       <%= render "shared/card_menu_switch" %>

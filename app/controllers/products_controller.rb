@@ -113,9 +113,9 @@ class ProductsController < ApplicationController
   def set_products_and_color_based_on_params
     case params[:filter]
     when 'menu'
-      [Product.daily_menu, { carta: 'oscuro', menu: 'clarito' }]
+      [Product.not_daily_menu, { carta: 'oscuro', menu: 'clarito' }]
     else
-      [Product.not_daily_menu, { carta: 'clarito', menu: 'oscuro' }]
+      [Product.daily_menu, { carta: 'clarito', menu: 'oscuro' }]
     end
   end
 
