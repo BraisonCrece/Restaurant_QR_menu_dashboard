@@ -112,7 +112,7 @@ class SpecialMenusController < ApplicationController
 
   def product_params
     params.require(:product).permit(
-      :title, :description, :price, :picture, :special_menu_id,
+      :title, :description, :price, :prize, :picture, :special_menu_id,
       :per_gram, :per_kilo, :per_unit, allergen_ids: []
     )
   end

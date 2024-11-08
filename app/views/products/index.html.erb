@@ -2,13 +2,13 @@
     <div class="sticky top-[-1px] z-10 bg-white dark:bg-gray-800 flex justify-evenly content-center items-center gap-2 py-4 transition-colors duration-500" data-sticky-shadow-target="sticky">
         <%= render "category_links" %>
     </div>
-  <div class="space-y-4 p-3">
-    <%= render "categorized_products" %>
+  <div class="p-3 space-y-4">
     <%= render "special_menus/active_special_menus", special_menus: @special_menus if SpecialMenu.active.any? %>
+    <%= render "categorized_products" %>
     <%= render "categorized_wines" %>
     <%= turbo_frame_tag :modal %>
   </div>
-  <div class="flex items-center max-w-2xl mt-10 gap-2 prose text-emerald-900 font-thin italic justify-center dark:text-emerald-200">
+  <div class="flex items-center justify-center max-w-2xl gap-2 mt-10 italic font-thin prose text-emerald-900 dark:text-emerald-200">
       <%= image_tag "info.svg", class: "w-6" %>
       <%= translate("IVA", "Todos os prezos levan o IVE incluído") %>
   </div>
